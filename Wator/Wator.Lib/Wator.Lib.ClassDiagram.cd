@@ -23,7 +23,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Wator.Lib.World.WatorSettings">
-    <Position X="0.75" Y="6.25" Width="2" />
+    <Position X="0.75" Y="5.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAAAQAAGAAACAAAAAAAAAAAAAIAAgAA=</HashCode>
       <FileName>World\WatorSettings.cs</FileName>
@@ -33,7 +33,7 @@
   <Class Name="Wator.Lib.World.WatorWorld">
     <Position X="3.75" Y="2" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAgQAAAAAAAAA=</HashCode>
       <FileName>World\WatorWorld.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -75,8 +75,22 @@
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="Wator.Lib.Images.ImageCreator">
+    <Position X="11.75" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAggAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Images\ImageCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wator.Lib.Images.ImageJob">
+    <Position X="11.75" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAEAAAABAAAAgIAAAA=</HashCode>
+      <FileName>Images\ImageJob.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="Wator.Lib.IDrawable">
-    <Position X="10.5" Y="2" Width="2.25" />
+    <Position X="3.75" Y="6.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IDrawable.cs</FileName>

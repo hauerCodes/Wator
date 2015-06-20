@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Wator.Lib.Animals;
+using Wator.Lib.Images;
 
 namespace Wator.Lib.World
 {
@@ -22,5 +23,10 @@ namespace Wator.Lib.World
         public WatorField[,] World { get; private set; }
 
         public Wator.Lib.World.IWatorSettings Settings { get; private set; }
+
+        public ImageJob ToImageJob()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

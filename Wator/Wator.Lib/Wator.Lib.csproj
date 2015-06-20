@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +47,8 @@
     <Compile Include="Animals\Animal.cs" />
     <Compile Include="Animals\Fish.cs" />
     <Compile Include="IDrawable.cs" />
+    <Compile Include="Images\ImageCreator.cs" />
+    <Compile Include="Images\ImageJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Animals\Shark.cs" />
     <Compile Include="World\IWatorSettings.cs" />
