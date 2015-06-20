@@ -27,9 +27,20 @@ namespace Wator.Lib
             }
         }
 
-        public WatorSettings Settings { get; set; }
+        public Wator.Lib.World.IWatorSettings Settings { get; set; }
 
         public WatorWorld WatorWorld { get; private set; }
+
+        public int Round
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
 
         public void StartSimulation()
         {
