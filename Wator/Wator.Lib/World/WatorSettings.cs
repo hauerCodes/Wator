@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Wator.Lib.World
 {
-    public class WatorSettings
+
+    public class WatorSettings : IWatorSettings
     {
         public int WorldHeight
         {

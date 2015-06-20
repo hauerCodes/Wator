@@ -7,7 +7,7 @@ using Wator.Lib.Animals;
 
 namespace Wator.Lib.World
 {
-    public class WatorField
+    public class WatorField : Wator.Lib.IDrawable
     {
         public WatorField NeighbourFieldUp
         {
@@ -72,6 +72,18 @@ namespace Wator.Lib.World
             }
             set
             {
+            }
+        }
+
+        public int DrawColor
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
             }
         }
     }

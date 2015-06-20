@@ -21,6 +21,6 @@ namespace Wator.Lib.World
 
         public WatorField[,] World { get; private set; }
 
-        public WatorSettings Settings { get; private set; }
+        public Wator.Lib.World.IWatorSettings Settings { get; private set; }
     }
 }
