@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Wator.Lib.Animals.Animal">
+    <Position X="7.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAIAAAAAAAAAAAAIAAAAAIEAAAAAAgAg=</HashCode>
+      <FileName>Animals\Animal.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Wator.Lib.Animals.Fish">
+    <Position X="6.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAg=</HashCode>
+      <FileName>Animals\Fish.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wator.Lib.Animals.Shark">
+    <Position X="8.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAg=</HashCode>
+      <FileName>Animals\Shark.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wator.Lib.World.WatorSettings">
+    <Position X="3.75" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAQAAGAAACAAAAAAAAAAAAAIAAgAA=</HashCode>
+      <FileName>World\WatorSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wator.Lib.World.WatorWorld">
+    <Position X="3.75" Y="2" Width="2.25" />
+    <AssociationLine Name="Settings" Type="Wator.Lib.World.WatorSettings">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.11" Y="0.164" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>World\WatorWorld.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Settings" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="World" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Wator.Lib.WatorSimulation">
+    <Position X="0.75" Y="2" Width="1.75" />
+    <AssociationLine Name="Settings" Type="Wator.Lib.World.WatorSettings">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.256" Y="0.081" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAIAEAAAAAAAAAEAAAAAAAAAAAAAAAAgAQAIAAAAAA=</HashCode>
+      <FileName>Simulation\WatorSimulation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Settings" />
+      <Property Name="WatorWorld" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Wator.Lib.World.WatorField">
+    <Position X="7" Y="2" Width="2" />
+    <AssociationLine Name="Animal" Type="Wator.Lib.Animals.Animal">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.869" Y="0.31" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAIACAAAAAAAgAAAAAAAAAAAAAgAAIAAAAEAAAAA=</HashCode>
+      <FileName>World\WatorField.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Animal" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="Wator.Lib.IDrawable">
+    <Position X="10.5" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDrawable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
