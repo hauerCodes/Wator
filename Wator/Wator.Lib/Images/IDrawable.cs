@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Wator.Lib
+namespace Wator.Lib.Images
 {
     public interface IDrawable
     {
-        int DrawColor
-        {
-            get;
-            set;
-        }
+        IColorProvider[,] GetDrawingElements();
     }
 }

@@ -4,12 +4,11 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-
 using Wator.Lib.World;
 
 namespace Wator.Lib.Images
 {
-    public class ImageJob
+    public class ImageJob<T> where T : IDrawable
     {
         public ImageJob(Stream dataStream, int round)
         {

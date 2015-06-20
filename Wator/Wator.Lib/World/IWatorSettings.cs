@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,5 +16,23 @@ namespace Wator.Lib.World
         int SharkBreedTime { get; set; }
         int FishBreedTime { get; set; }
         int SharkStarveTime { get; set; }
+
+        Color WaterColor
+        {
+            get;
+            set;
+        }
+
+        Color FishColor
+        {
+            get;
+            set;
+        }
+
+        Color SharkColor
+        {
+            get;
+            set;
+        }
     }
 }
