@@ -46,7 +46,8 @@
   <ItemGroup>
     <Compile Include="Animals\Animal.cs" />
     <Compile Include="Animals\Fish.cs" />
-    <Compile Include="IDrawable.cs" />
+    <Compile Include="Images\IDrawable.cs" />
+    <Compile Include="Images\IColorProvider.cs" />
     <Compile Include="Images\ImageCreator.cs" />
     <Compile Include="Images\ImageJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

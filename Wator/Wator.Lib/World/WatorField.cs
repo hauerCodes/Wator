@@ -1,89 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
 using Wator.Lib.Animals;
+using Wator.Lib.Images;
 
 namespace Wator.Lib.World
 {
-    public class WatorField : Wator.Lib.IDrawable
+    public class WatorField : IColorProvider
     {
-        public WatorField NeighbourFieldUp
+
+        private IWatorSettings settings;
+
+        public WatorField(Point position, IWatorSettings settings)
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            this.Position = position;
+            this.settings = settings;
         }
 
-        public Wator.Lib.World.WatorField NeighbourFieldDown
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public WatorField NeighbourFieldUp { get; set; }
 
-        public Wator.Lib.World.WatorField NeighbourFieldLeft
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public WatorField NeighbourFieldDown { get; set; }
 
-        public Wator.Lib.World.WatorField NeighbourFieldRight
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public WatorField NeighbourFieldLeft { get; set; }
 
-        public Animal Animal
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public WatorField NeighbourFieldRight { get; set; }
 
-        public int Position
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public Animal Animal { get; set; }
 
-        public int DrawColor
+        public Point Position { get; private set; }
+
+        public Color DrawColor
         {
             get
             {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
+                return settings.WaterColor;
             }
         }
     }

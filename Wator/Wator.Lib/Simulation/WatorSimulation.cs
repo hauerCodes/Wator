@@ -51,5 +51,10 @@ namespace Wator.Lib
         {
             throw new System.NotImplementedException();
         }
+
+        private void InitializeWatorWorld()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

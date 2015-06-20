@@ -8,7 +8,7 @@ using Wator.Lib.Images;
 
 namespace Wator.Lib.World
 {
-    public class WatorWorld
+    public class WatorWorld : Wator.Lib.Image.IDrawable
     {
 
         /// <summary>
@@ -25,6 +25,16 @@ namespace Wator.Lib.World
         public Wator.Lib.World.IWatorSettings Settings { get; private set; }
 
         public ImageJob ToImageJob()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Image.IColorProvider[,] GetDrawingElements()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void InitializeFields()
         {
             throw new System.NotImplementedException();
         }
