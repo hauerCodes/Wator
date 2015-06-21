@@ -115,6 +115,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wator.Lib\Wator.Lib.csproj">
+      <Project>{3b3fbdbd-15eb-49dd-a22b-3f002d909f50}</Project>
+      <Name>Wator.Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
