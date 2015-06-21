@@ -90,6 +90,28 @@ namespace Wator.Lib.Simulation
 
         #endregion
 
+        public Phase BlackPhase
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public Phase WhitePhase
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         #region Events
 
         /// <summary>
