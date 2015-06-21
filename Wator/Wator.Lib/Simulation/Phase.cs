@@ -42,7 +42,7 @@ namespace Wator.Lib.Simulation
         /// </summary>
         /// <param name="world">The world.</param>
         /// <param name="blackPhase">if set to <c>true</c> then this represents 
-        /// the black phase otherwise whitephase.</param>
+        /// the black phase (even phase) otherwise whitephase (odd phase).</param>
         public Phase(WatorWorld world, bool blackPhase = false)
         {
             this.world = world;
@@ -76,11 +76,6 @@ namespace Wator.Lib.Simulation
         /// </value>
         public bool BlackPhase { get; private set; }
 
-        public void AddWorker()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void Start()
         {
             throw new System.NotImplementedException();
@@ -98,21 +93,25 @@ namespace Wator.Lib.Simulation
         /// </summary>
         private void InitializeWorkerNumber()
         {
-            //split the world in x rows - half of it (even part or not) for current phase
-            this.overallWorkerNumber = (Environment.ProcessorCount * 3);
+            // split the world in x rows - half of it for black/white phase
+            // exp. 8 logical cores x 3 => 24 workers per phase * 2 => 48 workers overall
+            this.overallWorkerNumber = (Environment.ProcessorCount * 3) * 2;
+
+            //odd number of workers
+            if (this.overallWorkerNumber % 2 == 1)
+            {
+                //even number of overall workers
+                this.overallWorkerNumber--;
+            }
 
             // world has less rows than workers
-            if ((world.Settings.WorldHeight / (double)overallWorkerNumber) < 2.0)
+            while ((world.Settings.WorldHeight / (double)overallWorkerNumber) < 2.0)
             {
-                this.overallWorkerNumber = Environment.ProcessorCount;
+                // exp 48 => 24 => 12 => 6 ...
+                this.overallWorkerNumber = this.overallWorkerNumber / 2;
             }
 
-            if (this.overallWorkerNumber % 2 == 1) //odd number
-            {
-                this.overallWorkerNumber--; //even number of overall workers
-            }
-
-            //only half of workers for current phase (only odd / only even)
+            // only half of workers for current phase (only odd / only even)
             this.phaseWorkerNumber = this.overallWorkerNumber / 2;
         }
 
@@ -137,15 +136,14 @@ namespace Wator.Lib.Simulation
 
             this.Workers = new PhaseExecutionWorker[phaseWorkerNumber];
 
-            // if we are in the black/even phase go through even numbers (start with 0 + 2)
-            // white phase odd numbers start with 1 + 2
+            // black/even phase go through even numbers - start with 0 increment 2
+            // white/odd phase  go through odd numbers -  start with 1 increment 2
             for (int i = BlackPhase ? 0 : 1; i < this.overallWorkerNumber; i += 2)
             {
                 // last row / exception - row incl. reminder
                 if ((i * workerRowHeight) > (world.Settings.WorldHeight - workerRowHeight))
                 {
-                    this.Workers[workerCounter++] = new PhaseExecutionWorker(
-                        world,
+                    this.Workers[workerCounter++] = new PhaseExecutionWorker(world,
                         i * workerRowHeight,
                         this.world.Settings.WorldHeight,
                         eventGo,
@@ -153,16 +151,15 @@ namespace Wator.Lib.Simulation
                 }
                 else
                 {
-                    this.Workers[workerCounter++] = new PhaseExecutionWorker(
-                        world,
+                    this.Workers[workerCounter++] = new PhaseExecutionWorker(world,
                         i * workerRowHeight,
-                        (i * workerRowHeight) + workerRowHeight + 1,
+                        // inclusive last row of part
+                        (i * workerRowHeight) + workerRowHeight - 1,
                         eventGo,
                         eventReady);
                 }
             }
         }
-
 
         #endregion
     }

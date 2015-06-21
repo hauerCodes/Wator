@@ -129,14 +129,14 @@
   <Class Name="Wator.Lib.Simulation.PhaseExecutionWorker">
     <Position X="4" Y="8.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>EAAAAABAABAAAAEAEAAADAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <HashCode>EAAAAEAQABAAAAEAEAAIDAAAAiEAAAAAAAAAAgAQAAA=</HashCode>
       <FileName>Simulation\PhaseExecutionWorker.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Wator.Lib.Simulation.Phase">
     <Position X="0.75" Y="8.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>MAAAEAEAACAAACEAAAAAAAAAAAAAKAAAAIAgAACAAAE=</HashCode>
+      <HashCode>MAAAEAEAACAAACEAAAAAAAAAAAAAKAAAAIAgAAAAAAE=</HashCode>
       <FileName>Simulation\Phase.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
