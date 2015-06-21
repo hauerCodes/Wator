@@ -76,14 +76,29 @@ namespace Wator.Lib.Simulation
         /// </value>
         public bool BlackPhase { get; private set; }
 
+        /// <summary>
+        /// Starts the signals the workers to start.
+        /// </summary>
         public void Start()
         {
-            throw new System.NotImplementedException();
+            // signal all workers to start work
+            eventGo.Set();
+
+            // wait until all workers have startet work 
+            Thread.Sleep(500);
+
+            // close "gate"
+            eventGo.Reset();
         }
 
+        /// <summary>
+        /// Waits for end of all workers
+        /// </summary>
         public void WaitForEnd()
         {
-            throw new System.NotImplementedException();
+            //wait until all workers are ready 
+            eventReady.Wait();
+            eventReady.Reset();
         }
 
         #region Initialize
@@ -120,7 +135,7 @@ namespace Wator.Lib.Simulation
         /// </summary>
         private void InitializeConcurrencyEvents()
         {
-            this.eventGo = new ManualResetEvent(false);
+            this.eventGo = new ManualResetEventSlim(false);
             this.eventReady = new CountdownEvent(phaseWorkerNumber);
         }
 

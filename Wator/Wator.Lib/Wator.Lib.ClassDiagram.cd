@@ -8,7 +8,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAIAAAAAAAAAAAAIAAAAAoEAAAAAAgAg=</HashCode>
+      <HashCode>AgAAAAAAAAAAAIAAAQAAAAAAAAIAAAAAoEAAAAAAgAA=</HashCode>
       <FileName>Animals\Animal.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -19,14 +19,14 @@
   <Class Name="Wator.Lib.Animals.Fish">
     <Position X="10.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAIAAAAAAAAAg=</HashCode>
+      <HashCode>AgAAAAAAAAAAAIAAAQAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Animals\Fish.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Wator.Lib.Animals.Shark">
     <Position X="13" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ggAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAIAAAAAAAAAg=</HashCode>
+      <HashCode>ggAAAAAAAAAAAIAAAQAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Animals\Shark.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -41,7 +41,7 @@
   <Class Name="Wator.Lib.World.WatorWorld">
     <Position X="4" Y="2" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAEAABAgAAQAAAAAAAAAAAAAAAgQAAAAAAgAA=</HashCode>
+      <HashCode>AAAAEAAAEAABAgAAQIAAAAAAAAAAAAAAgwAAAAAAgAA=</HashCode>
       <FileName>World\WatorWorld.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -54,9 +54,13 @@
   </Class>
   <Class Name="Wator.Lib.Simulation.WatorSimulation">
     <Position X="0.75" Y="2" Width="2" />
-    <AssociationLine Name="Settings" Type="Wator.Lib.World.IWatorSettings">
+    <AssociationLine Name="simulationPhases" Type="Wator.Lib.Simulation.Phase" FixedToPoint="true">
+      <Path>
+        <Point X="1.188" Y="7.151" />
+        <Point X="1.188" Y="9" />
+      </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.256" Y="0.081" />
+        <Position X="-0.992" Y="0.875" />
       </MemberNameLabel>
     </AssociationLine>
     <AssociationLine Name="ImageCreator" Type="Wator.Lib.Images.ImageCreator&lt;T&gt;" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
@@ -71,24 +75,20 @@
         <Position X="0.122" Y="-0.299" />
       </MemberNameLabel>
     </AssociationLine>
-    <AssociationLine Name="blackPhase" Type="Wator.Lib.Simulation.Phase" FixedToPoint="true">
-      <Path>
-        <Point X="1.188" Y="7.151" />
-        <Point X="1.188" Y="8.5" />
-      </Path>
+    <AssociationLine Name="Settings" Type="Wator.Lib.World.IWatorSettings">
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-0.992" Y="0.875" />
+        <Position X="0.256" Y="0.081" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAIAUEAACIAAEEEIAAAQEAAgAAAAAAAgQQCIQIABAA=</HashCode>
+      <HashCode>AAAIAEEBACIAAEEEIAAAQEAAgAAAAAAAgQQCIAoABAA=</HashCode>
       <FileName>Simulation\WatorSimulation.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="blackPhase" />
+      <Field Name="simulationPhases" />
+      <Property Name="ImageCreator" />
       <Property Name="Settings" />
       <Property Name="WatorWorld" />
-      <Property Name="ImageCreator" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
@@ -100,7 +100,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AgAAAIACAAAAAAAgAAAAAAAAAACAAgAAIAAAAEAAAAA=</HashCode>
+      <HashCode>AgAAAIACAAAAAAAgAQAAAAAAAACAAgAAIAAAAEAAAAA=</HashCode>
       <FileName>World\WatorField.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -127,14 +127,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Wator.Lib.Simulation.PhaseExecutionWorker">
-    <Position X="4" Y="8.5" Width="2" />
+    <Position X="4" Y="9" Width="2" />
     <TypeIdentifier>
       <HashCode>EAAAAEAQABAAAAEAEAAIDAAAAiEAAAAAAAAAAgAQAAA=</HashCode>
       <FileName>Simulation\PhaseExecutionWorker.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Wator.Lib.Simulation.Phase">
-    <Position X="0.75" Y="8.5" Width="2" />
+    <Position X="0.75" Y="9" Width="2" />
     <TypeIdentifier>
       <HashCode>MAAAEAEAACAAACEAAAAAAAAAAAAAKAAAAIAgAAAAAAE=</HashCode>
       <FileName>Simulation\Phase.cs</FileName>
@@ -151,7 +151,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="Wator.Lib.World.IWatorSettings">
-    <Position X="4" Y="5" Width="2" />
+    <Position X="4" Y="5.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIACAAAwAAGAAACAAAAAAAAAAAAAIAQoAA=</HashCode>
       <FileName>World\IWatorSettings.cs</FileName>

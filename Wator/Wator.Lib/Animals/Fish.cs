@@ -37,10 +37,11 @@ namespace Wator.Lib.Animals
 
         public override void Step()
         {
-            
+            IsMoved = true;
+
         }
 
-        public override void Finish()
+        public override void FinishStep()
         {
             throw new NotImplementedException();
         }
