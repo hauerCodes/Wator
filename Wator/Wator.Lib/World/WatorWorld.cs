@@ -18,9 +18,15 @@ namespace Wator.Lib.World
         private Random randomGenerator;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="world"/> class.
+        /// Occurs when the moved stats have to be reseted.
+        /// </summary>
+        private event Action ResetMovedStats;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WatorWorld" /> class.
         /// </summary>
         /// <param name="settings">The settings.</param>
+        /// <exception cref="System.ArgumentNullException">settings</exception>
         public WatorWorld(IWatorSettings settings)
         {
             if (settings == null)
@@ -35,14 +41,41 @@ namespace Wator.Lib.World
             this.PopulateWorld();
         }
 
+        /// <summary>
+        /// Gets the fields.
+        /// </summary>
+        /// <value>
+        /// The fields.
+        /// </value>
         public WatorField[,] Fields { get; private set; }
 
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <value>
+        /// The settings.
+        /// </value>
         public IWatorSettings Settings { get; private set; }
 
+        /// <summary>
+        /// Gets the drawing elements.
+        /// </summary>
+        /// <returns></returns>
         public IColorProvider[,] GetDrawingElements()
         {
             // ReSharper disable once CoVariantArrayConversion
             return Fields;
+        }
+
+        /// <summary>
+        /// Finishes the steps of alle animals on all fields.
+        /// </summary>
+        public void FinishSteps()
+        {
+            if (this.ResetMovedStats != null)
+            {
+                this.ResetMovedStats();
+            }
         }
 
         /// <summary>
@@ -70,6 +103,8 @@ namespace Wator.Lib.World
                 for (int x = 0; x < Settings.WorldWidth; x++)
                 {
                     this.Fields[y, x] = new WatorField(new Point(x, y), Settings);
+
+                    this.ResetMovedStats += this.Fields[y, x].FinishStep;
                 }
             }
 

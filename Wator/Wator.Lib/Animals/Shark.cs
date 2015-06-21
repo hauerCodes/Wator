@@ -48,7 +48,7 @@ namespace Wator.Lib.Animals
             throw new NotImplementedException();
         }
 
-        public override void Finish()
+        public override void FinishStep()
         {
             throw new NotImplementedException();
         }

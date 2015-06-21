@@ -93,5 +93,16 @@ namespace Wator.Lib.World
                 return settings.WaterColor;
             }
         }
+
+        /// <summary>
+        /// Finishes the step of the animal - if there is one on this field.
+        /// </summary>
+        public void FinishStep()
+        {
+            if (this.Animal != null)
+            {
+                this.Animal.FinishStep();
+            }
+        }
     }
 }

@@ -18,14 +18,14 @@ namespace Wator.Lib.Simulation
         private Thread simulationThread;
 
         /// <summary>
-        /// The black phase
+        /// The phase randomizer
         /// </summary>
-        private Phase blackPhase;
+        private Random phaseRandomizer;
 
         /// <summary>
-        /// The white phase
+        /// The black/white phase as array
         /// </summary>
-        private Phase whitePhase;
+        private Phase[] simulationPhases;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WatorSimulation"/> class.
@@ -47,6 +47,7 @@ namespace Wator.Lib.Simulation
             // initialize image creator
             InitializeImageCreator();
 
+            // intialize concurrency of simulation (phases)
             InitializeConcurrency();
         }
 
@@ -138,6 +139,9 @@ namespace Wator.Lib.Simulation
             // this.simulationThread.Join();
         }
 
+        /// <summary>
+        /// Runs the simulation.
+        /// </summary>
         private void RunSimulation()
         {
             while (this.IsRunning)
@@ -155,7 +159,19 @@ namespace Wator.Lib.Simulation
         /// </summary>
         private void SimulationStep()
         {
+            int firstPhase = phaseRandomizer.Next(0, 1);
+            int secondPhase = firstPhase == 0 ? 1 : 0; //opposite
 
+            //Start phases
+
+            simulationPhases[firstPhase].Start();
+            simulationPhases[firstPhase].WaitForEnd();
+
+            simulationPhases[secondPhase].Start();
+            simulationPhases[secondPhase].WaitForEnd();
+
+            //reset moved stats
+            WatorWorld.FinishSteps();
         }
 
         #region Initialize
@@ -168,8 +184,13 @@ namespace Wator.Lib.Simulation
         /// </summary>
         private void InitializeConcurrency()
         {
-            blackPhase = new Phase(WatorWorld, true);
-            whitePhase = new Phase(WatorWorld, false);
+            simulationPhases = new Phase[]
+            {
+                new Phase(WatorWorld, true), // black phase
+                new Phase(WatorWorld,false) // white phase
+            };
+
+            phaseRandomizer = new Random(DateTime.Now.Millisecond);
         }
 
         /// <summary>

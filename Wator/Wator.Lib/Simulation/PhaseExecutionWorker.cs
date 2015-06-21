@@ -137,6 +137,8 @@ namespace Wator.Lib.Simulation
         /// </summary>
         private void Calculate()
         {
+            ResetMoveStats();
+
             for (int y = StartRow; y <= EndRow; y++)
             {
                 for (int x = 0; x < worldWidth; x++)

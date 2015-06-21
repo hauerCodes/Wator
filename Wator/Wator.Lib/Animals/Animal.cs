@@ -26,13 +26,13 @@ namespace Wator.Lib.Animals
 
         public WatorField Field { get; protected set; }
 
-        public bool IsMoved { get; private set; }
+        public bool IsMoved { get; protected set; }
 
-        public int Lifetime { get; private set; }
+        public int Lifetime { get; protected set; }
 
         public abstract void Step();
 
-        public abstract void Finish();
+        public abstract void FinishStep();
 
         public abstract Color DrawColor { get; }
 
