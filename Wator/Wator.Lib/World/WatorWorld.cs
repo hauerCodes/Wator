@@ -18,7 +18,7 @@ namespace Wator.Lib.World
         private Random randomGenerator;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WatorWorld"/> class.
+        /// Initializes a new instance of the <see cref="world"/> class.
         /// </summary>
         /// <param name="settings">The settings.</param>
         public WatorWorld(IWatorSettings settings)
