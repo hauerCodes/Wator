@@ -16,7 +16,7 @@ namespace Wator.App.ViewModel
         private int currentFishPopulation;
         private int currentSharkPopulation;
         private WatorSimulation simulation;
-        private WatorSettings watorSettings;
+     
         public ICommand StartCommand { get; set; }
         public ICommand StopCommand { get; set; }
         public ICommand PlayCommand { get; set; }
@@ -26,13 +26,13 @@ namespace Wator.App.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public WatorSettings WatorSettings
+        public WatorSimulation Simulation
         {
-            get { return watorSettings; }
+            get { return simulation; }
             set
             {
-                watorSettings = value;
-                OnPropertyChanged("WatorSettings");
+                simulation = value;
+                OnPropertyChanged("Simulation");
 
             }
         }
@@ -64,10 +64,6 @@ namespace Wator.App.ViewModel
             }
         }
 
-
-        /// <summary>
-        /// Gets or sets the number of rounds.
-        /// </summary>
         public int Round
         {
             get { return this.simulation.Round; }
@@ -86,15 +82,15 @@ namespace Wator.App.ViewModel
             ResetCommand = new RelayCommand(Reset);
             PlayCommand = new RelayCommand(Play);
 
-            this.watorSettings = new WatorSettings();
-            this.watorSettings.FishBreedTime = 20;
-            this.watorSettings.SharkBreedTime = 30;
-            this.watorSettings.InitialFishPopulation = 100;
-            this.watorSettings.InitialSharkPopulation = 80;
-            this.watorSettings.SharkStarveTime = 50;
-            this.watorSettings.WorldWidth = this.watorSettings.WorldHeight = 500;
+            WatorSettings watorSettings = new WatorSettings();
+            watorSettings.FishBreedTime = 20;
+            watorSettings.SharkBreedTime = 30;
+            watorSettings.InitialFishPopulation = 100;
+            watorSettings.InitialSharkPopulation = 80;
+            watorSettings.SharkStarveTime = 50;
+            watorSettings.WorldWidth = watorSettings.WorldHeight = 500;
 
-            this.simulation = new WatorSimulation(this.WatorSettings);
+            this.simulation = new WatorSimulation(watorSettings);
             
         }
 
@@ -113,7 +109,7 @@ namespace Wator.App.ViewModel
 
         private void Play()
         {
-            
+    
         }
 
         private void StartSimulation()

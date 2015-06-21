@@ -43,23 +43,23 @@
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
                                 <Label  Margin="5,0">World Height</Label>
-                                <TextBox Margin="15,0,5,5" Text="{Binding Path=WatorSettings.WorldHeight}"></TextBox>
+                                <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.WorldHeight}"></TextBox>
                             </StackPanel>
                             <StackPanel>
                                 <Label  Margin="5,0">World Width</Label>
-                                <TextBox Margin="15,0,5,5" Text="{Binding Path=WatorSettings.WorldWidth}"></TextBox>
+                                <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.WorldWidth}"></TextBox>
                             </StackPanel>
                         </StackPanel>
                         <Label  Margin="5,0">Fish Population</Label>
-                        <TextBox Margin="15,0,5,5" Text="{Binding Path=WatorSettings.InitialFishPopulation}"></TextBox>
+                        <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.InitialFishPopulation}"></TextBox>
                         <Label  Margin="5,0">Fish Breedtime</Label>
-                        <TextBox Margin="15,0,5,5" Text="{Binding Path=WatorSettings.FishBreedTime}"></TextBox>
+                        <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.FishBreedTime}"></TextBox>
                         <Label  Margin="5,0">Shark Population</Label>
-                        <TextBox Margin="15,0,5,5" Text="{Binding Path=WatorSettings.InitialSharkPopulation}"></TextBox>
+                        <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.InitialSharkPopulation}"></TextBox>
                         <Label  Margin="5,0">Shark Breedtime</Label>
-                        <TextBox Margin="15,0,5,5" Text="{Binding Path=WatorSettings.SharkBreedTime}"></TextBox>
+                        <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.SharkBreedTime}"></TextBox>
                         <Label  Margin="5,0">Shark Starve Time</Label>
-                        <TextBox Margin="15,0,5,5" Text="{Binding Path=WatorSettings.SharkStarveTime}"></TextBox>
+                        <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.SharkStarveTime}"></TextBox>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Header="Current Values" >
