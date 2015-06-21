@@ -71,34 +71,24 @@
         <Position X="0.122" Y="-0.299" />
       </MemberNameLabel>
     </AssociationLine>
-    <AssociationLine Name="BlackPhase" Type="Wator.Lib.Simulation.Phase" FixedToPoint="true">
+    <AssociationLine Name="blackPhase" Type="Wator.Lib.Simulation.Phase" FixedToPoint="true">
       <Path>
-        <Point X="1.188" Y="6.766" />
+        <Point X="1.188" Y="7.151" />
         <Point X="1.188" Y="8.5" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-0.992" Y="0.875" />
       </MemberNameLabel>
     </AssociationLine>
-    <AssociationLine Name="WhitePhase" Type="Wator.Lib.Simulation.Phase" FixedFromPoint="true">
-      <Path>
-        <Point X="2.5" Y="6.766" />
-        <Point X="2.5" Y="8.5" />
-      </Path>
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-1.004" Y="0.875" />
-      </MemberNameLabel>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAIAEEAACIAAEEEAAAAQEAAgAAAAAABgQQCIAIABAE=</HashCode>
+      <HashCode>AAAIAUEAACIAAEEEIAAAQEAAgAAAAAAAgQQCIQIABAA=</HashCode>
       <FileName>Simulation\WatorSimulation.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Field Name="blackPhase" />
       <Property Name="Settings" />
       <Property Name="WatorWorld" />
       <Property Name="ImageCreator" />
-      <Property Name="BlackPhase" />
-      <Property Name="WhitePhase" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
@@ -139,14 +129,14 @@
   <Class Name="Wator.Lib.Simulation.PhaseExecutionWorker">
     <Position X="4" Y="8.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAABAABAAAAAAEAAADAAAAAAAEAAIAAAAAAAAAAA=</HashCode>
+      <HashCode>EAAAAABAABAAAAEAEAAADAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
       <FileName>Simulation\PhaseExecutionWorker.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Wator.Lib.Simulation.Phase">
     <Position X="0.75" Y="8.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAAAAAIAAAAAAgAACAAAA=</HashCode>
+      <HashCode>MAAAEAEAACAAACEAAAAAAAAAAAAAKAAAAIAgAACAAAE=</HashCode>
       <FileName>Simulation\Phase.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
