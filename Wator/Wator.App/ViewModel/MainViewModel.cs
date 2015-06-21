@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wator.Lib.Simulation;
+using Wator.Lib.World;
 
 namespace Wator.App.ViewModel
 {
@@ -12,6 +14,8 @@ namespace Wator.App.ViewModel
         private int round;
         private int currentFishPopulation;
         private int currentSharkPopulation;
+        private WatorSimulation simulation;
+        private IWatorSettings watorSettings;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -93,9 +97,13 @@ namespace Wator.App.ViewModel
 
         public MainViewModel()
         {
-            Round = 10;
-            WorldWidth = 102;
-
+            this.watorSettings.FishBreedTime = 20;
+            this.watorSettings.SharkBreedTime = 30;
+            this.watorSettings.InitialFishPopulation = 100;
+            this.watorSettings.InitialSharkPopulation = 80;
+            this.watorSettings.SharkStarveTime = 50;
+            this.watorSettings.WorldWidth = this.watorSettings.WorldWidth = 500;
+            this.simulation = new WatorSimulation(this.watorSettings);
         }
 
         protected void OnPropertyChanged(string name)
