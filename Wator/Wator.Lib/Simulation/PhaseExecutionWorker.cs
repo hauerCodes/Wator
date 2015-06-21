@@ -32,8 +32,8 @@ namespace Wator.Lib.Simulation
         /// Initializes a new instance of the <see cref="PhaseExecutionWorker"/> class.
         /// </summary>
         /// <param name="world">The world.</param>
-        /// <param name="startRow">The start row.</param>
-        /// <param name="endRow">The end row.</param>
+        /// <param name="startRow">The worker start row.</param>
+        /// <param name="endRow">The worker end row. (inclusive)</param>
         /// <param name="eventGo">The event go.</param>
         /// <param name="eventReady">The event ready.</param>
         public PhaseExecutionWorker(WatorWorld world,  int startRow, int endRow, 

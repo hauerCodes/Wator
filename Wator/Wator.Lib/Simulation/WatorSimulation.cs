@@ -18,6 +18,16 @@ namespace Wator.Lib.Simulation
         private Thread simulationThread;
 
         /// <summary>
+        /// The black phase
+        /// </summary>
+        private Phase blackPhase;
+
+        /// <summary>
+        /// The white phase
+        /// </summary>
+        private Phase whitePhase;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="WatorSimulation"/> class.
         /// </summary>
         /// <param name="settings">The settings.</param>
@@ -36,9 +46,11 @@ namespace Wator.Lib.Simulation
 
             // initialize image creator
             InitializeImageCreator();
+
+            InitializeConcurrency();
         }
 
-        #region Properties 
+        #region Properties
 
         /// <summary>
         /// Gets a value indicating whether this instance is running.
@@ -90,28 +102,6 @@ namespace Wator.Lib.Simulation
 
         #endregion
 
-        public Phase BlackPhase
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public Phase WhitePhase
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
         #region Events
 
         /// <summary>
@@ -154,7 +144,7 @@ namespace Wator.Lib.Simulation
             {
                 //perform step
                 SimulationStep();
-                
+
                 //create image of step
                 ImageCreator.AddJob(new ImageJob<WatorWorld>(this.WatorWorld, this.Round));
             }
@@ -169,6 +159,18 @@ namespace Wator.Lib.Simulation
         }
 
         #region Initialize
+
+        /// <summary>
+        /// Initializes the concurrency.
+        /// Creates phases, splits up world in "rows" -> phase execution workers
+        /// sets up tasks for execution
+        /// waits for simulation to start
+        /// </summary>
+        private void InitializeConcurrency()
+        {
+            blackPhase = new Phase(WatorWorld, true);
+            whitePhase = new Phase(WatorWorld, false);
+        }
 
         /// <summary>
         /// Checks the settings.
@@ -190,11 +192,16 @@ namespace Wator.Lib.Simulation
                 throw new ArgumentOutOfRangeException("settings", "Please enter a valid Wator Fields Width!");
             }
 
-            // condition for splitting world in "rows/phases" for paralellization
-            if (settings.WorldHeight % 2 != 0)
-            {
-                throw new ArgumentOutOfRangeException("settings", "Please enter a valid even number as Wator Fields Height!");
-            }
+            //// condition for splitting world in "rows/phases" for paralellization
+            //if (settings.WorldHeight % 2 != 0)
+            //{
+            //    throw new ArgumentOutOfRangeException("settings", "Please enter a valid even number as Wator Fields Height!");
+            //}
+
+            //if ((settings.WorldHeight / (Environment.ProcessorCount * 3)) > 2)
+            //{
+            //    throw new ArgumentOutOfRangeException("settings", "Please enter a valid even number as Wator Fields Height!");
+            //}
         }
 
         /// <summary>
