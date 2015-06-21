@@ -10,10 +10,38 @@ namespace Wator.Lib.Animals
 {
     public class Shark : Animal
     {
-        public Shark(IWatorSettings settings)
-            : base(settings)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Shark" /> class.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <param name="field">The field.</param>
+        public Shark(IWatorSettings settings, WatorField field)
+            : base(settings, field)
         {
+            this.Starve = 0; // "Hunger" 
         }
+
+        /// <summary>
+        /// Gets the color of the draw.
+        /// </summary>
+        /// <value>
+        /// The color of the draw.
+        /// </value>
+        public override Color DrawColor
+        {
+            get
+            {
+                return this.Settings.SharkColor;
+            }
+        }
+
+        /// <summary>
+        /// Gets the starve.
+        /// </summary>
+        /// <value>
+        /// The starve.
+        /// </value>
+        public int Starve { get; private set; }
 
         public override void Step()
         {
@@ -28,14 +56,6 @@ namespace Wator.Lib.Animals
         public override void Ageing()
         {
             throw new NotImplementedException();
-        }
-
-        public override Color DrawColor
-        {
-            get
-            {
-                return settings.SharkColor;
-            }
         }
 
 

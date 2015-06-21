@@ -11,13 +11,17 @@ namespace Wator.Lib.Animals
 {
     public abstract class Animal : IColorProvider
     {
-        protected IWatorSettings settings;
+        /// <summary>
+        /// The settings
+        /// </summary>
+        protected IWatorSettings Settings;
 
-        protected Animal(IWatorSettings settings)
+        protected Animal(IWatorSettings settings, WatorField field)
         {
-            this.settings = settings;
+            this.Settings = settings;
             this.IsMoved = false;
             this.Lifetime = 0;
+            this.Field = field;
         }
 
         public WatorField Field { get; protected set; }

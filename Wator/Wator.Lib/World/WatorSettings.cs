@@ -1,125 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
 namespace Wator.Lib.World
 {
-
+    /// <summary>
+    /// The wator settings.
+    /// </summary>
     public class WatorSettings : IWatorSettings
     {
-        public int WorldHeight
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        /// <summary>
+        /// Gets or sets the fish breed time.
+        /// </summary>
+        public int FishBreedTime { get; set; }
 
-        public int WorldWidth
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        /// <summary>
+        /// Gets or sets the fish color.
+        /// </summary>
+        public Color FishColor { get; set; }
 
-        public int InitialFishPopulation
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        /// <summary>
+        /// Gets or sets the initial fish population.
+        /// </summary>
+        public int InitialFishPopulation { get; set; }
 
-        public int InitialSharkPopulation
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        /// <summary>
+        /// Gets or sets the initial shark population.
+        /// </summary>
+        public int InitialSharkPopulation { get; set; }
 
-        public int SharkBreedTime
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        /// <summary>
+        /// Gets or sets the save folder.
+        /// </summary>
+        public string SaveFolder { get; set; }
 
-        public int FishBreedTime
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        /// <summary>
+        /// Gets or sets the shark breed time.
+        /// </summary>
+        public int SharkBreedTime { get; set; }
 
-        public int SharkStarveTime
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        /// <summary>
+        /// Gets or sets the shark color.
+        /// </summary>
+        public Color SharkColor { get; set; }
 
+        /// <summary>
+        /// Gets or sets the shark starve time.
+        /// </summary>
+        public int SharkStarveTime { get; set; }
 
-        public int WaterColor
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        /// <summary>
+        /// Gets or sets the water color.
+        /// </summary>
+        public Color WaterColor { get; set; }
 
-        public int FishColor
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        /// <summary>
+        /// Gets or sets the world height.
+        /// </summary>
+        public int WorldHeight { get; set; }
 
-        public int SharkColor
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        /// <summary>
+        /// Gets or sets the world width.
+        /// </summary>
+        public int WorldWidth { get; set; }
     }
 }
