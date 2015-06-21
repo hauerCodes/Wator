@@ -50,6 +50,7 @@
     <Compile Include="Images\IColorProvider.cs" />
     <Compile Include="Images\ImageCreator.cs" />
     <Compile Include="Images\ImageJob.cs" />
+    <Compile Include="Phase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Animals\Shark.cs" />
     <Compile Include="World\IWatorSettings.cs" />

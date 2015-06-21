@@ -10,23 +10,34 @@ namespace Wator.Lib.Animals
 {
     public class Fish : Animal
     {
-        public Fish(IWatorSettings settings)
-            : base(settings)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Fish" /> class.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <param name="field">The field.</param>
+        public Fish(IWatorSettings settings, WatorField field)
+            : base(settings, field)
         {
 
         }
 
+        /// <summary>
+        /// Gets the color of the draw.
+        /// </summary>
+        /// <value>
+        /// The color of the draw.
+        /// </value>
         public override Color DrawColor
         {
             get
             {
-                return settings.FishColor;
+                return this.Settings.FishColor;
             }
         }
 
         public override void Step()
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void Finish()
