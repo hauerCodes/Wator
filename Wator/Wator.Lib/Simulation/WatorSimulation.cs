@@ -38,6 +38,8 @@ namespace Wator.Lib.Simulation
             InitializeImageCreator();
         }
 
+        #region Properties 
+
         /// <summary>
         /// Gets a value indicating whether this instance is running.
         /// </summary>
@@ -86,11 +88,17 @@ namespace Wator.Lib.Simulation
         /// </value>
         public int Round { get; private set; }
 
+        #endregion
+
+        #region Events
+
         /// <summary>
         /// Occurs when the end of wator simulation is reached.
         /// No sharks/fish left.
         /// </summary>
         public event EventHandler EndReached;
+
+        #endregion
 
         /// <summary>
         /// Starts the simulation.
@@ -122,9 +130,11 @@ namespace Wator.Lib.Simulation
         {
             while (this.IsRunning)
             {
+                //perform step
                 SimulationStep();
-
-                ImageCreator.AddJob(WatorWorld.ToImageJob());
+                
+                //create image of step
+                ImageCreator.AddJob(new ImageJob<WatorWorld>(this.WatorWorld, this.Round));
             }
         }
 
