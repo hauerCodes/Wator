@@ -12,7 +12,7 @@ using Wator.Lib.World;
 
 namespace Wator.Lib.Animals
 {
-    public abstract class Animal : IColorProvider
+    public abstract class Animal
     {
         /// <summary>
         /// The animal randomizer
@@ -77,13 +77,13 @@ namespace Wator.Lib.Animals
         [IgnoreDataMember]
         public abstract int BreedTime { get; }
 
-        /// <summary>
-        /// Gets the color of the draw.
-        /// </summary>
-        /// <value>
-        /// The color of the draw.
-        /// </value>
-        public abstract Color DrawColor { get; }
+        ///// <summary>
+        ///// Gets the color of the draw.
+        ///// </summary>
+        ///// <value>
+        ///// The color of the draw.
+        ///// </value>
+        //public abstract Color DrawColor { get; }
 
         /// <summary>
         /// Steps this instance.
