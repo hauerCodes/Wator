@@ -1,16 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-
-using Wator.Lib.Animals;
-using Wator.Lib.Images;
-
+﻿// -----------------------------------------------------------------------
+// <copyright file="WatorWorld.cs" company="FH Wr.Neustadt">
+//      Copyright Christoph Hauer. All rights reserved.
+// </copyright>
+// <author>Christoph Hauer</author>
+// <summary>Wator.Lib - WatorWorld.cs</summary>
+// -----------------------------------------------------------------------
 namespace Wator.Lib.World
 {
+    using System;
+    using System.Drawing;
+
+    using Wator.Lib.Animals;
+    using Wator.Lib.Images;
+
+    /// <summary>
+    /// The wator world.
+    /// </summary>
     public class WatorWorld : IDrawable
     {
         /// <summary>
@@ -19,15 +24,14 @@ namespace Wator.Lib.World
         private Random randomGenerator;
 
         /// <summary>
-        /// Occurs when the moved stats have to be reseted.
+        /// Initializes a new instance of the <see cref="WatorWorld"/> class.
         /// </summary>
-        private event Action ResetMovedStats;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WatorWorld" /> class.
-        /// </summary>
-        /// <param name="settings">The settings.</param>
-        /// <exception cref="System.ArgumentNullException">settings</exception>
+        /// <param name="settings">
+        /// The settings.
+        /// </param>
+        /// <exception cref="System.ArgumentNullException">
+        /// settings
+        /// </exception>
         public WatorWorld(IWatorSettings settings)
         {
             if (settings == null)
@@ -41,6 +45,11 @@ namespace Wator.Lib.World
             this.InitializeWorldFields();
             this.PopulateWorld();
         }
+
+        /// <summary>
+        /// Occurs when the moved stats have to be reseted.
+        /// </summary>
+        private event Action ResetMovedStats;
 
         /// <summary>
         /// Gets the fields.
@@ -59,46 +68,11 @@ namespace Wator.Lib.World
         public IWatorSettings Settings { get; private set; }
 
         /// <summary>
-        /// Gets the drawing elements.
-        /// </summary>
-        /// <returns></returns>
-        public int[,] GetDrawingElements()
-        {
-            int width = Settings.WorldWidth;
-            int height = Settings.WorldHeight;
-            int[,] data = new int[height, width];
-            int col = 0;
-
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    //col = Settings.WaterColor;
-
-                    if (Fields[y, x].Animal != null)
-                    {
-                        if (Fields[y, x].Animal is Fish)
-                        {
-                            //col = Settings.FishColor;
-                            col = 1;
-                        }
-                        else
-                        {
-                            //col = Settings.SharkColor;
-                            col = -1;
-                        }
-
-                        data[y, x] = col;
-                    }
-
-                }
-            }
-            return data;
-        }
-
-        /// <summary>
         /// Finishes the steps of alle animals on all fields.
         /// </summary>
+        /// <param name="useEvent">
+        /// The use Event.
+        /// </param>
         public void FinishSteps(bool useEvent = true)
         {
             if (useEvent)
@@ -110,17 +84,56 @@ namespace Wator.Lib.World
             }
             else
             {
-                int width = Settings.WorldWidth;
-                int height = Settings.WorldHeight;
+                int width = this.Settings.WorldWidth;
+                int height = this.Settings.WorldHeight;
 
                 for (int y = 0; y < height; y++)
                 {
                     for (int x = 0; x < width; x++)
                     {
-                        Fields[y, x].FinishStep();
+                        this.Fields[y, x].FinishStep();
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the drawing elements.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int[,]"/>.
+        /// </returns>
+        public int[,] GetDrawingElements()
+        {
+            int width = this.Settings.WorldWidth;
+            int height = this.Settings.WorldHeight;
+            int[,] data = new int[height, width];
+            int col = 0;
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    // col = Settings.WaterColor;
+                    if (this.Fields[y, x].Animal != null)
+                    {
+                        if (this.Fields[y, x].Animal is Fish)
+                        {
+                            // col = Settings.FishColor;
+                            col = 1;
+                        }
+                        else
+                        {
+                            // col = Settings.SharkColor;
+                            col = -1;
+                        }
+
+                        data[y, x] = col;
+                    }
+                }
+            }
+
+            return data;
         }
 
         /// <summary>
@@ -128,26 +141,29 @@ namespace Wator.Lib.World
         /// </summary>
         private void InitializeObjects()
         {
-            randomGenerator = new Random(DateTime.Now.Millisecond * DateTime.Now.Second);
+            this.randomGenerator = new Random(DateTime.Now.Millisecond * DateTime.Now.Second);
         }
 
         /// <summary>
         /// Initializes the world.
         /// </summary>
+        /// <param name="createEvent">
+        /// The create Event.
+        /// </param>
         private void InitializeWorldFields(bool createEvent = false)
         {
-            int width = Settings.WorldWidth;
-            int height = Settings.WorldHeight;
+            int width = this.Settings.WorldWidth;
+            int height = this.Settings.WorldHeight;
 
-            //create world 2D Array
+            // create world 2D Array
             this.Fields = new WatorField[height, width];
 
-            //Set Fields Fields
+            // Set Fields Fields
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    this.Fields[y, x] = new WatorField(new Point(x, y), Settings);
+                    this.Fields[y, x] = new WatorField(new Point(x, y), this.Settings);
 
                     if (createEvent)
                     {
@@ -156,7 +172,7 @@ namespace Wator.Lib.World
                 }
             }
 
-            //set world field neighbors
+            // set world field neighbors
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
@@ -173,7 +189,6 @@ namespace Wator.Lib.World
                     this.Fields[y, x].NeighbourFieldDown = this.Fields[y2, x];
                 }
             }
-
         }
 
         /// <summary>
@@ -181,8 +196,9 @@ namespace Wator.Lib.World
         /// </summary>
         private void PopulateWorld()
         {
-            int fishPopulation = Settings.InitialFishPopulation;
-            int sharkPopulation = Settings.InitialSharkPopulation;
+            int fishPopulation = this.Settings.InitialFishPopulation;
+            int sharkPopulation = this.Settings.InitialSharkPopulation;
+
             // ReSharper disable once RedundantAssignment
             Point randomPoint = Point.Empty;
 
@@ -190,17 +206,17 @@ namespace Wator.Lib.World
             {
                 if (fishPopulation > 0)
                 {
-                    randomPoint = GetRandomFreeField(Settings.WorldWidth, Settings.WorldHeight);
+                    randomPoint = this.GetRandomFreeField(this.Settings.WorldWidth, this.Settings.WorldHeight);
                     var field = this.Fields[randomPoint.Y, randomPoint.X];
-                    field.Animal = new Fish(Settings, field);
+                    field.Animal = new Fish(this.Settings, field);
                     fishPopulation--;
                 }
 
                 if (sharkPopulation > 0)
                 {
-                    randomPoint = GetRandomFreeField(Settings.WorldWidth, Settings.WorldHeight);
+                    randomPoint = this.GetRandomFreeField(this.Settings.WorldWidth, this.Settings.WorldHeight);
                     var field = this.Fields[randomPoint.Y, randomPoint.X];
-                    field.Animal = new Shark(Settings, field);
+                    field.Animal = new Shark(this.Settings, field);
                     sharkPopulation--;
                 }
             }
@@ -209,9 +225,15 @@ namespace Wator.Lib.World
         /// <summary>
         /// Gets the random free field.
         /// </summary>
-        /// <param name="width">The width.</param>
-        /// <param name="height">The height.</param>
-        /// <returns></returns>
+        /// <param name="width">
+        /// The width.
+        /// </param>
+        /// <param name="height">
+        /// The height.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Point"/>.
+        /// </returns>
         private Point GetRandomFreeField(int width, int height)
         {
             int randomX = 0;
@@ -219,14 +241,13 @@ namespace Wator.Lib.World
 
             do
             {
-                randomX = randomGenerator.Next(0, width);
-                randomY = randomGenerator.Next(0, height);
+                randomX = this.randomGenerator.Next(0, width);
+                randomY = this.randomGenerator.Next(0, height);
             }
             while (this.Fields[randomY, randomX].Animal != null);
 
-            //if null free field found 
+            // if null free field found 
             return new Point(randomX, randomY);
         }
-
     }
 }

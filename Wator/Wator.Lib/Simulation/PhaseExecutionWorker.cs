@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-using Wator.Lib.World;
-
+﻿// -----------------------------------------------------------------------
+// <copyright file="PhaseExecutionWorker.cs" company="FH Wr.Neustadt">
+//      Copyright Christoph Hauer. All rights reserved.
+// </copyright>
+// <author>Christoph Hauer</author>
+// <summary>Wator.Lib - PhaseExecutionWorker.cs</summary>
+// -----------------------------------------------------------------------
 namespace Wator.Lib.Simulation
 {
+    using System.Diagnostics;
+    using System.Threading;
+
+    using Wator.Lib.World;
+
+    /// <summary>
+    /// The phase execution worker.
+    /// </summary>
     public class PhaseExecutionWorker
     {
-        /// <summary>
-        /// The worker identifier
-        /// </summary>
-        private int workerId;
-
-        /// <summary>
-        /// The phase task
-        /// </summary>
-        //private Task workerTask;
-        private Thread workerThread;
-
         /// <summary>
         /// The cancel token
         /// </summary>
@@ -35,12 +29,6 @@ namespace Wator.Lib.Simulation
 
         /// <summary>
         /// The event go 
-        /// Wait for activate worker
-        /// </summary>
-        private ManualResetEventSlim eventGo;
-
-        /// <summary>
-        /// The event go 
         /// Barrier after calcualtion ready
         /// </summary>
         private ManualResetEventSlim eventBarrier;
@@ -49,7 +37,24 @@ namespace Wator.Lib.Simulation
         /// The event go 
         /// Wait for activate worker
         /// </summary>
+        private ManualResetEventSlim eventGo;
+
+        /// <summary>
+        /// The event go 
+        /// Wait for activate worker
+        /// </summary>
         private CountdownEvent eventReady;
+
+        /// <summary>
+        /// The worker identifier
+        /// </summary>
+        private int workerId;
+
+        /// <summary>
+        /// The phase task
+        /// </summary>
+        // private Task workerTask;
+        private Thread workerThread;
 
         /// <summary>
         /// The world width
@@ -57,22 +62,36 @@ namespace Wator.Lib.Simulation
         private int worldWidth;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PhaseExecutionWorker" /> class.
+        /// Initializes a new instance of the <see cref="PhaseExecutionWorker"/> class.
         /// </summary>
-        /// <param name="world">The world.</param>
-        /// <param name="workerId">The worker identifier.</param>
-        /// <param name="startRow">The worker start row.</param>
-        /// <param name="endRow">The worker end row. (inclusive)</param>
-        /// <param name="eventGo">The event go.</param>
-        /// <param name="eventBarrier">The event barrier.</param>
-        /// <param name="eventReady">The event ready.</param>
+        /// <param name="world">
+        /// The world.
+        /// </param>
+        /// <param name="workerId">
+        /// The worker identifier.
+        /// </param>
+        /// <param name="startRow">
+        /// The worker start row.
+        /// </param>
+        /// <param name="endRow">
+        /// The worker end row. (inclusive)
+        /// </param>
+        /// <param name="eventGo">
+        /// The event go.
+        /// </param>
+        /// <param name="eventBarrier">
+        /// The event barrier.
+        /// </param>
+        /// <param name="eventReady">
+        /// The event ready.
+        /// </param>
         public PhaseExecutionWorker(
-            WatorWorld world,
-            int workerId,
-            int startRow,
-            int endRow,
-            ManualResetEventSlim eventGo,
-            ManualResetEventSlim eventBarrier,
+            WatorWorld world, 
+            int workerId, 
+            int startRow, 
+            int endRow, 
+            ManualResetEventSlim eventGo, 
+            ManualResetEventSlim eventBarrier, 
             CountdownEvent eventReady)
         {
             this.workerId = workerId;
@@ -85,11 +104,17 @@ namespace Wator.Lib.Simulation
             this.eventReady = eventReady;
             this.eventBarrier = eventBarrier;
 
-            //create and start task
+            // create and start task
             this.InitializeTask();
         }
 
-        #region Properties
+        /// <summary>
+        /// Gets the end row.
+        /// </summary>
+        /// <value>
+        /// The end row.
+        /// </value>
+        public int EndRow { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is active.
@@ -100,14 +125,6 @@ namespace Wator.Lib.Simulation
         public bool IsActive { get; private set; }
 
         /// <summary>
-        /// Gets the world.
-        /// </summary>
-        /// <value>
-        /// The world.
-        /// </value>
-        public WatorWorld World { get; private set; }
-
-        /// <summary>
         /// Gets the start row.
         /// </summary>
         /// <value>
@@ -116,65 +133,45 @@ namespace Wator.Lib.Simulation
         public int StartRow { get; private set; }
 
         /// <summary>
-        /// Gets the end row.
+        /// Gets the world.
         /// </summary>
         /// <value>
-        /// The end row.
+        /// The world.
         /// </value>
-        public int EndRow { get; private set; }
-
-        #endregion
+        public WatorWorld World { get; private set; }
 
         /// <summary>
         /// Runs the worker "task".
         /// </summary>
         public void RunWorker()
         {
-            Debug.WriteLine("Worker {0} - Starting", workerId);
+            Debug.WriteLine("Worker {0} - Starting", this.workerId);
 
-            while (IsActive)
+            while (this.IsActive)
             {
-                Debug.WriteLine("Worker {0} - Waiting for event go", workerId);
+                Debug.WriteLine("Worker {0} - Waiting for event go", this.workerId);
 
                 // wait for go - start calculation (cancelation token supported)
-                eventGo.Wait(this.cancelToken);
+                this.eventGo.Wait(this.cancelToken);
 
-                Debug.WriteLine("Worker {0} - Running", workerId);
+                Debug.WriteLine("Worker {0} - Running", this.workerId);
 
-                if (this.cancelToken.IsCancellationRequested || !IsActive)
+                if (this.cancelToken.IsCancellationRequested || !this.IsActive)
                 {
                     return;
                 }
 
                 // calculate runnning 
-                Calculate();
+                this.Calculate();
 
-                Debug.WriteLine("Worker {0} - Singal Ready", workerId);
+                Debug.WriteLine("Worker {0} - Singal Ready", this.workerId);
+
                 // ready - countdownevent (running workers--) 
                 // wait for all phase workers to end current step
-                eventReady.Signal();
+                this.eventReady.Signal();
 
                 // wait for next calculation sign - eventBarrier (start of loop)
-                eventBarrier.Wait(this.cancelToken);
-            }
-        }
-
-        /// <summary>
-        /// Calculates this instance.
-        /// </summary>
-        private void Calculate()
-        {
-            for (int y = StartRow; y <= EndRow; y++)
-            {
-                for (int x = 0; x < worldWidth; x++)
-                {
-                    // if there is an animal on this cell that has not been moved in this simulation step          
-                    if (World.Fields[y, x].Animal != null && !World.Fields[y, x].Animal.IsMoved)
-                    {
-                        // then we execute it                       
-                        World.Fields[y, x].Animal.Step();
-                    }
-                }
+                this.eventBarrier.Wait(this.cancelToken);
             }
         }
 
@@ -184,7 +181,26 @@ namespace Wator.Lib.Simulation
         public void StopWorker()
         {
             this.IsActive = false;
-            cancelTokenSource.Cancel();
+            this.cancelTokenSource.Cancel();
+        }
+
+        /// <summary>
+        /// Calculates this instance.
+        /// </summary>
+        private void Calculate()
+        {
+            for (int y = this.StartRow; y <= this.EndRow; y++)
+            {
+                for (int x = 0; x < this.worldWidth; x++)
+                {
+                    // if there is an animal on this cell that has not been moved in this simulation step          
+                    if (this.World.Fields[y, x].Animal != null && !this.World.Fields[y, x].Animal.IsMoved)
+                    {
+                        // then we execute it                       
+                        this.World.Fields[y, x].Animal.Step();
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -193,14 +209,13 @@ namespace Wator.Lib.Simulation
         private void InitializeTask()
         {
             this.cancelTokenSource = new CancellationTokenSource();
-            this.cancelToken = cancelTokenSource.Token;
+            this.cancelToken = this.cancelTokenSource.Token;
 
             this.IsActive = true;
 
             // run task from thread pool
-            //this.workerTask = Task.Factory.StartNew(this.RunWorker, this.cancelToken);
-
-            this.workerThread = new Thread(RunWorker);
+            // this.workerTask = Task.Factory.StartNew(this.RunWorker, this.cancelToken);
+            this.workerThread = new Thread(this.RunWorker);
             this.workerThread.IsBackground = true;
             this.workerThread.Start();
         }

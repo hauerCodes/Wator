@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-
-using Wator.Lib.Animals;
-using Wator.Lib.Images;
-
+﻿// -----------------------------------------------------------------------
+// <copyright file="WatorField.cs" company="FH Wr.Neustadt">
+//      Copyright Christoph Hauer. All rights reserved.
+// </copyright>
+// <author>Christoph Hauer</author>
+// <summary>Wator.Lib - WatorField.cs</summary>
+// -----------------------------------------------------------------------
 namespace Wator.Lib.World
 {
+    using System.Drawing;
+
+    using Wator.Lib.Animals;
+
+    /// <summary>
+    /// The wator field.
+    /// </summary>
     public class WatorField
     {
         /// <summary>
@@ -20,49 +24,17 @@ namespace Wator.Lib.World
         /// <summary>
         /// Initializes a new instance of the <see cref="WatorField"/> class.
         /// </summary>
-        /// <param name="position">The position.</param>
-        /// <param name="settings">The settings.</param>
+        /// <param name="position">
+        /// The position.
+        /// </param>
+        /// <param name="settings">
+        /// The settings.
+        /// </param>
         public WatorField(Point position, IWatorSettings settings)
         {
             this.Position = position;
             this.settings = settings;
         }
-
-        /// <summary>
-        /// Gets or sets the neighbour field up.
-        /// </summary>
-        /// <value>
-        /// The neighbour field up.
-        /// </value>
-
-        public WatorField NeighbourFieldUp { get; set; }
-
-        /// <summary>
-        /// Gets or sets the neighbour field down.
-        /// </summary>
-        /// <value>
-        /// The neighbour field down.
-        /// </value>
-
-        public WatorField NeighbourFieldDown { get; set; }
-
-        /// <summary>
-        /// Gets or sets the neighbour field left.
-        /// </summary>
-        /// <value>
-        /// The neighbour field left.
-        /// </value>
-
-        public WatorField NeighbourFieldLeft { get; set; }
-
-        /// <summary>
-        /// Gets or sets the neighbour field right.
-        /// </summary>
-        /// <value>
-        /// The neighbour field right.
-        /// </value>
-
-        public WatorField NeighbourFieldRight { get; set; }
 
         /// <summary>
         /// Gets or sets the animal.
@@ -71,6 +43,38 @@ namespace Wator.Lib.World
         /// The animal.
         /// </value>
         public Animal Animal { get; set; }
+
+        /// <summary>
+        /// Gets or sets the neighbour field down.
+        /// </summary>
+        /// <value>
+        /// The neighbour field down.
+        /// </value>
+        public WatorField NeighbourFieldDown { get; set; }
+
+        /// <summary>
+        /// Gets or sets the neighbour field left.
+        /// </summary>
+        /// <value>
+        /// The neighbour field left.
+        /// </value>
+        public WatorField NeighbourFieldLeft { get; set; }
+
+        /// <summary>
+        /// Gets or sets the neighbour field right.
+        /// </summary>
+        /// <value>
+        /// The neighbour field right.
+        /// </value>
+        public WatorField NeighbourFieldRight { get; set; }
+
+        /// <summary>
+        /// Gets or sets the neighbour field up.
+        /// </summary>
+        /// <value>
+        /// The neighbour field up.
+        /// </value>
+        public WatorField NeighbourFieldUp { get; set; }
 
         /// <summary>
         /// Gets the position.
@@ -86,18 +90,18 @@ namespace Wator.Lib.World
         ///// <value>
         ///// The color of the draw.
         ///// </value>
-        //public Color DrawColor
-        //{
-        //    get
-        //    {
-        //        if (Animal != null)
-        //        {
-        //            return Animal.DrawColor;
-        //        }
+        // public Color DrawColor
+        // {
+        // get
+        // {
+        // if (Animal != null)
+        // {
+        // return Animal.DrawColor;
+        // }
 
-        //        return settings.WaterColor;
-        //    }
-        //}
+        // return settings.WaterColor;
+        // }
+        // }
 
         /// <summary>
         /// Finishes the step of the animal - if there is one on this field.
