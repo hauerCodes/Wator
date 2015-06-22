@@ -11,6 +11,13 @@ namespace Wator.Lib.World
     /// </summary>
     public class WatorSettings : IWatorSettings
     {
+        public WatorSettings()
+        {
+            FishColor = Color.YellowGreen;
+            SharkColor = Color.DarkCyan;
+            WaterColor = Color.Black;
+        }
+
         /// <summary>
         /// Gets or sets the fish breed time.
         /// </summary>

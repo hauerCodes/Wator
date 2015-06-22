@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 using Wator.Lib.Animals;
@@ -61,10 +62,20 @@ namespace Wator.Lib.World
         /// Gets the drawing elements.
         /// </summary>
         /// <returns></returns>
-        public IColorProvider[,] GetDrawingElements()
+        public Color[,] GetDrawingElements()
         {
-            // ReSharper disable once CoVariantArrayConversion
-            return Fields;
+            int width = Settings.WorldWidth;
+            int height = Settings.WorldHeight;
+            Color[,] data = new Color[height, width];
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    data[y, x] = Fields[y, x].DrawColor;
+                }
+            }
+            return data;
         }
 
         /// <summary>
@@ -98,9 +109,9 @@ namespace Wator.Lib.World
             this.Fields = new WatorField[height, width];
 
             //Set Fields Fields
-            for (int y = 0; y < Settings.WorldHeight; y++)
+            for (int y = 0; y < height; y++)
             {
-                for (int x = 0; x < Settings.WorldWidth; x++)
+                for (int x = 0; x < width; x++)
                 {
                     this.Fields[y, x] = new WatorField(new Point(x, y), Settings);
 
@@ -109,9 +120,9 @@ namespace Wator.Lib.World
             }
 
             //set world field neighbors
-            for (int y = 0; y < Settings.WorldHeight; y++)
+            for (int y = 0; y < height; y++)
             {
-                for (int x = 0; x < Settings.WorldWidth; x++)
+                for (int x = 0; x < width; x++)
                 {
                     // operations on Torus world
                     int x1 = (x - 1 + width) % width; // x-1 left
@@ -178,6 +189,15 @@ namespace Wator.Lib.World
 
             //if null free field found 
             return new Point(randomX, randomY);
+        }
+
+        /// <summary>
+        /// Create a flat copy
+        /// </summary>
+        /// <returns></returns>
+        public WatorWorld FlatCopy()
+        {
+            return (WatorWorld)this.MemberwiseClone();
         }
     }
 }

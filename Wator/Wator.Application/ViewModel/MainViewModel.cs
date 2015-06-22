@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media;
+
 using GalaSoft.MvvmLight;
 
 using Wator.Lib.Simulation;
@@ -57,14 +60,29 @@ namespace Wator.Application.ViewModel
         private int worldWidth;
 
         /// <summary>
+        /// The current round
+        /// </summary>
+        private int currentRound;
+
+        /// <summary>
+        /// The current shark population
+        /// </summary>
+        private int currentSharkPopulation;
+
+        /// <summary>
+        /// The current fish population
+        /// </summary>
+        private int currentFishPopulation;
+
+        /// <summary>
+        /// The step time
+        /// </summary>
+        private TimeSpan stepTime;
+
+        /// <summary>
         /// The wator simulation obj.
         /// </summary>
         private WatorSimulation watorSimulationObj;
-
-        /// <summary>
-        /// The settings
-        /// </summary>
-        private WatorSettings settings;
 
         /// <summary>
         /// The command start simulation
@@ -81,6 +99,10 @@ namespace Wator.Application.ViewModel
         /// </summary>
         private bool isSimulationRunning;
 
+        /// <summary>
+        /// The current image
+        /// </summary>
+        private ImageSource currentImage;
 
         public MainViewModel()
         {
@@ -108,6 +130,8 @@ namespace Wator.Application.ViewModel
         /// </summary>
         private void InitializeCommands()
         {
+            StartSimulation = new RelayCommand(ExecuteStartSimulation);
+            StopSimulation = new RelayCommand(ExcuteStopSimulation);
         }
 
         #region Properties
@@ -183,6 +207,82 @@ namespace Wator.Application.ViewModel
         }
 
         /// <summary>
+        /// Gets or sets the fish population.
+        /// </summary>
+        /// <value>
+        /// The current fish population.
+        /// </value>
+        public int CurrentFishPopulation
+        {
+            get
+            {
+                return this.currentFishPopulation;
+            }
+            set
+            {
+                this.currentFishPopulation = value;
+                RaisePropertyChanged(() => CurrentFishPopulation);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the fish population.
+        /// </summary>
+        /// <value>
+        /// The current shark population.
+        /// </value>
+        public int CurrentSharkPopulation
+        {
+            get
+            {
+                return this.CurrentSharkPopulation;
+            }
+            set
+            {
+                this.currentSharkPopulation = value;
+                RaisePropertyChanged(() => CurrentSharkPopulation);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the current round.
+        /// </summary>
+        /// <value>
+        /// The current round.
+        /// </value>
+        public int CurrentRound
+        {
+            get
+            {
+                return this.currentRound;
+            }
+            set
+            {
+                this.currentRound = value;
+                RaisePropertyChanged(() => CurrentRound);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the step time.
+        /// </summary>
+        /// <value>
+        /// The step time.
+        /// </value>
+        public TimeSpan StepTime
+        {
+            get
+            {
+                return this.stepTime;
+            }
+            set
+            {
+                this.stepTime = value;
+                RaisePropertyChanged(() => StepTime);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the picture save folder.
         /// </summary>
         public string PictureSaveFolder
@@ -246,6 +346,19 @@ namespace Wator.Application.ViewModel
             }
         }
 
+        public ImageSource CurrentImage
+        {
+            get
+            {
+                return currentImage;
+            }
+            set
+            {
+                this.currentImage = value;
+                RaisePropertyChanged(() => CurrentImage);
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -289,5 +402,56 @@ namespace Wator.Application.ViewModel
         }
 
         #endregion
+
+        private void ExecuteStartSimulation()
+        {
+            this.isSimulationRunning = true;
+
+            this.watorSimulationObj = new WatorSimulation(new WatorSettings()
+            {
+                FishBreedTime = FishBreedTime,
+                InitialFishPopulation = FishPopulation,
+                InitialSharkPopulation = SharkPopulation,
+                SaveFolder = PictureSaveFolder,
+                SharkBreedTime = SharkBreedTime,
+                SharkStarveTime = SharkStarveTime,
+                WorldHeight = WorldHeight,
+                WorldWidth = WorldWidth,
+            });
+
+            this.watorSimulationObj.ImageCreator.JobFinished += ImageCreator_JobFinished;
+            this.watorSimulationObj.StepDone += WatorSimulationObjStepDone;
+            this.watorSimulationObj.StartSimulation();
+        }
+
+        private void ImageCreator_JobFinished(object sender, Lib.Images.ImageJob<WatorWorld> e)
+        {
+            //App.Current.Dispatcher.Invoke(() =>
+            //{
+            //    ImageSourceConverter c = new ImageSourceConverter();
+            //    CurrentImage = (ImageSource)c.ConvertFrom(e.File);
+            //});
+        }
+
+        /// <summary>
+        /// Wators the simulation obj_ step done.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
+        private void WatorSimulationObjStepDone(object sender, SimulationState e)
+        {
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                this.CurrentFishPopulation = e.FishPopulation;
+                this.CurrentSharkPopulation = e.SharkPopulation;
+                this.CurrentRound = e.Round;
+                this.StepTime = e.StepTime;
+            });
+        }
+
+        private void ExcuteStopSimulation()
+        {
+            this.watorSimulationObj.StopSimulation();
+        }
     }
 }

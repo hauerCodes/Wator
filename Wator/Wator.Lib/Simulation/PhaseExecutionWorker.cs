@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -12,9 +13,15 @@ namespace Wator.Lib.Simulation
     public class PhaseExecutionWorker
     {
         /// <summary>
+        /// The worker identifier
+        /// </summary>
+        private int workerId;
+
+        /// <summary>
         /// The phase task
         /// </summary>
-        private Task workerTask;
+        //private Task workerTask;
+        private Thread workerThread;
 
         /// <summary>
         /// The cancel token
@@ -34,6 +41,12 @@ namespace Wator.Lib.Simulation
 
         /// <summary>
         /// The event go 
+        /// Barrier after calcualtion ready
+        /// </summary>
+        private ManualResetEventSlim eventBarrier;
+
+        /// <summary>
+        /// The event go 
         /// Wait for activate worker
         /// </summary>
         private CountdownEvent eventReady;
@@ -44,20 +57,25 @@ namespace Wator.Lib.Simulation
         private int worldWidth;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PhaseExecutionWorker"/> class.
+        /// Initializes a new instance of the <see cref="PhaseExecutionWorker" /> class.
         /// </summary>
         /// <param name="world">The world.</param>
+        /// <param name="workerId">The worker identifier.</param>
         /// <param name="startRow">The worker start row.</param>
         /// <param name="endRow">The worker end row. (inclusive)</param>
         /// <param name="eventGo">The event go.</param>
+        /// <param name="eventBarrier">The event barrier.</param>
         /// <param name="eventReady">The event ready.</param>
         public PhaseExecutionWorker(
             WatorWorld world,
+            int workerId,
             int startRow,
             int endRow,
             ManualResetEventSlim eventGo,
+            ManualResetEventSlim eventBarrier,
             CountdownEvent eventReady)
         {
+            this.workerId = workerId;
             this.World = world;
             this.StartRow = startRow;
             this.EndRow = endRow;
@@ -65,6 +83,7 @@ namespace Wator.Lib.Simulation
 
             this.eventGo = eventGo;
             this.eventReady = eventReady;
+            this.eventBarrier = eventBarrier;
 
             //create and start task
             this.InitializeTask();
@@ -111,10 +130,16 @@ namespace Wator.Lib.Simulation
         /// </summary>
         public void RunWorker()
         {
+            Debug.WriteLine("Worker {0} - Starting", workerId);
+
             while (IsActive)
             {
+                Debug.WriteLine("Worker {0} - Waiting for event go", workerId);
+
                 // wait for go - start calculation (cancelation token supported)
                 eventGo.Wait(this.cancelToken);
+
+                Debug.WriteLine("Worker {0} - Running", workerId);
 
                 if (this.cancelToken.IsCancellationRequested || !IsActive)
                 {
@@ -124,11 +149,13 @@ namespace Wator.Lib.Simulation
                 // calculate runnning 
                 Calculate();
 
+                Debug.WriteLine("Worker {0} - Singal Ready", workerId);
                 // ready - countdownevent (running workers--) 
                 // wait for all phase workers to end current step
                 eventReady.Signal();
 
-                // wait for next calculation sign - eventGo (start of loop)
+                // wait for next calculation sign - eventBarrier (start of loop)
+                eventBarrier.Wait(this.cancelToken);
             }
         }
 
@@ -137,7 +164,7 @@ namespace Wator.Lib.Simulation
         /// </summary>
         private void Calculate()
         {
-            for (int y = StartRow; y <= EndRow; y++)
+            for (int y = StartRow; y < EndRow; y++)
             {
                 for (int x = 0; x < worldWidth; x++)
                 {
@@ -171,7 +198,10 @@ namespace Wator.Lib.Simulation
             this.IsActive = true;
 
             // run task from thread pool
-            this.workerTask = Task.Factory.StartNew(this.RunWorker, this.cancelToken);
+            //this.workerTask = Task.Factory.StartNew(this.RunWorker, this.cancelToken);
+
+            this.workerThread = new Thread(RunWorker);
+            this.workerThread.Start();
         }
     }
 }

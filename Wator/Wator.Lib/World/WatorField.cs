@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 using Wator.Lib.Animals;
@@ -11,6 +12,11 @@ namespace Wator.Lib.World
 {
     public class WatorField : IColorProvider
     {
+        /// <summary>
+        /// The animal
+        /// </summary>
+        private Animal animal;
+
         /// <summary>
         /// The settings
         /// </summary>
@@ -33,6 +39,7 @@ namespace Wator.Lib.World
         /// <value>
         /// The neighbour field up.
         /// </value>
+
         public WatorField NeighbourFieldUp { get; set; }
 
         /// <summary>
@@ -41,6 +48,7 @@ namespace Wator.Lib.World
         /// <value>
         /// The neighbour field down.
         /// </value>
+
         public WatorField NeighbourFieldDown { get; set; }
 
         /// <summary>
@@ -49,6 +57,7 @@ namespace Wator.Lib.World
         /// <value>
         /// The neighbour field left.
         /// </value>
+
         public WatorField NeighbourFieldLeft { get; set; }
 
         /// <summary>
@@ -57,6 +66,7 @@ namespace Wator.Lib.World
         /// <value>
         /// The neighbour field right.
         /// </value>
+
         public WatorField NeighbourFieldRight { get; set; }
 
         /// <summary>
@@ -65,7 +75,17 @@ namespace Wator.Lib.World
         /// <value>
         /// The animal.
         /// </value>
-        public Animal Animal { get; set; }
+        public Animal Animal
+        {
+            get
+            {
+                return animal;
+            }
+            set
+            {
+                this.animal = value;
+            }
+        }
 
         /// <summary>
         /// Gets the position.
