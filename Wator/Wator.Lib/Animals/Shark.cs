@@ -1,23 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading;
-
-using Wator.Lib.Simulation;
-using Wator.Lib.World;
-
+﻿// -----------------------------------------------------------------------
+// <copyright file="Shark.cs" company="FH Wr.Neustadt">
+//      Copyright Christoph Hauer. All rights reserved.
+// </copyright>
+// <author>Christoph Hauer</author>
+// <summary>Wator.Lib - Shark.cs</summary>
+// -----------------------------------------------------------------------
 namespace Wator.Lib.Animals
 {
+    using System.Threading;
+
+    using Wator.Lib.Simulation;
+    using Wator.Lib.World;
+
+    /// <summary>
+    /// The shark.
+    /// </summary>
     public class Shark : Animal
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Shark" /> class.
+        /// Initializes a new instance of the <see cref="Shark"/> class.
         /// </summary>
-        /// <param name="settings">The settings.</param>
-        /// <param name="field">The field.</param>
+        /// <param name="settings">
+        /// The settings.
+        /// </param>
+        /// <param name="field">
+        /// The field.
+        /// </param>
         public Shark(IWatorSettings settings, WatorField field)
             : base(settings, field)
         {
@@ -34,7 +42,7 @@ namespace Wator.Lib.Animals
         {
             get
             {
-                return Settings.SharkBreedTime;
+                return this.Settings.SharkBreedTime;
             }
         }
 
@@ -44,13 +52,13 @@ namespace Wator.Lib.Animals
         ///// <value>
         ///// The color of the draw.
         ///// </value>
-        //public override Color DrawColor
-        //{
-        //    get
-        //    {
-        //        return this.Settings.SharkColor;
-        //    }
-        //}
+        // public override Color DrawColor
+        // {
+        // get
+        // {
+        // return this.Settings.SharkColor;
+        // }
+        // }
 
         /// <summary>
         /// Gets the starve.
@@ -71,15 +79,15 @@ namespace Wator.Lib.Animals
             this.Lifetime++;
 
             // find fish around
-            var preyFieldDirection = GetRandomFishDirectionAround();
-            var preyField = GetFieldFromDirection(preyFieldDirection);
+            var preyFieldDirection = this.GetRandomFishDirectionAround();
+            var preyField = this.GetFieldFromDirection(preyFieldDirection);
 
             // shark eats a fish if found
             if (preyField != null)
             {
                 try
                 {
-                    if (CheckLockRequired(preyFieldDirection, preyField))
+                    if (this.CheckLockRequired(preyFieldDirection, preyField))
                     {
                         Monitor.Enter(preyField, ref lockTaken);
                     }
@@ -112,21 +120,20 @@ namespace Wator.Lib.Animals
             else
             {
                 // if no fish found - increase starve 
-                Starve++;
+                this.Starve++;
 
-                if (Starve > Settings.SharkStarveTime)
+                if (this.Starve > this.Settings.SharkStarveTime)
                 {
                     // shark dies (animal.field null and field.animal.null)
-                    Die();
+                    this.Die();
                     WatorSimulation.ChangeSharkPopulation(false);
 
                     return;
                 }
-
             }
 
-            //execute breed and move
-            if (BreedMoveStep())
+            // execute breed and move
+            if (this.BreedMoveStep())
             {
                 WatorSimulation.ChangeSharkPopulation(true);
             }
@@ -138,7 +145,12 @@ namespace Wator.Lib.Animals
         /// <summary>
         /// Creates the sibling depending on inherited type.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="siblingField">
+        /// The sibling Field.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Animal"/>.
+        /// </returns>
         protected override Animal CreateSibling(WatorField siblingField)
         {
             return new Shark(this.Settings, siblingField);
@@ -147,7 +159,9 @@ namespace Wator.Lib.Animals
         /// <summary>
         /// Find a random fish around.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// The <see cref="Direction"/>.
+        /// </returns>
         protected Direction GetRandomFishDirectionAround()
         {
             this.FoundDirections.Clear();
@@ -180,12 +194,11 @@ namespace Wator.Lib.Animals
 
             if (this.FoundDirections.Count == 1)
             {
-                //only one field found
+                // only one field found
                 return this.FoundDirections[0];
             }
 
-            return this.FoundDirections[base.AnimalRandomizer.Next(0, this.FoundDirections.Count)];
+            return this.FoundDirections[this.AnimalRandomizer.Next(0, this.FoundDirections.Count)];
         }
-
     }
 }

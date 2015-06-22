@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading;
-
-using Wator.Lib.Images;
-using Wator.Lib.Simulation;
-using Wator.Lib.World;
-
+﻿// -----------------------------------------------------------------------
+// <copyright file="Animal.cs" company="FH Wr.Neustadt">
+//      Copyright Christoph Hauer. All rights reserved.
+// </copyright>
+// <author>Christoph Hauer</author>
+// <summary>Wator.Lib - Animal.cs</summary>
+// -----------------------------------------------------------------------
 namespace Wator.Lib.Animals
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Runtime.Serialization;
+    using System.Threading;
+
+    using Wator.Lib.World;
+
+    /// <summary>
+    /// The animal.
+    /// </summary>
     public abstract class Animal
     {
         /// <summary>
@@ -32,8 +37,12 @@ namespace Wator.Lib.Animals
         /// <summary>
         /// Initializes a new instance of the <see cref="Animal"/> class.
         /// </summary>
-        /// <param name="settings">The settings.</param>
-        /// <param name="field">The field.</param>
+        /// <param name="settings">
+        /// The settings.
+        /// </param>
+        /// <param name="field">
+        /// The field.
+        /// </param>
         protected Animal(IWatorSettings settings, WatorField field)
         {
             this.Settings = settings;
@@ -43,6 +52,15 @@ namespace Wator.Lib.Animals
             this.FoundDirections = new List<Direction>();
             this.AnimalRandomizer = new Random(DateTime.Now.Millisecond * field.Position.X);
         }
+
+        /// <summary>
+        /// Gets the breed time.
+        /// </summary>
+        /// <value>
+        /// The breed time.
+        /// </value>
+        [IgnoreDataMember]
+        public abstract int BreedTime { get; }
 
         /// <summary>
         /// Gets or sets the field.
@@ -69,13 +87,23 @@ namespace Wator.Lib.Animals
         public int Lifetime { get; protected set; }
 
         /// <summary>
-        /// Gets the breed time.
+        /// This animal dies.
+        /// Clear field in animal.
+        /// Remove animal from field.
         /// </summary>
-        /// <value>
-        /// The breed time.
-        /// </value>
-        [IgnoreDataMember]
-        public abstract int BreedTime { get; }
+        public void Die()
+        {
+            this.Field.Animal = null;
+            this.Field = null;
+        }
+
+        /// <summary>
+        /// Finishes the step.
+        /// </summary>
+        public void FinishStep()
+        {
+            this.IsMoved = false;
+        }
 
         ///// <summary>
         ///// Gets the color of the draw.
@@ -83,7 +111,7 @@ namespace Wator.Lib.Animals
         ///// <value>
         ///// The color of the draw.
         ///// </value>
-        //public abstract Color DrawColor { get; }
+        // public abstract Color DrawColor { get; }
 
         /// <summary>
         /// Steps this instance.
@@ -91,16 +119,143 @@ namespace Wator.Lib.Animals
         public abstract void Step();
 
         /// <summary>
+        /// Breed and move step.
+        /// </summary>
+        /// <returns>true if sibling otherwise false</returns>
+        protected bool BreedMoveStep()
+        {
+            bool lockTaken = false;
+            var freeDirection = this.GetFreeRandomDirection();
+
+            if (this.Lifetime > this.BreedTime)
+            {
+                // create sibiling
+                var siblingField = this.GetFieldFromDirection(freeDirection);
+
+                // if free field found
+                if (siblingField != null)
+                {
+                    if (this.CheckLockRequired(freeDirection, siblingField))
+                    {
+                        lock (siblingField)
+                        {
+                            siblingField.Animal = this.CreateSibling(siblingField);
+                        }
+                    }
+                    else
+                    {
+                        siblingField.Animal = this.CreateSibling(siblingField);
+                    }
+
+                    return true;
+                }
+            }
+            else
+            {
+                // move
+                var moveField = this.GetFieldFromDirection(freeDirection);
+
+                if (moveField != null)
+                {
+                    try
+                    {
+                        if (this.CheckLockRequired(freeDirection, moveField))
+                        {
+                            Monitor.Enter(moveField, ref lockTaken);
+                        }
+
+                        // clear old animal space
+                        this.Field.Animal = null;
+
+                        // set move field for this animal as new place
+                        this.Field = moveField;
+
+                        // change fields animal to this animal
+                        moveField.Animal = this;
+                    }
+                    finally
+                    {
+                        if (lockTaken)
+                        {
+                            Monitor.Exit(moveField);
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks if lock required.
+        /// </summary>
+        /// <param name="direction">
+        /// The direction.
+        /// </param>
+        /// <param name="targetField">
+        /// The target field.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        protected bool CheckLockRequired(Direction direction, WatorField targetField)
+        {
+            if (direction == Direction.Up && this.Field.Position.Y == 0)
+            {
+                return targetField.Position.Y > this.Field.Position.Y;
+            }
+
+            if (direction == Direction.Down && this.Field.Position.Y == this.Settings.WorldHeight - 1)
+            {
+                return targetField.Position.Y < this.Field.Position.Y;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Creates the sibling depending on inherited type.
         /// </summary>
-        /// <param name="siblingField">The sibling field.</param>
-        /// <returns></returns>
+        /// <param name="siblingField">
+        /// The sibling field.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Animal"/>.
+        /// </returns>
         protected abstract Animal CreateSibling(WatorField siblingField);
+
+        /// <summary>
+        /// Gets the field from direction.
+        /// </summary>
+        /// <param name="direction">
+        /// The direction.
+        /// </param>
+        /// <returns>
+        /// The <see cref="WatorField"/>.
+        /// </returns>
+        protected WatorField GetFieldFromDirection(Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Up:
+                    return this.Field.NeighbourFieldUp;
+                case Direction.Down:
+                    return this.Field.NeighbourFieldDown;
+                case Direction.Left:
+                    return this.Field.NeighbourFieldLeft;
+                case Direction.Right:
+                    return this.Field.NeighbourFieldRight;
+                default:
+                    return null;
+            }
+        }
 
         /// <summary>
         /// Gets a free random field around the animal.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// The <see cref="Direction"/>.
+        /// </returns>
         protected Direction GetFreeRandomDirection()
         {
             this.FoundDirections.Clear();
@@ -132,142 +287,11 @@ namespace Wator.Lib.Animals
 
             if (this.FoundDirections.Count == 1)
             {
-                //only one field found
+                // only one field found
                 return this.FoundDirections[0];
             }
 
             return this.FoundDirections[this.AnimalRandomizer.Next(0, this.FoundDirections.Count)];
-        }
-
-        /// <summary>
-        /// Gets the field from direction.
-        /// </summary>
-        /// <param name="direction">The direction.</param>
-        /// <returns></returns>
-        protected WatorField GetFieldFromDirection(Direction direction)
-        {
-            switch (direction)
-            {
-                case Direction.Up:
-                    return this.Field.NeighbourFieldUp;
-                case Direction.Down:
-                    return this.Field.NeighbourFieldDown;
-                case Direction.Left:
-                    return this.Field.NeighbourFieldLeft;
-                case Direction.Right:
-                    return this.Field.NeighbourFieldRight;
-                default:
-                    return null;
-            }
-        }
-
-        /// <summary>
-        /// Checks if lock required.
-        /// </summary>
-        /// <param name="direction">The direction.</param>
-        /// <param name="targetField">The target field.</param>
-        /// <returns></returns>
-        protected bool CheckLockRequired(Direction direction, WatorField targetField)
-        {
-            if (direction == Direction.Up && this.Field.Position.Y == 0)
-            {
-                return targetField.Position.Y > this.Field.Position.Y;
-            }
-
-            if (direction == Direction.Down && this.Field.Position.Y == this.Settings.WorldHeight - 1)
-            {
-                return targetField.Position.Y < this.Field.Position.Y;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Breed and move step.
-        /// </summary>
-        /// <returns>true if sibling otherwise false</returns>
-        protected bool BreedMoveStep()
-        {
-            bool lockTaken = false;
-            var freeDirection = GetFreeRandomDirection();
-
-            if (Lifetime > BreedTime)
-            {
-                // create sibiling
-                var siblingField = GetFieldFromDirection(freeDirection);
-
-                // if free field found
-                if (siblingField != null)
-                {
-                    if (CheckLockRequired(freeDirection, siblingField))
-                    {
-                        lock (siblingField)
-                        {
-                            siblingField.Animal = CreateSibling(siblingField);
-                        }
-                    }
-                    else
-                    {
-                        siblingField.Animal = CreateSibling(siblingField);
-                    }
-                    return true;
-                }
-            }
-            else
-            {
-                // move
-                var moveField = GetFieldFromDirection(freeDirection);
-
-                if (moveField != null)
-                {
-                    try
-                    {
-                        if (CheckLockRequired(freeDirection, moveField))
-                        {
-                            Monitor.Enter(moveField, ref lockTaken);
-                        }
-
-                        // clear old animal space
-                        this.Field.Animal = null;
-
-                        // set move field for this animal as new place
-                        this.Field = moveField;
-
-                        // change fields animal to this animal
-                        moveField.Animal = this;
-                    }
-                    finally
-                    {
-                        if (lockTaken)
-                        {
-                            Monitor.Exit(moveField);
-                        }
-
-                    }
-
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Finishes the step.
-        /// </summary>
-        public void FinishStep()
-        {
-            this.IsMoved = false;
-        }
-
-        /// <summary>
-        /// This animal dies.
-        /// Clear field in animal.
-        /// Remove animal from field.
-        /// </summary>
-        public void Die()
-        {
-            this.Field.Animal = null;
-            this.Field = null;
         }
     }
 }
