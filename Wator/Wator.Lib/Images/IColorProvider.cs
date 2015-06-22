@@ -1,16 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-
+﻿// -----------------------------------------------------------------------
+// <copyright file="IColorProvider.cs" company="FH Wr.Neustadt">
+//      Copyright Christoph Hauer. All rights reserved.
+// </copyright>
+// <author>Christoph Hauer</author>
+// <summary>Wator.Lib - IColorProvider.cs</summary>
+// -----------------------------------------------------------------------
 namespace Wator.Lib.Images
 {
+    using System.Drawing;
+
+    /// <summary>
+    /// The ColorProvider interface.
+    /// </summary>
     public interface IColorProvider
     {
-        Color DrawColor
-        {
-            get;
-        }
+        /// <summary>
+        /// Gets the draw color.
+        /// </summary>
+        Color DrawColor { get; }
     }
 }

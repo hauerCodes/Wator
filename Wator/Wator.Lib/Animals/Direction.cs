@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// -----------------------------------------------------------------------
+// <copyright file="Direction.cs" company="FH Wr.Neustadt">
+//      Copyright Christoph Hauer. All rights reserved.
+// </copyright>
+// <author>Christoph Hauer</author>
+// <summary>Wator.Lib - Direction.cs</summary>
+// -----------------------------------------------------------------------
 namespace Wator.Lib.Animals
 {
     /// <summary>
@@ -14,22 +15,22 @@ namespace Wator.Lib.Animals
         /// <summary>
         /// The none.
         /// </summary>
-        None,
+        None, 
 
         /// <summary>
         /// The up.
         /// </summary>
-        Up,
+        Up, 
 
         /// <summary>
         /// The down.
         /// </summary>
-        Down,
+        Down, 
 
         /// <summary>
         /// The left.
         /// </summary>
-        Left,
+        Left, 
 
         /// <summary>
         /// The right

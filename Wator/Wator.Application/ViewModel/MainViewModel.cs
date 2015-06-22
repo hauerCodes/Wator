@@ -1,26 +1,60 @@
-﻿using GalaSoft.MvvmLight.CommandWpf;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-
-using GalaSoft.MvvmLight;
-
-using Wator.Lib.Simulation;
-using Wator.Lib.World;
-
+﻿// -----------------------------------------------------------------------
+// <copyright file="MainViewModel.cs" company="FH Wr.Neustadt">
+//      Copyright Christoph Hauer. All rights reserved.
+// </copyright>
+// <author>Christoph Hauer</author>
+// <summary>Wator.Application - MainViewModel.cs</summary>
+// -----------------------------------------------------------------------
 namespace Wator.Application.ViewModel
 {
+    using System;
+    using System.IO;
+    using System.Windows;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+
+    using GalaSoft.MvvmLight;
+    using GalaSoft.MvvmLight.CommandWpf;
+
+    using Wator.Lib.Images;
+    using Wator.Lib.Simulation;
+    using Wator.Lib.World;
+
     /// <summary>
     /// The main view model.
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        /// <summary>
+        /// The command start simulation
+        /// </summary>
+        private RelayCommand cmdStartSimulation;
+
+        /// <summary>
+        /// The command stop simulation
+        /// </summary>
+        private RelayCommand cmdStopSimulation;
+
+        /// <summary>
+        /// The current fish population
+        /// </summary>
+        private int currentFishPopulation;
+
+        /// <summary>
+        /// The current image
+        /// </summary>
+        private ImageSource currentImage;
+
+        /// <summary>
+        /// The current round
+        /// </summary>
+        private int currentRound;
+
+        /// <summary>
+        /// The current shark population
+        /// </summary>
+        private int currentSharkPopulation;
+
         /// <summary>
         /// The fish breed time.
         /// </summary>
@@ -30,6 +64,11 @@ namespace Wator.Application.ViewModel
         /// The fish population.
         /// </summary>
         private int fishPopulation;
+
+        /// <summary>
+        /// The is simulation running
+        /// </summary>
+        private bool isSimulationRunning;
 
         /// <summary>
         /// The picture save folder.
@@ -52,31 +91,6 @@ namespace Wator.Application.ViewModel
         private int sharkStarveTime;
 
         /// <summary>
-        /// The world height
-        /// </summary>
-        private int worldHeight;
-
-        /// <summary>
-        /// The world width
-        /// </summary>
-        private int worldWidth;
-
-        /// <summary>
-        /// The current round
-        /// </summary>
-        private int currentRound;
-
-        /// <summary>
-        /// The current shark population
-        /// </summary>
-        private int currentSharkPopulation;
-
-        /// <summary>
-        /// The current fish population
-        /// </summary>
-        private int currentFishPopulation;
-
-        /// <summary>
         /// The step time
         /// </summary>
         private TimeSpan stepTime;
@@ -87,125 +101,22 @@ namespace Wator.Application.ViewModel
         private WatorSimulation watorSimulationObj;
 
         /// <summary>
-        /// The command start simulation
+        /// The world height
         /// </summary>
-        private RelayCommand cmdStartSimulation;
+        private int worldHeight;
 
         /// <summary>
-        /// The command stop simulation
+        /// The world width
         /// </summary>
-        private RelayCommand cmdStopSimulation;
+        private int worldWidth;
 
         /// <summary>
-        /// The is simulation running
+        /// Initializes a new instance of the <see cref="MainViewModel"/> class.
         /// </summary>
-        private bool isSimulationRunning;
-
-        /// <summary>
-        /// The current image
-        /// </summary>
-        private ImageSource currentImage;
-
         public MainViewModel()
         {
-            InitializeCommands();
-            InitializeSimulationSettings();
-        }
-
-        private void InitializeSimulationSettings()
-        {
-            isSimulationRunning = false;
-
-            WorldHeight = 1000;
-            WorldWidth = 1000;
-
-            FishBreedTime = 20;
-            SharkBreedTime = 10;
-            FishPopulation = 50000;
-            SharkPopulation = 30000;
-            SharkStarveTime = 15;
-            PictureSaveFolder = @"C:\Wator\" + DateTime.Now.ToShortDateString();
-        }
-
-        /// <summary>
-        /// Initializes the commands.
-        /// </summary>
-        private void InitializeCommands()
-        {
-            StartSimulation = new RelayCommand(ExecuteStartSimulation);
-            StopSimulation = new RelayCommand(ExcuteStopSimulation);
-        }
-
-        #region Properties
-
-        /// <summary>
-        /// Gets or sets the height of the world.
-        /// </summary>
-        /// <value>
-        /// The height of the world.
-        /// </value>
-        public int WorldHeight
-        {
-            get
-            {
-                return this.worldHeight;
-            }
-            set
-            {
-                this.worldHeight = value;
-                RaisePropertyChanged(() => WorldHeight);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the width of the world.
-        /// </summary>
-        /// <value>
-        /// The width of the world.
-        /// </value>
-        public int WorldWidth
-        {
-            get
-            {
-                return this.worldWidth;
-            }
-            set
-            {
-                this.worldWidth = value;
-                RaisePropertyChanged(() => WorldWidth);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the fish breed time.
-        /// </summary>
-        public int FishBreedTime
-        {
-            get
-            {
-                return this.fishBreedTime;
-            }
-            set
-            {
-                this.fishBreedTime = value;
-                RaisePropertyChanged(() => FishBreedTime);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the fish population.
-        /// </summary>
-        public int FishPopulation
-        {
-            get
-            {
-                return this.fishPopulation;
-            }
-            set
-            {
-                this.fishPopulation = value;
-                RaisePropertyChanged(() => FishPopulation);
-            }
+            this.InitializeCommands();
+            this.InitializeSimulationSettings();
         }
 
         /// <summary>
@@ -220,29 +131,28 @@ namespace Wator.Application.ViewModel
             {
                 return this.currentFishPopulation;
             }
+
             set
             {
                 this.currentFishPopulation = value;
-                RaisePropertyChanged(() => CurrentFishPopulation);
+                this.RaisePropertyChanged(() => this.CurrentFishPopulation);
             }
         }
 
         /// <summary>
-        /// Gets or sets the fish population.
+        /// Gets or sets the current image.
         /// </summary>
-        /// <value>
-        /// The current shark population.
-        /// </value>
-        public int CurrentSharkPopulation
+        public ImageSource CurrentImage
         {
             get
             {
-                return this.currentSharkPopulation;
+                return this.currentImage;
             }
+
             set
             {
-                this.currentSharkPopulation = value;
-                RaisePropertyChanged(() => CurrentSharkPopulation);
+                this.currentImage = value;
+                this.RaisePropertyChanged(() => this.CurrentImage);
             }
         }
 
@@ -258,10 +168,153 @@ namespace Wator.Application.ViewModel
             {
                 return this.currentRound;
             }
+
             set
             {
                 this.currentRound = value;
-                RaisePropertyChanged(() => CurrentRound);
+                this.RaisePropertyChanged(() => this.CurrentRound);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the fish population.
+        /// </summary>
+        /// <value>
+        /// The current shark population.
+        /// </value>
+        public int CurrentSharkPopulation
+        {
+            get
+            {
+                return this.currentSharkPopulation;
+            }
+
+            set
+            {
+                this.currentSharkPopulation = value;
+                this.RaisePropertyChanged(() => this.CurrentSharkPopulation);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the fish breed time.
+        /// </summary>
+        public int FishBreedTime
+        {
+            get
+            {
+                return this.fishBreedTime;
+            }
+
+            set
+            {
+                this.fishBreedTime = value;
+                this.RaisePropertyChanged(() => this.FishBreedTime);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the fish population.
+        /// </summary>
+        public int FishPopulation
+        {
+            get
+            {
+                return this.fishPopulation;
+            }
+
+            set
+            {
+                this.fishPopulation = value;
+                this.RaisePropertyChanged(() => this.FishPopulation);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the picture save folder.
+        /// </summary>
+        public string PictureSaveFolder
+        {
+            get
+            {
+                return this.pictureSaveFolder;
+            }
+
+            set
+            {
+                this.pictureSaveFolder = value;
+                this.RaisePropertyChanged(() => this.PictureSaveFolder);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the shark breed time.
+        /// </summary>
+        public int SharkBreedTime
+        {
+            get
+            {
+                return this.sharkBreedTime;
+            }
+
+            set
+            {
+                this.sharkBreedTime = value;
+                this.RaisePropertyChanged(() => this.SharkBreedTime);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the shark population.
+        /// </summary>
+        public int SharkPopulation
+        {
+            get
+            {
+                return this.sharkPopulation;
+            }
+
+            set
+            {
+                this.sharkPopulation = value;
+                this.RaisePropertyChanged(() => this.SharkPopulation);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the shark starve time.
+        /// </summary>
+        public int SharkStarveTime
+        {
+            get
+            {
+                return this.sharkStarveTime;
+            }
+
+            set
+            {
+                this.sharkStarveTime = value;
+                this.RaisePropertyChanged(() => this.SharkStarveTime);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the start simulation.
+        /// </summary>
+        /// <value>
+        /// The start simulation.
+        /// </value>
+        public RelayCommand StartSimulation
+        {
+            get
+            {
+                return this.cmdStartSimulation;
+            }
+
+            set
+            {
+                this.cmdStartSimulation = value;
+                this.RaisePropertyChanged(() => this.StartSimulation);
             }
         }
 
@@ -277,110 +330,11 @@ namespace Wator.Application.ViewModel
             {
                 return this.stepTime;
             }
+
             set
             {
                 this.stepTime = value;
-                RaisePropertyChanged(() => StepTime);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the picture save folder.
-        /// </summary>
-        public string PictureSaveFolder
-        {
-            get
-            {
-                return this.pictureSaveFolder;
-            }
-            set
-            {
-                this.pictureSaveFolder = value;
-                RaisePropertyChanged(() => PictureSaveFolder);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the shark breed time.
-        /// </summary>
-        public int SharkBreedTime
-        {
-            get
-            {
-                return this.sharkBreedTime;
-            }
-            set
-            {
-                this.sharkBreedTime = value;
-                RaisePropertyChanged(() => SharkBreedTime);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the shark population.
-        /// </summary>
-        public int SharkPopulation
-        {
-            get
-            {
-                return this.sharkPopulation;
-            }
-            set
-            {
-                this.sharkPopulation = value;
-                RaisePropertyChanged(() => SharkPopulation);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the shark starve time.
-        /// </summary>
-        public int SharkStarveTime
-        {
-            get
-            {
-                return this.sharkStarveTime;
-            }
-            set
-            {
-                this.sharkStarveTime = value;
-                RaisePropertyChanged(() => SharkStarveTime);
-            }
-        }
-
-        public ImageSource CurrentImage
-        {
-            get
-            {
-                return currentImage;
-            }
-            set
-            {
-                this.currentImage = value;
-                RaisePropertyChanged(() => CurrentImage);
-            }
-        }
-
-        #endregion
-
-        #region Commands
-
-        /// <summary>
-        /// Gets or sets the start simulation.
-        /// </summary>
-        /// <value>
-        /// The start simulation.
-        /// </value>
-        public RelayCommand StartSimulation
-        {
-            get
-            {
-                return cmdStartSimulation;
-            }
-            set
-            {
-                cmdStartSimulation = value;
-                RaisePropertyChanged(() => StartSimulation);
+                this.RaisePropertyChanged(() => this.StepTime);
             }
         }
 
@@ -394,82 +348,169 @@ namespace Wator.Application.ViewModel
         {
             get
             {
-                return cmdStopSimulation;
+                return this.cmdStopSimulation;
             }
+
             set
             {
-                cmdStopSimulation = value;
-                RaisePropertyChanged(() => StopSimulation);
+                this.cmdStopSimulation = value;
+                this.RaisePropertyChanged(() => this.StopSimulation);
             }
         }
 
-        #endregion
+        /// <summary>
+        /// Gets or sets the height of the world.
+        /// </summary>
+        /// <value>
+        /// The height of the world.
+        /// </value>
+        public int WorldHeight
+        {
+            get
+            {
+                return this.worldHeight;
+            }
 
+            set
+            {
+                this.worldHeight = value;
+                this.RaisePropertyChanged(() => this.WorldHeight);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the width of the world.
+        /// </summary>
+        /// <value>
+        /// The width of the world.
+        /// </value>
+        public int WorldWidth
+        {
+            get
+            {
+                return this.worldWidth;
+            }
+
+            set
+            {
+                this.worldWidth = value;
+                this.RaisePropertyChanged(() => this.WorldWidth);
+            }
+        }
+
+        /// <summary>
+        /// The excute stop simulation.
+        /// </summary>
+        private void ExcuteStopSimulation()
+        {
+            this.watorSimulationObj.StopSimulation();
+        }
+
+        /// <summary>
+        /// The execute start simulation.
+        /// </summary>
         private void ExecuteStartSimulation()
         {
             this.isSimulationRunning = true;
 
             try
             {
-                if (!Directory.Exists(PictureSaveFolder))
+                if (!Directory.Exists(this.PictureSaveFolder))
                 {
-                    Directory.CreateDirectory(PictureSaveFolder);
+                    Directory.CreateDirectory(this.PictureSaveFolder);
                 }
             }
             catch
             {
-                PictureSaveFolder = @".\";
+                this.PictureSaveFolder = @".\";
             }
 
-            this.watorSimulationObj = new WatorSimulation(new WatorSettings()
-            {
-                FishBreedTime = FishBreedTime,
-                InitialFishPopulation = FishPopulation,
-                InitialSharkPopulation = SharkPopulation,
-                SaveFolder = PictureSaveFolder,
-                SharkBreedTime = SharkBreedTime,
-                SharkStarveTime = SharkStarveTime,
-                WorldHeight = WorldHeight,
-                WorldWidth = WorldWidth,
-            });
+            this.watorSimulationObj =
+                new WatorSimulation(
+                    new WatorSettings()
+                        {
+                            FishBreedTime = this.FishBreedTime, 
+                            InitialFishPopulation = this.FishPopulation, 
+                            InitialSharkPopulation = this.SharkPopulation, 
+                            SaveFolder = this.PictureSaveFolder, 
+                            SharkBreedTime = this.SharkBreedTime, 
+                            SharkStarveTime = this.SharkStarveTime, 
+                            WorldHeight = this.WorldHeight, 
+                            WorldWidth = this.WorldWidth, 
+                        });
 
-            this.watorSimulationObj.ImageFinished += ImageCreatorJobFinished;
-            this.watorSimulationObj.StepDone += WatorSimulationObjStepDone;
+            this.watorSimulationObj.ImageFinished += this.ImageCreatorJobFinished;
+            this.watorSimulationObj.StepDone += this.WatorSimulationObjStepDone;
             this.watorSimulationObj.StartSimulation();
         }
 
-        private void ImageCreatorJobFinished(object sender, Lib.Images.ImageJob<WatorWorld> e)
+        /// <summary>
+        /// The image creator job finished.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void ImageCreatorJobFinished(object sender, ImageJob<WatorWorld> e)
         {
-            App.Current.Dispatcher.Invoke(() =>
-                {
-                    CurrentImage = new BitmapImage(new Uri(e.File));
-                });
+            Application.Current.Dispatcher.Invoke(() => { this.CurrentImage = new BitmapImage(new Uri(e.File)); });
+        }
+
+        /// <summary>
+        /// Initializes the commands.
+        /// </summary>
+        private void InitializeCommands()
+        {
+            this.StartSimulation = new RelayCommand(this.ExecuteStartSimulation);
+            this.StopSimulation = new RelayCommand(this.ExcuteStopSimulation);
+        }
+
+        /// <summary>
+        /// The initialize simulation settings.
+        /// </summary>
+        private void InitializeSimulationSettings()
+        {
+            this.isSimulationRunning = false;
+
+            this.WorldHeight = 1000;
+            this.WorldWidth = 1000;
+
+            this.FishBreedTime = 20;
+            this.SharkBreedTime = 10;
+            this.FishPopulation = 50000;
+            this.SharkPopulation = 30000;
+            this.SharkStarveTime = 15;
+            this.PictureSaveFolder = @"C:\Wator\" + DateTime.Now.ToShortDateString();
         }
 
         /// <summary>
         /// Wators the simulation obj_ step done.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void WatorSimulationObjStepDone(object sender, SimulationState e)
         {
             try
             {
-                App.Current.Dispatcher.Invoke(
+                Application.Current.Dispatcher.Invoke(
                     () =>
-                    {
-                        this.CurrentFishPopulation = e.FishPopulation;
-                        this.CurrentSharkPopulation = e.SharkPopulation;
-                        this.CurrentRound = e.Round;
-                        this.StepTime = e.StepTime;
-                    });
+                        {
+                            this.CurrentFishPopulation = e.FishPopulation;
+                            this.CurrentSharkPopulation = e.SharkPopulation;
+                            this.CurrentRound = e.Round;
+                            this.StepTime = e.StepTime;
+                        });
             }
-            catch { ;}
-        }
-
-        private void ExcuteStopSimulation()
-        {
-            this.watorSimulationObj.StopSimulation();
+            catch
+            {
+                ;
+            }
         }
     }
 }

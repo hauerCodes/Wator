@@ -8,25 +8,24 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAgAQCAAEgIAAZCAAAAoEAAAAAAhAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAgAQCAAEgIAAZCAAAAoEAAAAAAhAA=</HashCode>
       <FileName>Animals\Animal.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Field" />
     </ShowAsAssociation>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Wator.Lib.Animals.Fish">
     <Position X="10.75" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAABAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAABAA=</HashCode>
       <FileName>Animals\Fish.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Wator.Lib.Animals.Shark">
     <Position X="12.75" Y="7.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>ggAAAAEAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAABAA=</HashCode>
+      <HashCode>gAAAAAEAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAABAA=</HashCode>
       <FileName>Animals\Shark.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -41,7 +40,7 @@
   <Class Name="Wator.Lib.World.WatorWorld">
     <Position X="4" Y="2" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAEAABAgAAQIAAAAAAAAQAAAAAgwAAAAAAgAA=</HashCode>
+      <HashCode>AAAAEAAAEAABAgAAQIAAAAAAAAAAAAAAgwAAAAAAgAA=</HashCode>
       <FileName>World\WatorWorld.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -54,11 +53,7 @@
   </Class>
   <Class Name="Wator.Lib.Simulation.WatorSimulation">
     <Position X="0.75" Y="2" Width="2" />
-    <AssociationLine Name="simulationPhases" Type="Wator.Lib.Simulation.Phase" FixedToPoint="true">
-      <Path>
-        <Point X="1.188" Y="8.881" />
-        <Point X="1.188" Y="9.5" />
-      </Path>
+    <AssociationLine Name="simulationPhases" Type="Wator.Lib.Simulation.Phase">
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
         <Position X="-1.685" Y="0.231" Height="0.182" Width="1.371" />
       </MemberNameLabel>
@@ -69,7 +64,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAIAEEFQDIQAEEEoAAAQEAAgAAAAAAAgQwCIAoABAA=</HashCode>
+      <HashCode>AAAIAEEFQDIQAEAEoAABUEAAgAEAAAAAgQwCMEoQBAA=</HashCode>
       <FileName>Simulation\WatorSimulation.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -87,13 +82,12 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AgAAAIACAAAAAAAgAQAAAAAAAACgAgAAIAAAAEAAAAA=</HashCode>
+      <HashCode>AAAAAIACAAAAAAAgAQAAAAAAAACAAgAAIAAAAEAAAAA=</HashCode>
       <FileName>World\WatorField.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Animal" />
     </ShowAsAssociation>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Wator.Lib.Images.ImageCreator&lt;T&gt;">
     <Position X="15.5" Y="1.5" Width="2" />
@@ -128,19 +122,12 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Wator.Lib.Simulation.SimulationState">
-    <Position X="7.5" Y="9.5" Width="2" />
+    <Position X="7.5" Y="8.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAQAAAIAABAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Simulation\SimulationState.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="Wator.Lib.Images.IColorProvider">
-    <Position X="7.5" Y="7.75" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Images\IColorProvider.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="Wator.Lib.World.IWatorSettings">
     <Position X="4" Y="5.75" Width="2" />
     <TypeIdentifier>

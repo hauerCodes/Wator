@@ -1,24 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Xml;
-using Wator.Lib.World;
-
+﻿// -----------------------------------------------------------------------
+// <copyright file="ImageJob.cs" company="FH Wr.Neustadt">
+//      Copyright Christoph Hauer. All rights reserved.
+// </copyright>
+// <author>Christoph Hauer</author>
+// <summary>Wator.Lib - ImageJob.cs</summary>
+// -----------------------------------------------------------------------
 namespace Wator.Lib.Images
 {
-    public class ImageJob<T> where T : IDrawable
+    /// <summary>
+    /// The image job.
+    /// </summary>
+    /// <typeparam name="T">
+    /// </typeparam>
+    public class ImageJob<T>
+        where T : IDrawable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageJob{T}"/> class.
         /// </summary>
-        /// <param name="data">The data.</param>
-        /// <param name="round">The round.</param>
+        /// <param name="data">
+        /// The data.
+        /// </param>
+        /// <param name="round">
+        /// The round.
+        /// </param>
         public ImageJob(T data, int round)
         {
             this.Data = data.GetDrawingElements();
@@ -28,13 +33,22 @@ namespace Wator.Lib.Images
         }
 
         /// <summary>
-        /// Initializes this instance.
+        /// Gets the round.
         /// </summary>
-        private void Initialize()
-        {
-            this.IsFinished = false;
-            this.File = null;
-        }
+        /// <value>
+        /// The round.
+        /// </value>
+        public int[,] Data { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the file.
+        /// </summary>
+        public string File { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether is finished.
+        /// </summary>
+        public bool IsFinished { get; set; }
 
         /// <summary>
         /// Gets the round.
@@ -45,16 +59,12 @@ namespace Wator.Lib.Images
         public int Round { get; private set; }
 
         /// <summary>
-        /// Gets the round.
+        /// Initializes this instance.
         /// </summary>
-        /// <value>
-        /// The round.
-        /// </value>
-        public int[,] Data { get; private set; }
-
-        public string File { get; set; }
-
-        public bool IsFinished { get; set; }
-
+        private void Initialize()
+        {
+            this.IsFinished = false;
+            this.File = null;
+        }
     }
 }
