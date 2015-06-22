@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wator.Lib", "Wator.Lib\Wator.Lib.csproj", "{3B3FBDBD-15EB-49DD-A22B-3F002D909F50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wator.App", "Wator.App\Wator.App.csproj", "{45704BF0-53E9-48FF-86DE-4A4D63A417DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wator.Application", "Wator.Application\Wator.Application.csproj", "{BFFB2F8A-8CE0-4485-A758-5F0448738466}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -13,12 +13,12 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://hauersoftwarenet.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = Wator.App\\Wator.App.csproj
-		SccProjectName1 = Wator.App
-		SccLocalPath1 = Wator.App
-		SccProjectUniqueName2 = Wator.Lib\\Wator.Lib.csproj
-		SccProjectName2 = Wator.Lib
-		SccLocalPath2 = Wator.Lib
+		SccProjectUniqueName1 = Wator.Lib\\Wator.Lib.csproj
+		SccProjectName1 = Wator.Lib
+		SccLocalPath1 = Wator.Lib
+		SccProjectUniqueName2 = Wator.Application\\Wator.Application.csproj
+		SccProjectName2 = Wator.Application
+		SccLocalPath2 = Wator.Application
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +29,10 @@ Global
 		{3B3FBDBD-15EB-49DD-A22B-3F002D909F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B3FBDBD-15EB-49DD-A22B-3F002D909F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B3FBDBD-15EB-49DD-A22B-3F002D909F50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{45704BF0-53E9-48FF-86DE-4A4D63A417DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45704BF0-53E9-48FF-86DE-4A4D63A417DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{45704BF0-53E9-48FF-86DE-4A4D63A417DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45704BF0-53E9-48FF-86DE-4A4D63A417DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFFB2F8A-8CE0-4485-A758-5F0448738466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFFB2F8A-8CE0-4485-A758-5F0448738466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFFB2F8A-8CE0-4485-A758-5F0448738466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFFB2F8A-8CE0-4485-A758-5F0448738466}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
