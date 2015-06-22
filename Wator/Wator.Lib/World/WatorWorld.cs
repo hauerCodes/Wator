@@ -143,14 +143,16 @@ namespace Wator.Lib.World
                 if (fishPopulation > 0)
                 {
                     randomPoint = GetRandomFreeField(Settings.WorldWidth, Settings.WorldHeight);
-                    this.Fields[randomPoint.Y, randomPoint.X].Animal = new Fish(Settings);
+                    var field = this.Fields[randomPoint.Y, randomPoint.X];
+                    field.Animal = new Fish(Settings, field);
                     fishPopulation--;
                 }
 
                 if (sharkPopulation > 0)
                 {
                     randomPoint = GetRandomFreeField(Settings.WorldWidth, Settings.WorldHeight);
-                    this.Fields[randomPoint.Y, randomPoint.X].Animal = new Shark(Settings);
+                    var field = this.Fields[randomPoint.Y, randomPoint.X];
+                    field.Animal = new Shark(Settings, field);
                     sharkPopulation--;
                 }
             }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 using Wator.Lib.World;
 
@@ -22,6 +23,20 @@ namespace Wator.Lib.Animals
         }
 
         /// <summary>
+        /// Gets the breed time.
+        /// </summary>
+        /// <value>
+        /// The breed time.
+        /// </value>
+        public override int BreedTime
+        {
+            get
+            {
+                return Settings.FishBreedTime;
+            }
+        }
+
+        /// <summary>
         /// Gets the color of the draw.
         /// </summary>
         /// <value>
@@ -35,21 +50,27 @@ namespace Wator.Lib.Animals
             }
         }
 
+        /// <summary>
+        /// Steps of fish.
+        /// </summary>
         public override void Step()
         {
-            IsMoved = true;
+            // increase lifetime
+            this.Lifetime++;
 
+            BreedMoveStep();
+
+            // set step down - animal moved
+            this.IsMoved = true;
         }
 
-        public override void FinishStep()
+        /// <summary>
+        /// Creates the sibling depending on inherited type.
+        /// </summary>
+        /// <returns></returns>
+        protected override Animal CreateSibling()
         {
-            throw new NotImplementedException();
+            return new Fish(this.Settings, this.Field);
         }
-
-        public override void Ageing()
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }
