@@ -1,134 +1,295 @@
 ﻿using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
+
+using GalaSoft.MvvmLight;
+
 using Wator.Lib.Simulation;
 using Wator.Lib.World;
 
 namespace Wator.App.ViewModel
 {
-    class MainViewModel : INotifyPropertyChanged
+    /// <summary>
+    /// The main view model.
+    /// </summary>
+    public class MainViewModel : ViewModelBase
     {
-        private int currentFishPopulation;
-        private int currentSharkPopulation;
-        private WatorSimulation simulation;
-     
-        public ICommand StartCommand { get; set; }
-        public ICommand StopCommand { get; set; }
-        public ICommand PlayCommand { get; set; }
-        public ICommand ResetCommand { get; set; }
-        public ICommand ForwardCommand { get; set; }
-        public ICommand BackCommand { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public WatorSimulation Simulation
-        {
-            get { return simulation; }
-            set
-            {
-                simulation = value;
-                OnPropertyChanged("Simulation");
-
-            }
-        }
+        /// <summary>
+        /// The fish breed time.
+        /// </summary>
+        private int fishBreedTime;
 
         /// <summary>
-        /// Gets or sets the current shark population.
+        /// The fish population.
         /// </summary>
-        public int CurrentSharkPopulation
-        {
-            get { return currentSharkPopulation; }
-            set
-            {
-                currentSharkPopulation = value;
-                OnPropertyChanged("CurrentSharkPopulation");
-                
-            }
-        }
+        private int fishPopulation;
 
         /// <summary>
-        /// Gets or sets the current fish population.
+        /// The picture save folder.
         /// </summary>
-        public int CurrentFishPopulation
-        {
-            get { return currentFishPopulation; }
-            set
-            {
-                currentFishPopulation = value;
-                OnPropertyChanged("CurrentFishPopulation");
-            }
-        }
+        private string pictureSaveFolder;
 
-        public int Round
-        {
-            get { return this.simulation.Round; }
-            set
-            {
-                OnPropertyChanged("Round");
-            }
-        }
+        /// <summary>
+        /// The shark breed time.
+        /// </summary>
+        private int sharkBreedTime;
+
+        /// <summary>
+        /// The shark population.
+        /// </summary>
+        private int sharkPopulation;
+
+        /// <summary>
+        /// The shark starve time.
+        /// </summary>
+        private int sharkStarveTime;
+
+        /// <summary>
+        /// The world height
+        /// </summary>
+        private int worldHeight;
+
+        /// <summary>
+        /// The world width
+        /// </summary>
+        private int worldWidth;
+
+        /// <summary>
+        /// The wator simulation obj.
+        /// </summary>
+        private WatorSimulation watorSimulationObj;
+
+        /// <summary>
+        /// The settings
+        /// </summary>
+        private WatorSettings settings;
+
+        /// <summary>
+        /// The command start simulation
+        /// </summary>
+        private RelayCommand cmdStartSimulation;
+
+        /// <summary>
+        /// The command stop simulation
+        /// </summary>
+        private RelayCommand cmdStopSimulation;
+
+        /// <summary>
+        /// The is simulation running
+        /// </summary>
+        private bool isSimulationRunning;
+
 
         public MainViewModel()
         {
-            StartCommand = new RelayCommand(StartSimulation);
-            StopCommand = new RelayCommand(StopSimulation);
-            ForwardCommand = new RelayCommand(Forward);
-            BackCommand = new RelayCommand(Back);
-            ResetCommand = new RelayCommand(Reset);
-            PlayCommand = new RelayCommand(Play);
-
-            WatorSettings watorSettings = new WatorSettings();
-            watorSettings.FishBreedTime = 20;
-            watorSettings.SharkBreedTime = 30;
-            watorSettings.InitialFishPopulation = 100;
-            watorSettings.InitialSharkPopulation = 80;
-            watorSettings.SharkStarveTime = 50;
-            watorSettings.WorldWidth = watorSettings.WorldHeight = 500;
-
-            this.simulation = new WatorSimulation(watorSettings);
-            
+            InitializeCommands();
+            InitializeSimulationSettings();
         }
 
-        private void Forward()
+        private void InitializeSimulationSettings()
         {
+            isSimulationRunning = false;
+
+            WorldHeight = 1000;
+            WorldWidth = 1000;
+
+            FishBreedTime = 2;
+            SharkBreedTime = 5;
+            FishPopulation = 10000;
+            SharkPopulation = 10000;
+            SharkStarveTime = 5;
+            PictureSaveFolder = @"C:\Temp\Wator";
         }
 
-        private void Back()
+        /// <summary>
+        /// Initializes the commands.
+        /// </summary>
+        private void InitializeCommands()
         {
+            //StartSimulation = 
         }
 
-        private void Reset()
-        {
+        #region Properties
 
-        }
-
-        private void Play()
+        /// <summary>
+        /// Gets or sets the height of the world.
+        /// </summary>
+        /// <value>
+        /// The height of the world.
+        /// </value>
+        public int WorldHeight
         {
-    
-        }
-
-        private void StartSimulation()
-        {
-            this.simulation.StartSimulation();
-        }
-
-        private void StopSimulation()
-        {
-            this.simulation.StopSimulation();
-        }
-
-        protected void OnPropertyChanged(string name)
-        {
-            var safe = this.PropertyChanged;
-            if (safe != null)
+            get
             {
-                safe(this, new PropertyChangedEventArgs(name));
+                return this.worldHeight;
+            }
+            set
+            {
+                this.worldHeight = value;
+                RaisePropertyChanged();
             }
         }
+
+        /// <summary>
+        /// Gets or sets the width of the world.
+        /// </summary>
+        /// <value>
+        /// The width of the world.
+        /// </value>
+        public int WorldWidth
+        {
+            get
+            {
+                return this.worldWidth;
+            }
+            set
+            {
+                this.worldWidth = value;
+                RaisePropertyChanged(() => WorldWidth);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the fish breed time.
+        /// </summary>
+        public int FishBreedTime
+        {
+            get
+            {
+                return this.fishBreedTime;
+            }
+            set
+            {
+                this.fishBreedTime = value;
+                RaisePropertyChanged(() => FishBreedTime);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the fish population.
+        /// </summary>
+        public int FishPopulation
+        {
+            get
+            {
+                return this.fishPopulation;
+            }
+            set
+            {
+                this.fishPopulation = value;
+                RaisePropertyChanged(() => FishPopulation);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the picture save folder.
+        /// </summary>
+        public string PictureSaveFolder
+        {
+            get
+            {
+                return this.pictureSaveFolder;
+            }
+            set
+            {
+                this.pictureSaveFolder = value;
+                RaisePropertyChanged(() => PictureSaveFolder);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the shark breed time.
+        /// </summary>
+        public int SharkBreedTime
+        {
+            get
+            {
+                return this.sharkBreedTime;
+            }
+            set
+            {
+                this.sharkBreedTime = value;
+                RaisePropertyChanged(() => SharkBreedTime);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the shark population.
+        /// </summary>
+        public int SharkPopulation
+        {
+            get
+            {
+                return this.sharkPopulation;
+            }
+            set
+            {
+                this.sharkPopulation = value;
+                RaisePropertyChanged(() => SharkPopulation);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the shark starve time.
+        /// </summary>
+        public int SharkStarveTime
+        {
+            get
+            {
+                return this.sharkStarveTime;
+            }
+            set
+            {
+                this.sharkStarveTime = value;
+                RaisePropertyChanged(() => SharkStarveTime);
+            }
+        }
+
+        #endregion
+
+        #region Commands
+
+        /// <summary>
+        /// Gets or sets the start simulation.
+        /// </summary>
+        /// <value>
+        /// The start simulation.
+        /// </value>
+        public RelayCommand StartSimulation
+        {
+            get
+            {
+                return cmdStartSimulation;
+            }
+            set
+            {
+                cmdStartSimulation = value;
+                RaisePropertyChanged(() => StartSimulation);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the stop simulation.
+        /// </summary>
+        /// <value>
+        /// The stop simulation.
+        /// </value>
+        public RelayCommand StopSimulation
+        {
+            get
+            {
+                return cmdStopSimulation;
+            }
+            set
+            {
+                cmdStopSimulation = value;
+                RaisePropertyChanged(() => StopSimulation);
+            }
+        }
+
+        #endregion
     }
 }

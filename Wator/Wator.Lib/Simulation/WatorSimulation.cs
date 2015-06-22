@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -28,6 +29,21 @@ namespace Wator.Lib.Simulation
         private Phase[] simulationPhases;
 
         /// <summary>
+        /// The step watch
+        /// </summary>
+        private Stopwatch stepWatch;
+
+        /// <summary>
+        /// The current fish popluation
+        /// </summary>
+        private static int currentFishPopluation;
+
+        /// <summary>
+        /// The current shark popluation
+        /// </summary>
+        private static int currentSharkPopluation;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="WatorSimulation"/> class.
         /// </summary>
         /// <param name="settings">The settings.</param>
@@ -49,6 +65,9 @@ namespace Wator.Lib.Simulation
 
             // intialize concurrency of simulation (phases)
             InitializeConcurrency();
+
+            // intialize stop watches
+            InitializeTimeTracking();
         }
 
         #region Properties
@@ -111,6 +130,11 @@ namespace Wator.Lib.Simulation
         /// </summary>
         public event EventHandler EndReached;
 
+        /// <summary>
+        /// Occurs when a simulation step is done.
+        /// </summary>
+        public event EventHandler<SimulationState> StepDone;
+
         #endregion
 
         /// <summary>
@@ -146,11 +170,29 @@ namespace Wator.Lib.Simulation
         {
             while (this.IsRunning)
             {
-                //perform step
+                stepWatch.Start();
+
+                // perform step
                 SimulationStep();
 
-                //create image of step
+                stepWatch.Stop();
+
+                // create image of step
                 ImageCreator.AddJob(new ImageJob<WatorWorld>(this.WatorWorld, this.Round));
+
+                //Increase round
+                Round++;
+
+                //simulation step done
+                OnStepDone(new SimulationState()
+                {
+                    FishPopulation = currentFishPopluation,
+                    SharkPopulation = currentSharkPopluation,
+                    Round = Round,
+                    StepTime = stepWatch.Elapsed
+                });
+
+                stepWatch.Reset();
             }
         }
 
@@ -160,9 +202,9 @@ namespace Wator.Lib.Simulation
         private void SimulationStep()
         {
             int firstPhase = phaseRandomizer.Next(0, 1);
-            int secondPhase = firstPhase == 0 ? 1 : 0; //opposite
+            int secondPhase = firstPhase == 0 ? 1 : 0; // opposite
 
-            //Start phases
+            // Start phases
 
             simulationPhases[firstPhase].Start();
             simulationPhases[firstPhase].WaitForEnd();
@@ -170,8 +212,34 @@ namespace Wator.Lib.Simulation
             simulationPhases[secondPhase].Start();
             simulationPhases[secondPhase].WaitForEnd();
 
-            //reset moved stats
+            // reset moved stats
             WatorWorld.FinishSteps();
+        }
+
+        /// <summary>
+        /// Changes the fish population.
+        /// </summary>
+        /// <param name="increase">if set to <c>true</c> increase otherwise decrease.</param>
+        public static void ChangeFishPopulation(bool increase = true)
+        {
+            if (increase)
+            {
+                Interlocked.Increment(ref currentFishPopluation);
+            }
+            Interlocked.Decrement(ref currentFishPopluation);
+        }
+
+        /// <summary>
+        /// Changes the shark population.
+        /// </summary>
+        /// <param name="increase">if set to <c>true</c> increase otherwise decrease.</param>
+        public static void ChangeSharkPopulation(bool increase = true)
+        {
+            if (increase)
+            {
+                Interlocked.Increment(ref currentSharkPopluation);
+            }
+            Interlocked.Decrement(ref currentSharkPopluation);
         }
 
         #region Initialize
@@ -231,6 +299,8 @@ namespace Wator.Lib.Simulation
         /// <param name="settings">The settings.</param>
         private void InitializeWatorWorld(IWatorSettings settings)
         {
+            WatorSimulation.currentSharkPopluation = settings.InitialSharkPopulation;
+            WatorSimulation.currentFishPopluation = settings.InitialFishPopulation;
             this.IsEndReached = false;
             this.Round = 0;
             this.WatorWorld = new WatorWorld(settings);
@@ -251,6 +321,14 @@ namespace Wator.Lib.Simulation
         private void InitializeImageCreator()
         {
             this.ImageCreator = new ImageCreator<WatorWorld>(this.Settings);
+        }
+
+        /// <summary>
+        /// Initializes the time tracking.
+        /// </summary>
+        private void InitializeTimeTracking()
+        {
+            this.stepWatch = new Stopwatch();
         }
 
         #endregion
@@ -280,6 +358,20 @@ namespace Wator.Lib.Simulation
                 this.simulationThread.Abort();
             }
             this.simulationThread = null;
+        }
+
+        /// <summary>
+        /// Called when a simulation step is done.
+        /// </summary>
+        /// <param name="e">The e.</param>
+        protected virtual void OnStepDone(SimulationState e)
+        {
+            var handler = this.StepDone;
+
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
     }
 }

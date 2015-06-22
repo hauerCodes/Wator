@@ -96,7 +96,7 @@ namespace Wator.Lib.Simulation
         /// </summary>
         public void WaitForEnd()
         {
-            //wait until all workers are ready 
+            // wait until all workers are ready 
             eventReady.Wait();
             eventReady.Reset();
         }

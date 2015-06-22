@@ -1,12 +1,15 @@
 ﻿<Window x:Class="Wator.App.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:VM="clr-namespace:Wator.App.ViewModel"
-        Title="Wator" MinHeight="600" MinWidth="900" Height="600" Width="900">
+        xmlns:vm="clr-namespace:Wator.App.ViewModel"
+        Title="Wator" MinHeight="650" MinWidth="900" Height="650" Width="900">
     <Window.DataContext>
-        <VM:MainViewModel />
+        <vm:MainViewModel/>
     </Window.DataContext>
-    <Grid Margin="5">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="boolVisibiltyConveter" />
+    </Window.Resources>
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
@@ -16,60 +19,62 @@
                 <RowDefinition Height="5*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Margin="5">
-                <Image Name="ImgWator"></Image>
+            <Grid Grid.Row="0">
+                <Image></Image>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="0.6*" />
                     <ColumnDefinition Width="0.6*" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Margin="10,20" Command="{Binding StartCommand}">Start</Button>
-                <Button Grid.Column="1"  Margin="10, 20" Command="{Binding StopCommand}">Stop</Button>
-                <Button Grid.Column="2"  Margin="10, 20" Command="{Binding ResetCommand}">Reset</Button>
-                <Button Grid.Column="3" Margin="10,20" Command="{Binding BackCommand}">&lt;</Button>
-                <Button Grid.Column="4"  Margin="10,20" Command="{Binding ForwardCommand}">&gt;</Button>
-                <Button Grid.Column="5"  Margin="10, 20" Command="{Binding PlayCommand}">Play</Button>
+                <Button Grid.Column="0" Margin="10,20">Start</Button>
+                <Button Grid.Column="1"  Margin="10, 20">Stop</Button>
+                <Button Grid.Column="2" Visibility="Hidden" Margin="10,20">&lt;</Button>
+                <Button Grid.Column="3" Visibility="Hidden" Margin="10,20" >&gt;</Button>
+                <Button Grid.Column="4" Visibility="Hidden" Margin="10, 20" >Play</Button>
             </Grid>
         </Grid>
-        <Grid Grid.Column="1" Margin="5">
+        <Grid Grid.Column="1">
             <StackPanel>
                 <GroupBox Header="Settings" >
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
                                 <Label  Margin="5,0">World Height</Label>
-                                <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.WorldHeight}"></TextBox>
+                                <TextBox Margin="15,0,5,5" Text="{Binding WorldHeight}" ></TextBox>
                             </StackPanel>
                             <StackPanel>
                                 <Label  Margin="5,0">World Width</Label>
-                                <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.WorldWidth}"></TextBox>
+                                <TextBox Margin="15,0,5,5" Text="{Binding WorldWidth}"></TextBox>
                             </StackPanel>
                         </StackPanel>
                         <Label  Margin="5,0">Fish Population</Label>
-                        <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.InitialFishPopulation}"></TextBox>
+                        <TextBox Margin="15,0,5,5" Text="{Binding FishPopulation}"></TextBox>
                         <Label  Margin="5,0">Fish Breedtime</Label>
-                        <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.FishBreedTime}"></TextBox>
+                        <TextBox Margin="15,0,5,5" Text="{Binding FishBreedTime}"></TextBox>
                         <Label  Margin="5,0">Shark Population</Label>
-                        <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.InitialSharkPopulation}"></TextBox>
+                        <TextBox Margin="15,0,5,5" Text="{Binding SharkPopulation}"></TextBox>
                         <Label  Margin="5,0">Shark Breedtime</Label>
-                        <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.SharkBreedTime}"></TextBox>
+                        <TextBox Margin="15,0,5,5" Text="{Binding SharkBreedTime}"></TextBox>
                         <Label  Margin="5,0">Shark Starve Time</Label>
-                        <TextBox Margin="15,0,5,5" Text="{Binding Path=Simulation.Settings.SharkStarveTime}"></TextBox>
+                        <TextBox Margin="15,0,5,5" Text="{Binding SharkStarveTime}"></TextBox>
+                        <Label  Margin="5,0">Picture Save Folder</Label>
+                        <TextBox Margin="15,0,5,5" Text="{Binding PictureSaveFolder}" ></TextBox>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Header="Current Values" >
                     <StackPanel>
                         <Label  Margin="5,0">Round</Label>
-                        <TextBox Margin="15,0,5,5" IsReadOnly="True" Text="{Binding Path=Round}"></TextBox>
+                        <TextBox Margin="15,0,5,5" IsReadOnly="True">0</TextBox>
                         <Label  Margin="5,0">Fish Population</Label>
-                        <TextBox Margin="15,0,5,5" IsReadOnly="True" Text="{Binding Path=CurrentFishPopulation}"></TextBox>
+                        <TextBox Margin="15,0,5,5" IsReadOnly="True">0</TextBox>
                         <Label  Margin="5,0">Shark Population</Label>
-                        <TextBox Margin="15,0,5,5" IsReadOnly="True" Text="{Binding Path=CurrentSharkPopulation}"></TextBox>
+                        <TextBox Margin="15,0,5,5" IsReadOnly="True">0</TextBox>
+                        <Label  Margin="5,0">Simulation Step Time</Label>
+                        <TextBox Margin="15,0,5,5" IsReadOnly="True">0</TextBox>
                     </StackPanel>
                 </GroupBox>
             </StackPanel>

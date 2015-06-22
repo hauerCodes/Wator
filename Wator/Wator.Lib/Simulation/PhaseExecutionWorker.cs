@@ -116,7 +116,7 @@ namespace Wator.Lib.Simulation
                 // wait for go - start calculation (cancelation token supported)
                 eventGo.Wait(this.cancelToken);
 
-                if (!IsActive)
+                if (this.cancelToken.IsCancellationRequested || !IsActive)
                 {
                     return;
                 }
@@ -137,8 +137,6 @@ namespace Wator.Lib.Simulation
         /// </summary>
         private void Calculate()
         {
-            ResetMoveStats();
-
             for (int y = StartRow; y <= EndRow; y++)
             {
                 for (int x = 0; x < worldWidth; x++)
