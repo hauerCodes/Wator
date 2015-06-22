@@ -132,9 +132,9 @@ namespace Wator.Lib.Animals
         /// Creates the sibling depending on inherited type.
         /// </summary>
         /// <returns></returns>
-        protected override Animal CreateSibling()
+        protected override Animal CreateSibling(WatorField siblingField)
         {
-            return new Shark(this.Settings, this.Field);
+            return new Shark(this.Settings, siblingField);
         }
 
         /// <summary>

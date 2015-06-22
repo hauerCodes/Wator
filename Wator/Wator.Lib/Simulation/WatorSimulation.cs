@@ -157,10 +157,10 @@ namespace Wator.Lib.Simulation
 
             this.ImageCreator.StopCreator();
 
-            // cancel simulation - threadabortexcep
-            // this.simulationThread.Abort();
+            // cancel simulation - fire threadabortexcep
+            this.simulationThread.Abort();
             // wait for thread exit
-            // this.simulationThread.Join();
+            this.simulationThread.Join();
         }
 
         /// <summary>
@@ -170,29 +170,38 @@ namespace Wator.Lib.Simulation
         {
             while (this.IsRunning)
             {
-                stepWatch.Start();
-
-                // perform step
-                SimulationStep();
-
-                stepWatch.Stop();
-
-                // create image of step
-                ImageCreator.AddJob(new ImageJob<WatorWorld>(this.WatorWorld, this.Round));
-
-                //Increase round
-                Round++;
-
-                //simulation step done
-                OnStepDone(new SimulationState()
+                try
                 {
-                    FishPopulation = currentFishPopluation,
-                    SharkPopulation = currentSharkPopluation,
-                    Round = Round,
-                    StepTime = stepWatch.Elapsed
-                });
+                    stepWatch.Start();
 
-                stepWatch.Reset();
+                    // perform step
+                    SimulationStep();
+
+                    stepWatch.Stop();
+
+                    // create image of step
+                    ImageCreator.AddJob(new ImageJob<WatorWorld>(this.WatorWorld, this.Round));
+
+                    //Increase round
+                    Round++;
+
+                    //simulation step done
+                    OnStepDone(
+                        new SimulationState()
+                            {
+                                FishPopulation = currentFishPopluation,
+                                SharkPopulation = currentSharkPopluation,
+                                Round = Round,
+                                StepTime = stepWatch.Elapsed
+                            });
+
+                    stepWatch.Reset();
+                }
+                catch (ThreadAbortException ex)
+                {
+                    Debug.WriteLine("Simluation Thread aborted.");
+                    return;
+                }
             }
         }
 

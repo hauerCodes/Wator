@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -105,10 +106,10 @@ namespace Wator.Lib.Images
         {
             this.IsCreatorRunning = false;
 
-            // cancel simulation - threadabortexcep
-            // this.creatorThread.Abort();
-            // wait for thread exit
-            // this.creatorThread.Join();
+             // cancel simulation - threadabortexcep
+             this.creatorThread.Abort();
+             // wait for thread exit
+             this.creatorThread.Join();
         }
 
         /// <summary>
@@ -144,18 +145,26 @@ namespace Wator.Lib.Images
         private void HandleImageJob(ImageJob<T> currentJob)
         {
             //load data from stream
-            Color[,] imageData = currentJob.Data.GetDrawingElements();
+            Color[,] imageData = currentJob.Data;
 
-            //generate image from data
-            Bitmap image = GenerateImage(imageData);
+            try
+            {
+                //generate image from data
+                Bitmap image = GenerateImage(imageData);
 
-            //image.Save(Path.Combine(imageSavePath,
-            //        string.Format("{0}.{1}", currentJob.Round, imageExtension)), ImageFormat.MemoryBmp);
-            image.Save(@"test.bmp", ImageFormat.Bmp);
+                var path = Path.Combine(imageSavePath, string.Format("{0}.{1}", currentJob.Round, imageExtension));
 
-            currentJob.File = image;
-            currentJob.IsFinished = true;
-            OnJobFinished(currentJob);
+                image.Save(path, ImageFormat.Bmp);
+
+                currentJob.File = path;
+                currentJob.IsFinished = true;
+                OnJobFinished(currentJob);
+            }
+            catch (Exception ex)
+            {
+                currentJob.IsFinished = false;
+                Debug.WriteLine("Error - image Creation for Round {0} failed - {1}", currentJob.Round, ex.Message);
+            }
         }
 
         /// <summary>
