@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wator.Lib", "Wator.Lib\Wato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wator.Application", "Wator.Application\Wator.Application.csproj", "{BFFB2F8A-8CE0-4485-A758-5F0448738466}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Wator.Model", "Wator.Model\Wator.Model.modelproj", "{1ABD1EB7-BC10-48D6-871F-DE2872CC5EE9}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://hauersoftwarenet.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -19,6 +21,9 @@ Global
 		SccProjectUniqueName2 = Wator.Application\\Wator.Application.csproj
 		SccProjectName2 = Wator.Application
 		SccLocalPath2 = Wator.Application
+		SccProjectUniqueName3 = Wator.Model\\Wator.Model.modelproj
+		SccProjectName3 = Wator.Model
+		SccLocalPath3 = Wator.Model
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +38,10 @@ Global
 		{BFFB2F8A-8CE0-4485-A758-5F0448738466}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFFB2F8A-8CE0-4485-A758-5F0448738466}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFFB2F8A-8CE0-4485-A758-5F0448738466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ABD1EB7-BC10-48D6-871F-DE2872CC5EE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ABD1EB7-BC10-48D6-871F-DE2872CC5EE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ABD1EB7-BC10-48D6-871F-DE2872CC5EE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ABD1EB7-BC10-48D6-871F-DE2872CC5EE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

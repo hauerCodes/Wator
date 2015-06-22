@@ -1,0 +1,1486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
+  dslVersion="1.0.0.0"
+  Id="c01f467a-2ff0-4a2a-b59c-cc7caca0eae4"
+  name="Animals"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="6b391b77-6165-4e59-a600-dbde1b403341"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DWator.Lib.Animals"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="583d2ab5-9022-431a-a74b-5a23b6baeb07"
+        name="Animal"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="0d927b4d-9b05-47af-a443-9f1301ee692d"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="24adf271-7aeb-4ecc-abac-21d0d687759b"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7a58dbca-f57a-41fd-8b36-3b42800af8c9">
+                <propertyInstance
+                  Id="3caca389-b302-42f6-a347-35972d0f02b2"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="733af1ef-1cd7-4ae8-bfac-cda7d6158d26">
+                <propertyInstance
+                  Id="f89bb687-11d8-4f82-a3c9-2611e246e9ea"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="75ca4990-6c25-4dbb-9e8b-a0784c5f6388">
+                <propertyInstance
+                  Id="ddc67117-af22-4167-b587-31335c7c3dd5"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="79e808f6-1984-4353-8400-4488f797bd00">
+                <propertyInstance
+                  Id="aca6c7b5-9c3c-4f03-8dfe-36f6d03e08b0"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b7174482-24b4-441e-971b-25a5d1927585">
+                <propertyInstance
+                  Id="c42857b7-8eeb-4b62-b28f-5508bab3e67d"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <targetEnds>
+          <association
+            Id="6992e2e0-290a-4818-9e1d-5adb84ea0b9c"
+            isDerived="false"
+            sourceEndRoleName="Animal"
+            targetEndRoleName="Field"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="c07e9768-43cc-4b71-b4ce-b49d41de67fa"
+              LastKnownName="WatorField"
+              LastKnownLocation="Package3_1605.uml" />
+            <description>Eigenschaft Field Verweistyp WatorField.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1dbca458-b6ac-4d47-ae60-19bc4ce3692b"
+                  name="Animal"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="5e5a31c5-89ac-477d-9aec-203903b9869e"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="a4c48741-78b0-49f3-af13-009abf452dd2"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f5dad055-b269-4b4c-95c8-d67df401ecf1"
+                  name="Field"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="1fff12bf-0192-45d9-b4d5-b6dd464622af"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="dbf86f3a-858e-440d-aa7d-98bb2db409c9"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="dc82a677-22e7-493a-955b-366d3758c011"
+            name="Field"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="928205c5-c0e1-482d-b030-aac8409699ee"
+                handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3DField"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="cf9c9011-f653-4d31-b577-8e01bdacec76"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="60d5f429-7d1a-4ac5-8151-5150c6752dff">
+                    <propertyInstance
+                      Id="75a86da3-75ac-41b9-a08d-9b378b196c17"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="91b6a860-b9cb-428c-aa2b-330822afe93a">
+                    <propertyInstance
+                      Id="a9410eb2-d851-483b-bbf4-a4a2c37c3d99"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="605a0af7-f597-429f-8021-b8a883036878">
+                    <propertyInstance
+                      Id="067ab6f6-cc3d-4707-8e0f-89374091bd40"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d58fdbc2-63ea-4112-be2c-fedf6744122e">
+                    <propertyInstance
+                      Id="c5ee5872-b6f1-4141-b2fb-9194ba140c12"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3c876b1e-2c38-4e9c-aa2b-c79bfada6ce2">
+                    <propertyInstance
+                      Id="81900b11-1ee4-4354-95b5-67613d792936"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="72fb3b51-9a28-42a8-9358-fae1d2ea9510">
+                    <propertyInstance
+                      Id="ba27a63c-9796-4507-8d28-5c424dab8ebf"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c699af80-8636-44e6-b76e-991246b8fea3">
+                    <propertyInstance
+                      Id="f4320a72-da0e-4737-b8c3-ef9779b7810c"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="c07e9768-43cc-4b71-b4ce-b49d41de67fa"
+                LastKnownName="WatorField"
+                LastKnownLocation="Package3_1605.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="c817346f-09d5-40ad-8b1d-32f085409f78"
+            name="IsMoved"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="b71b76a8-7b9f-493f-bf03-b1f84e1afd0e"
+                handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3DIsMoved"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a9ab174b-fb98-4cc1-baa1-8996e5f8d9f2"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c70b90ed-38e5-446e-9239-eb91f861af75">
+                    <propertyInstance
+                      Id="516bd785-2011-47d6-8f2d-2482deb221d5"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="00700f3b-d744-461c-bbd2-8bca84ddcef0">
+                    <propertyInstance
+                      Id="0f4faa31-efb5-4c58-96f9-10f4054251f4"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="67f81cb8-1841-43b8-aa08-d5e8741c72ef">
+                    <propertyInstance
+                      Id="174471cf-6f88-4ccf-ae11-15c7ec583e30"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e9934434-789b-429a-a1fd-4d39b9936538">
+                    <propertyInstance
+                      Id="23d19710-f6c6-4b67-ac3f-8f0cc72504b6"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="59961205-7d78-4fd2-9169-86870945304d">
+                    <propertyInstance
+                      Id="6b93d811-c030-4630-aafb-eef554002ef3"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2403085c-efb0-47dd-8879-0cc6a9623e09">
+                    <propertyInstance
+                      Id="29b8d1ff-d78f-4317-ae5e-86d3c9b21b67"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9ec502d2-cbe4-46ef-8e90-e04ff5fce1c0">
+                    <propertyInstance
+                      Id="1a7dd80b-ab06-4479-8437-7b2f6011b48d"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                LastKnownName="Boolean"
+                LastKnownLocation="Wator.Model.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="8feca488-92b2-421f-8b72-848c00540693"
+            name="Lifetime"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="465f30c1-8294-4ffd-ac41-8f3080176c45"
+                handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3DLifetime"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="88e23390-8398-457e-ba39-2d70353beb7f"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="df535826-9936-4bbc-905f-0d9aa1b8d084">
+                    <propertyInstance
+                      Id="817a0c60-38ac-4fef-83ba-c3c024dc4c1a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3837c47d-cbd1-4ad9-838d-b73607e2b03c">
+                    <propertyInstance
+                      Id="441f0a3e-b155-4746-b048-6deaf5543f2c"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ebdcdacf-dc90-4d00-a996-bd57591b884f">
+                    <propertyInstance
+                      Id="c77d7c18-5b2b-401b-969c-7e3df67529c6"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f7c4e982-101b-468b-bdf3-a4a09598f9f5">
+                    <propertyInstance
+                      Id="1e494e86-a8be-443b-8fee-55fd7767a17d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2d1811c3-3c84-4703-bc85-2fe1565f188b">
+                    <propertyInstance
+                      Id="c7ad8e66-9fd3-4061-bc07-ed88db152f0b"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="242affb6-a8d3-4268-a003-56a76b558cc7">
+                    <propertyInstance
+                      Id="ccbc453b-8969-4e21-82bd-5582e1ee10a9"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="eb7139ca-0fdd-4faf-8fea-1a0d10543fa9">
+                    <propertyInstance
+                      Id="445e918a-d0e3-42f5-bf15-73b6c396ccfb"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="Wator.Model.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="6eee5613-2877-4464-a4d2-3e6d07ecd9cd"
+            name="BreedTime"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="true"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="f59fd0f2-3607-4d30-9c80-e3f108149ab1"
+                handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3DBreedTime"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="0bba2659-2503-4fd4-b8fb-5c441d3f9957"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0c8574ab-0bb8-462b-8dc0-88dc66bb5dc6">
+                    <propertyInstance
+                      Id="db2ec1b5-7228-411f-9b9c-04645495edf9"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="72ea7f0c-2a2a-4479-888a-79d605d4c98b">
+                    <propertyInstance
+                      Id="9ab701cd-0416-41d0-bc7f-9d8c960fc2bd"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b2ba2747-3619-4219-9c11-a4b7eeb2a7e3">
+                    <propertyInstance
+                      Id="7e5c8ec3-378c-4713-a31c-a60d9476641a"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8d2b2832-55d4-4ed9-bd95-5eebc59ad422">
+                    <propertyInstance
+                      Id="9578d980-77b8-4b0d-b1e0-d6f6220f5217"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f58a5173-5307-4d5f-a035-06bc5cb815ec">
+                    <propertyInstance
+                      Id="fb68ffdb-43d1-4ffd-8840-219ebc5f5743"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b61e0cd0-2607-402d-9817-877bd44b62c2">
+                    <propertyInstance
+                      Id="33eb25a0-d69c-4a43-ac85-c78c02d42d2c"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="df1880fe-c0e2-443b-8c33-9237bb53c402">
+                    <propertyInstance
+                      Id="03e6cb14-ca2a-4a04-8779-7ea68d042b36"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="Wator.Model.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="e875ee15-ff50-4a92-a63f-0d501b7aeea6"
+            name="AnimalRandomizer"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="5ae5cb51-f2e5-40a3-b28d-502eedcd9f25"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3DAnimalRandomizer"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="d7da3896-3ab5-4b86-a240-31498622dbff"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bd817e1d-ce63-42aa-819d-c10abb8e5a38">
+                    <propertyInstance
+                      Id="f2bab8c6-3171-4556-9a52-07e90abd1008"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="050c299a-af2e-412d-95c5-303e058472cf">
+                    <propertyInstance
+                      Id="b5238426-f656-467e-9fea-6cc06789d560"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a2ee9493-ed12-45f2-ba1b-5593232fec6a">
+                    <propertyInstance
+                      Id="848ed9aa-ca88-4f42-99b5-0426a5d7d752"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ff0c0c20-c68d-45fa-8ae3-f78c14f5f9e5">
+                    <propertyInstance
+                      Id="c83c1a7e-0950-4f46-9e5b-a62953429dee"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="18159709-b481-41f4-ab01-5fbdd17de91f">
+                    <propertyInstance
+                      Id="216a4148-ac00-435e-bb98-fcff917efbd1"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="335f9d59-0a28-4c83-83a3-78b4b8485d28"
+                LastKnownName="Random"
+                LastKnownLocation="Package4_1605.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="cfb3845b-2c36-46d4-8d7b-85d5616ea686"
+            name="FoundDirections"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="3519aa6a-3a28-4e43-aec5-afd270715556"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3DFoundDirections"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a21e71e4-a844-4e45-97c9-30e0ce5b2c70"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a66d97c6-c486-4df9-a672-0495cd29810c">
+                    <propertyInstance
+                      Id="c21f9277-426a-482c-8dbf-d334be71c1c1"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ef6f3bf4-4c62-4759-b7a8-d3f7338bdd39">
+                    <propertyInstance
+                      Id="5813b749-5be6-4e00-b9f9-8ffccfedda52"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="05e31203-6bcc-440e-a5a5-2ed5a156d8c9">
+                    <propertyInstance
+                      Id="c73c4c81-22fa-422e-91f7-2a55f37184b2"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="83cf58f6-d456-4d14-8668-edf4ca522294">
+                    <propertyInstance
+                      Id="c3923916-eeac-412e-b326-32955878e5f9"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8795bac9-d9f0-4cb4-9530-79d5e434b616">
+                    <propertyInstance
+                      Id="b77e90db-42fd-4c2d-a620-05d5dff8f212"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="251347a3-5626-4b5a-b899-9f2b9a9251b0"
+                LastKnownName="List&lt;Direction‎&gt;"
+                LastKnownLocation="Package6_1605.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="528642a7-658d-49de-91ed-ab2a95ae4781"
+            name="Settings"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="1427a656-669c-4a09-9947-01360ed3cc22"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3DSettings"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="8d817d3e-545b-423d-841d-443c127b0040"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="33dbb738-d7f4-4c8b-be62-2e57314c9e65">
+                    <propertyInstance
+                      Id="f1742c03-adc9-4ef7-80dd-a43165ee613b"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3136c405-16d9-4725-a2e1-6c94bfc39896">
+                    <propertyInstance
+                      Id="4ec08c91-efd1-460f-81b1-89933c156518"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bde9c91f-2ee5-468b-92c1-a200aa0cff57">
+                    <propertyInstance
+                      Id="9fdcf6ef-a820-4319-a511-474425d20d4e"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2111f76e-2897-4cdc-9cd1-13c53c244bed">
+                    <propertyInstance
+                      Id="54aac173-81a0-41c3-964d-feb042c9da74"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="29425f5a-82f4-48c1-a22d-43317cc6da43">
+                    <propertyInstance
+                      Id="7a6db644-b2ed-4661-8026-92efbf44b0c0"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="1ddb18d0-bc6f-4110-a17c-2fca4afea64a"
+                LastKnownName="IWatorSettings"
+                LastKnownLocation="Package3_1605.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="e5e9c55a-1f57-4d3c-a22c-c1fbbd6233f1"
+            name="Animal"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="65803d23-566f-4b70-8ae0-57aac34dab0f"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.World Type%3DIWatorSettings)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.World Type%3DWatorField)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ad246ea7-573e-4cde-8254-cd76a0976b59"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c03a901f-cffe-438e-a434-c888635f47b5">
+                    <propertyInstance
+                      Id="c017726c-b97d-4400-8b36-9c4b49c44ac5"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="de7ec60b-8ddc-4fce-9f68-5e4b490d47bf">
+                    <propertyInstance
+                      Id="1baa6c12-4280-4f6c-8aa1-83cbd6e6ab93"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4f188b2c-b07c-45cf-8892-74723aaeb1fd">
+                    <propertyInstance
+                      Id="6f7c0299-ff8a-4c8d-9234-c028d4b5c213"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="648eaa07-e9d1-4c18-9523-3b1eb1a42b95">
+                    <propertyInstance
+                      Id="b1fc05f0-6a18-4992-8056-04fc63daf304"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8d896cd8-7a44-43e6-a80c-2650d6faa72e">
+                    <propertyInstance
+                      Id="b38edc4e-b88a-4ccd-a397-ee5c13045f88"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4722d63b-89f5-4450-a9cc-52873e233dec">
+                    <propertyInstance
+                      Id="46c70814-5bfc-4ce0-bcd9-1d8d6b3a1cb7"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="657a93ae-1440-48ed-a550-8feb87b2e2e9"
+                  name="settings"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="3db370d1-69eb-4214-8bd6-e1b29a7da650"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.World Type%3DIWatorSettings)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.World Type%3DWatorField)]) ParameterIdentifier%3Dsettings"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="1ddb18d0-bc6f-4110-a17c-2fca4afea64a"
+                      LastKnownName="IWatorSettings"
+                      LastKnownLocation="Package3_1605.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="81602c8f-0087-49a0-b138-9da6af72f18e"
+                  name="field"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="e05134e9-9023-444e-bf43-9bef5e06e388"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.World Type%3DIWatorSettings)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.World Type%3DWatorField)]) ParameterIdentifier%3Dfield"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c07e9768-43cc-4b71-b4ce-b49d41de67fa"
+                      LastKnownName="WatorField"
+                      LastKnownLocation="Package3_1605.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="5fba5dba-31bd-4b94-baf2-df17239870c6"
+            name="Step"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="7cfb43cc-c6f9-48c7-8198-d5d10bbe7f43"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3DStep"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="326ac2f3-c513-4aa9-b8f7-60ee0a9ca44b"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0320f8c7-23d9-44c8-b827-454d529ac2ad">
+                    <propertyInstance
+                      Id="b84d3923-7c28-4da0-8a5b-2d2c911af8c5"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="30e13eb0-6aaf-4b15-bcb5-8db8b14f706a">
+                    <propertyInstance
+                      Id="689e98d8-f894-43d3-b0e9-6b4329297bb4"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="684c7bd9-643d-4964-9415-c2e20af407c5">
+                    <propertyInstance
+                      Id="a0ae723f-3c96-43c9-b298-1941da5f0a41"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e7f56489-c1e4-4a69-bea3-d240186cf671">
+                    <propertyInstance
+                      Id="fefea1fe-9ae4-46e2-956c-db64e27f1365"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1776c03d-3115-4289-a82b-8a96885b0617">
+                    <propertyInstance
+                      Id="283d9c8b-eaab-4e56-8fae-595ecf38ea9a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="028cdddb-eb3b-4dc2-9b57-98cfa6cabed9">
+                    <propertyInstance
+                      Id="73510db7-26a5-4bc2-9308-11e50ba8157f"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="aff30e7d-405d-4951-b479-796dda17ca83"
+            name="CreateSibling"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="dc827e77-54b1-44b5-b02b-fb97d2ccf4fe"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3D(Name%3DCreateSibling OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.World Type%3DWatorField)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="e1255adb-9272-4459-b6e6-d58b950ed59d"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3902fbe0-d47d-47ad-8eec-80acca489360">
+                    <propertyInstance
+                      Id="28e16dd5-aff4-445f-842a-d9e9d0c6983e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1a7d65b4-1958-4793-b1c1-61742d74082a">
+                    <propertyInstance
+                      Id="a17620ec-1f3c-43d0-a547-beb1c78377b5"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3459bb0a-f9f6-47f0-a36f-b472c6910b71">
+                    <propertyInstance
+                      Id="fb5c7310-47f3-438d-b19c-60a1ea1c3c05"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="680f20f0-0ebd-4d06-814b-a5df095c0fe0">
+                    <propertyInstance
+                      Id="6fd84462-efb3-454e-83ec-76f26b565590"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="37bbe3e1-c380-4b35-a496-a78459cef9dd">
+                    <propertyInstance
+                      Id="7e95acc6-5325-4d12-8137-bfdbec8e4c8b"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b4426d62-94c7-49a7-8057-594fd1696a0f">
+                    <propertyInstance
+                      Id="a2356afb-773b-408a-a11f-d67775a507ba"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3efb9a4d-56b7-4423-bdcb-8b828bf85000"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="583d2ab5-9022-431a-a74b-5a23b6baeb07"
+                      LastKnownName="Animal"
+                      LastKnownLocation="Package2_1605.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="9c97fd15-563e-4d3b-b53f-6cf931ddb3b0"
+                  name="siblingField"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="282cf1df-1c47-448a-a8de-bfe3428beff7"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3D(Name%3DCreateSibling OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.World Type%3DWatorField)]) ParameterIdentifier%3DsiblingField"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c07e9768-43cc-4b71-b4ce-b49d41de67fa"
+                      LastKnownName="WatorField"
+                      LastKnownLocation="Package3_1605.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="334bf7f7-9be2-4852-b0eb-80f84b81ef5d"
+            name="GetFreeRandomDirection"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="37be6914-1e64-4994-96a4-a507973e3aab"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3DGetFreeRandomDirection"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="07ebea3f-4f79-4b95-a057-76034d19bea9"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a5659bf6-da14-4574-b7b1-2b17b1709a1f">
+                    <propertyInstance
+                      Id="ac8b836d-bed5-4f4c-be74-81d7b76c9774"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2827b142-08c3-460c-b037-e025fdaada0c">
+                    <propertyInstance
+                      Id="3c741bbd-e530-40f3-bb8e-88dff71fdace"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d30e2276-ae4d-48ce-9bca-a43378fc7d87">
+                    <propertyInstance
+                      Id="f6a50c4e-0f0b-47e1-8b4a-8d20da068c34"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2d12665e-c4ae-4ee1-8227-eca4d6e404aa">
+                    <propertyInstance
+                      Id="9ed491c1-171d-4604-8d03-61ed75882132"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b19555b4-a880-45f3-b757-8f1c4dcedd76">
+                    <propertyInstance
+                      Id="e971f5d6-2b49-4826-9515-d92a5d09b68e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5dfba393-2129-44fc-8d6a-a0b77be55cf1">
+                    <propertyInstance
+                      Id="1f8f17dc-fcf4-4f32-a44f-7e0e20653993"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="012e49b8-99a3-4612-9589-83226122febe"
+                  direction="Return">
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="0d6cf863-94c5-4f82-836b-bd507abe98ca"
+                      LastKnownName="Direction"
+                      LastKnownLocation="Package2_1605.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="11137410-2daf-4b31-9c03-d497144319fc"
+            name="GetFieldFromDirection"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="bdbb5f6f-7323-49cb-afb2-dcf0d9739682"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3D(Name%3DGetFieldFromDirection OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DDirection)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="09acd2f1-0b1a-4e87-8e75-26d417beec3b"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="622a7f0c-2b2c-450f-b19e-1c1bee8845cf">
+                    <propertyInstance
+                      Id="f03b9916-f965-4b77-9411-b7366cc4a586"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cfe762da-9f2f-43ce-8220-99d1b1c7bab2">
+                    <propertyInstance
+                      Id="945067c2-cdd8-4109-b56c-12a917bab505"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ef0cf927-d0aa-426e-badb-b233409fbd07">
+                    <propertyInstance
+                      Id="6f2cd607-f3c2-420b-bff1-27edf66b6a69"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="33dd3430-d969-49d9-9254-dd7155f5fd5a">
+                    <propertyInstance
+                      Id="d78956f8-c093-4dc8-b66e-bba0fde4aa1c"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1ec22137-a13d-4d94-8bac-088e48e763d4">
+                    <propertyInstance
+                      Id="9d2d3935-df2e-46ad-b75e-ff254a2ab7ca"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f626fb5a-fcc1-49c1-9126-5d55a9d8da7e">
+                    <propertyInstance
+                      Id="a5525904-d6ce-429b-829e-56b3dc374d9d"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cfbd8464-fa49-4a9d-a66c-157f57d8c00d"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c07e9768-43cc-4b71-b4ce-b49d41de67fa"
+                      LastKnownName="WatorField"
+                      LastKnownLocation="Package3_1605.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="61ce3f4f-ca95-4b10-b1ef-e310800ee9b6"
+                  name="direction"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="45b0f2d4-f937-437f-af10-2476770de6d5"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3D(Name%3DGetFieldFromDirection OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DDirection)]) ParameterIdentifier%3Ddirection"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="0d6cf863-94c5-4f82-836b-bd507abe98ca"
+                      LastKnownName="Direction"
+                      LastKnownLocation="Package2_1605.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="f855a426-63b1-4b25-8811-e6b47510c470"
+            name="CheckLockRequired"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="05ec9502-a88f-4d07-8123-e092b079d336"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3D(Name%3DCheckLockRequired OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DDirection)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.World Type%3DWatorField)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="d18f1f6b-1e8f-4983-8039-3571f09b5e12"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1bfa061c-b02c-463e-94be-40455693eb8b">
+                    <propertyInstance
+                      Id="ce980298-7ad4-4ba6-8750-7ad6a2784af0"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3761367c-ef5d-40c3-b5fb-7a8856c5b388">
+                    <propertyInstance
+                      Id="65e7c8c8-b24e-4ecc-8130-c4b5df4caff0"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f1e69a22-a730-4964-8d2c-20d14089a723">
+                    <propertyInstance
+                      Id="010ba82d-f0fe-4d2f-ac34-28aaeb61e13f"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a038caca-a3e6-4be6-b3a3-366927a2bdcd">
+                    <propertyInstance
+                      Id="2e53ddf3-70fc-4e6a-a79f-5c60e56ad013"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f2cb1068-5ad2-47e6-8ec6-21b2a4889bdf">
+                    <propertyInstance
+                      Id="bdf1fad4-65f0-446d-917d-95ed77f72e5f"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3a359ce7-fa59-401f-8a5c-6b52d2c72385">
+                    <propertyInstance
+                      Id="bcda84f4-0fa9-4581-8ff5-ebfefb584b39"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d9bf50f8-4e68-42f0-8260-ba70b78c659e"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="Wator.Model.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f45fa830-3e24-4215-8a0c-fd9e3ac0ddae"
+                  name="direction"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="b32b04a3-c4f0-4ba1-aa36-cbf6da61f73d"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3D(Name%3DCheckLockRequired OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DDirection)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.World Type%3DWatorField)]) ParameterIdentifier%3Ddirection"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="0d6cf863-94c5-4f82-836b-bd507abe98ca"
+                      LastKnownName="Direction"
+                      LastKnownLocation="Package2_1605.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="de3355de-324e-4417-8dd6-5ae010018efc"
+                  name="targetField"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="9003d218-86eb-4c82-bfe0-42a6eaea5ccb"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3D(Name%3DCheckLockRequired OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DDirection)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.World Type%3DWatorField)]) ParameterIdentifier%3DtargetField"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c07e9768-43cc-4b71-b4ce-b49d41de67fa"
+                      LastKnownName="WatorField"
+                      LastKnownLocation="Package3_1605.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="86dacd72-e30c-4110-8ac5-274dbc9260c9"
+            name="BreedMoveStep"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="21562fbc-a85a-4990-9b4f-81200a61e855"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3DBreedMoveStep"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="e4f53a71-b009-49d2-bd10-172e0a45b180"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9bae7f4a-35c8-43cc-8cd0-959b5019b1f2">
+                    <propertyInstance
+                      Id="aa72596a-6825-402b-89ef-43eccc6e7954"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="41efa4ed-b74a-4f80-ad17-fd67c9676754">
+                    <propertyInstance
+                      Id="826bb92c-7539-4a2c-9634-e1427e95a27e"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="909c5193-53f5-4e48-8482-cf6b2c8df69f">
+                    <propertyInstance
+                      Id="b71a2d98-9324-436b-9221-0555ea3989e1"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="42ff0c6b-bbe9-4457-a813-639b89995ba6">
+                    <propertyInstance
+                      Id="19206463-341e-41a3-8e36-4a3891630db4"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fd06e84c-f9b5-44ed-b392-672bc30101f7">
+                    <propertyInstance
+                      Id="3223db90-2061-4e6e-ab8d-ad64944029d4"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="30fd612b-5bf0-4d5d-a358-58bbbfdc4b55">
+                    <propertyInstance
+                      Id="33cbcf84-9a64-463b-97f5-aa7734be8cec"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c48491a8-24f3-4383-9da2-16dc547008e4"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="Wator.Model.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="e8830618-0ff9-47b7-acd7-8e4d33b7167c"
+            name="FinishStep"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="512841eb-b8e0-492d-b918-50968e84caea"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3DFinishStep"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c290f834-a80c-42c6-8602-930bc80f2c47"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ada603f2-0f0a-4463-b418-81cd5e3e1a27">
+                    <propertyInstance
+                      Id="0af3c5a3-ef29-4fbc-a26f-4bb9c17bf204"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1f3f2a49-fb72-4f68-a679-d74d0183ff99">
+                    <propertyInstance
+                      Id="3ddf938c-b9e7-411e-9f9c-ca741c5de396"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="705e9e51-602e-4912-8502-914b5b8aa810">
+                    <propertyInstance
+                      Id="49770cc0-06dc-4444-9fa5-93a83971df27"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6bae3e30-b698-4926-a885-50c97a81f1b3">
+                    <propertyInstance
+                      Id="55e864d0-5592-4fb4-bf2e-aedf467bb5d3"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cf15de72-8941-41fc-9719-287fc2cb63e4">
+                    <propertyInstance
+                      Id="8862c6eb-727f-4e13-b9be-e1143b6a8e39"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ca9d880f-9842-46f9-ab45-b688747b1b92">
+                    <propertyInstance
+                      Id="6aea069b-c441-4a03-92d9-4cd215c10628"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="0fe76023-f35d-4b4b-bf50-12211a07c8ca"
+            name="Die"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="8eb92787-eb18-4d46-ab80-e08490655cca"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DAnimal Member%3DDie"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="2ea7e3b2-ea96-4073-9609-cf0795861c74"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="85c02c2b-4701-4093-b35a-759160c0432a">
+                    <propertyInstance
+                      Id="f3fc5abc-4c5e-4c56-86dc-c10e21024224"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b2bf8131-9dc0-4794-b74f-a5908a1a15f8">
+                    <propertyInstance
+                      Id="6dae5eb1-41ff-4264-a3eb-8e177f3b44ad"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="26925e05-a24c-4e14-a86f-6e0a0dd7f635">
+                    <propertyInstance
+                      Id="3eac3bfb-8937-4b3e-85f7-90894ff413bd"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e5e9793c-8696-4cf3-a056-0c7680ef5070">
+                    <propertyInstance
+                      Id="b25aa01d-e361-46a3-bc76-215ef7c98331"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dca26133-d440-44b5-b835-e139f343b7ed">
+                    <propertyInstance
+                      Id="7d759012-cb7d-4b01-8e3f-3a5a4bb20a9f"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="76265f0a-b70d-428f-8018-15dcc3225f39">
+                    <propertyInstance
+                      Id="afcad30c-25d3-4ca4-98fc-a29affb766fe"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="0d6cf863-94c5-4f82-836b-bd507abe98ca"
+        name="Direction"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="f1e7f9c4-5967-4823-823b-df97d0ef9921"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.Animals Type%3DDirection"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="6b83d48e-5eef-4625-a0cb-74d99fdca762"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="715bd14a-8445-47d9-87b8-c66df4d23f74">
+                <propertyInstance
+                  Id="b048c387-66cb-46c9-b7bd-80397e3f9e30"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6baebdb9-c9a0-4b6b-a466-db6d5beb7f8a">
+                <propertyInstance
+                  Id="a2f43a4e-22b6-4eed-acf9-9bad0608f6ce"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="351b6718-5b90-4016-a0c3-e7fbc4629680">
+                <propertyInstance
+                  Id="a79265ec-929a-4ef6-a9cb-f189018fea5f"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </enumeration>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
