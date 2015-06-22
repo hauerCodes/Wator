@@ -1,21 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-
+﻿// -----------------------------------------------------------------------
+// <copyright file="WatorSettings.cs" company="FH Wr.Neustadt">
+//      Copyright Christoph Hauer. All rights reserved.
+// </copyright>
+// <author>Christoph Hauer</author>
+// <summary>Wator.Lib - WatorSettings.cs</summary>
+// -----------------------------------------------------------------------
 namespace Wator.Lib.World
 {
+    using System.Drawing;
+
     /// <summary>
     /// The wator settings.
     /// </summary>
     public class WatorSettings : IWatorSettings
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WatorSettings"/> class.
+        /// </summary>
         public WatorSettings()
         {
-            FishColor = Color.YellowGreen;
-            SharkColor = Color.DarkCyan;
-            WaterColor = Color.Black;
+            this.FishColor = Color.YellowGreen;
+            this.SharkColor = Color.DarkCyan;
+            this.WaterColor = Color.Black;
         }
 
         /// <summary>
