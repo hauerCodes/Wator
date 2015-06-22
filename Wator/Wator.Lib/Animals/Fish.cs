@@ -38,19 +38,19 @@ namespace Wator.Lib.Animals
             }
         }
 
-        /// <summary>
-        /// Gets the color of the draw.
-        /// </summary>
-        /// <value>
-        /// The color of the draw.
-        /// </value>
-        public override Color DrawColor
-        {
-            get
-            {
-                return this.Settings.FishColor;
-            }
-        }
+        ///// <summary>
+        ///// Gets the color of the draw.
+        ///// </summary>
+        ///// <value>
+        ///// The color of the draw.
+        ///// </value>
+        //public override Color DrawColor
+        //{
+        //    get
+        //    {
+        //        return this.Settings.FishColor;
+        //    }
+        //}
 
         /// <summary>
         /// Steps of fish.

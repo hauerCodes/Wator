@@ -152,7 +152,7 @@ namespace Wator.Lib.Images
         private void HandleImageJob(ImageJob<T> currentJob)
         {
             //load data from stream
-            Color[,] imageData = currentJob.Data;
+            int[,] imageData = currentJob.Data;
 
             try
             {
@@ -179,11 +179,11 @@ namespace Wator.Lib.Images
         /// </summary>
         /// <param name="imageData">The image data.</param>
         /// <returns></returns>
-        private Bitmap GenerateImage(Color[,] imageData)
+        private Bitmap GenerateImage(int[,] imageData)
         {
             Rectangle rect = new Rectangle(0, 0, width, height);
             Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format32bppArgb);
-
+            Color color = settings.WaterColor;
             BitmapData bmpData = null;
 
             try
@@ -201,12 +201,25 @@ namespace Wator.Lib.Images
                 {
                     for (int x = 0; x < width; x++)
                     {
-                        Color col = imageData[x, y];
+                        int fieldCol = imageData[x, y];
 
-                        rgbValues[counter++] = col.B;
-                        rgbValues[counter++] = col.G;
-                        rgbValues[counter++] = col.R;
-                        rgbValues[counter++] = col.A;
+                        if (fieldCol == 0)
+                        {
+                            color = settings.WaterColor;
+                        }
+                        else if (fieldCol == 1)
+                        {
+                            color = settings.FishColor;
+                        }
+                        else if (fieldCol == -1)
+                        {
+                            color = settings.SharkColor;
+                        }
+
+                        rgbValues[counter++] = color.B;
+                        rgbValues[counter++] = color.G;
+                        rgbValues[counter++] = color.R;
+                        rgbValues[counter++] = color.A;
                     }
                 }
 

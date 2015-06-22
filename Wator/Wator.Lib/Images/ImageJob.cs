@@ -50,7 +50,7 @@ namespace Wator.Lib.Images
         /// <value>
         /// The round.
         /// </value>
-        public Color[,] Data { get; private set; }
+        public int[,] Data { get; private set; }
 
         public string File { get; set; }
 

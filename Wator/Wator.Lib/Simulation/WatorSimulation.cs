@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -236,6 +237,8 @@ namespace Wator.Lib.Simulation
                             });
 
                     stepWatch.Reset();
+
+                    CleanUp();
                 }
                 catch (ThreadAbortException ex)
                 {
@@ -243,6 +246,20 @@ namespace Wator.Lib.Simulation
                     return;
                 }
             }
+        }
+
+        /// <summary>
+        /// Cleans up memory.
+        /// </summary>
+        private void CleanUp()
+        {
+            try
+            {
+                // only in .NET 4.5.1
+                // GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
+                GC.Collect();
+            }
+            catch { ;}
         }
 
         /// <summary>

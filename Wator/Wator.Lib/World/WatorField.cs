@@ -10,13 +10,8 @@ using Wator.Lib.Images;
 
 namespace Wator.Lib.World
 {
-    public class WatorField : IColorProvider
+    public class WatorField
     {
-        /// <summary>
-        /// The animal
-        /// </summary>
-        private Animal animal;
-
         /// <summary>
         /// The settings
         /// </summary>
@@ -75,17 +70,7 @@ namespace Wator.Lib.World
         /// <value>
         /// The animal.
         /// </value>
-        public Animal Animal
-        {
-            get
-            {
-                return animal;
-            }
-            set
-            {
-                this.animal = value;
-            }
-        }
+        public Animal Animal { get; set; }
 
         /// <summary>
         /// Gets the position.
@@ -95,24 +80,24 @@ namespace Wator.Lib.World
         /// </value>
         public Point Position { get; private set; }
 
-        /// <summary>
-        /// Gets the color of the draw.
-        /// </summary>
-        /// <value>
-        /// The color of the draw.
-        /// </value>
-        public Color DrawColor
-        {
-            get
-            {
-                if (Animal != null)
-                {
-                    return Animal.DrawColor;
-                }
+        ///// <summary>
+        ///// Gets the color of the draw.
+        ///// </summary>
+        ///// <value>
+        ///// The color of the draw.
+        ///// </value>
+        //public Color DrawColor
+        //{
+        //    get
+        //    {
+        //        if (Animal != null)
+        //        {
+        //            return Animal.DrawColor;
+        //        }
 
-                return settings.WaterColor;
-            }
-        }
+        //        return settings.WaterColor;
+        //    }
+        //}
 
         /// <summary>
         /// Finishes the step of the animal - if there is one on this field.

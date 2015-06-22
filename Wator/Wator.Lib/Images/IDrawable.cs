@@ -8,6 +8,6 @@ namespace Wator.Lib.Images
 {
     public interface IDrawable
     {
-        Color[,] GetDrawingElements();
+        int[,] GetDrawingElements();
     }
 }

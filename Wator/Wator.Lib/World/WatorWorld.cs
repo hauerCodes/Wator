@@ -62,17 +62,35 @@ namespace Wator.Lib.World
         /// Gets the drawing elements.
         /// </summary>
         /// <returns></returns>
-        public Color[,] GetDrawingElements()
+        public int[,] GetDrawingElements()
         {
             int width = Settings.WorldWidth;
             int height = Settings.WorldHeight;
-            Color[,] data = new Color[height, width];
+            int[,] data = new int[height, width];
+            int col = 0;
 
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    data[y, x] = Fields[y, x].DrawColor;
+                    //col = Settings.WaterColor;
+
+                    if (Fields[y, x].Animal != null)
+                    {
+                        if (Fields[y, x].Animal is Fish)
+                        {
+                            //col = Settings.FishColor;
+                            col = 1;
+                        }
+                        else
+                        {
+                            //col = Settings.SharkColor;
+                            col = -1;
+                        }
+
+                        data[y, x] = col;
+                    }
+
                 }
             }
             return data;
@@ -116,7 +134,7 @@ namespace Wator.Lib.World
         /// <summary>
         /// Initializes the world.
         /// </summary>
-        private void InitializeWorldFields()
+        private void InitializeWorldFields(bool createEvent = false)
         {
             int width = Settings.WorldWidth;
             int height = Settings.WorldHeight;
@@ -131,7 +149,10 @@ namespace Wator.Lib.World
                 {
                     this.Fields[y, x] = new WatorField(new Point(x, y), Settings);
 
-                    this.ResetMovedStats += this.Fields[y, x].FinishStep;
+                    if (createEvent)
+                    {
+                        this.ResetMovedStats += this.Fields[y, x].FinishStep;
+                    }
                 }
             }
 
@@ -207,13 +228,5 @@ namespace Wator.Lib.World
             return new Point(randomX, randomY);
         }
 
-        /// <summary>
-        /// Create a flat copy
-        /// </summary>
-        /// <returns></returns>
-        public WatorWorld FlatCopy()
-        {
-            return (WatorWorld)this.MemberwiseClone();
-        }
     }
 }
