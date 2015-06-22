@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 
+using Wator.Lib.Simulation;
 using Wator.Lib.World;
 
 namespace Wator.Lib.Animals
@@ -91,6 +92,7 @@ namespace Wator.Lib.Animals
 
                         // fish dies (clear animal.field and field.animal)
                         preyField.Animal.Die();
+                        WatorSimulation.ChangeFishPopulation(false);
 
                         // fish is dead place shark on field
                         preyField.Animal = this;
@@ -109,19 +111,24 @@ namespace Wator.Lib.Animals
             }
             else
             {
-                // if no fish found - increate starve 
+                // if no fish found - increase starve 
                 Starve++;
 
                 if (Starve > Settings.SharkStarveTime)
                 {
                     // shark dies (animal.field null and field.animal.null)
                     Die();
+                    WatorSimulation.ChangeSharkPopulation(false);
 
                     return;
                 }
 
-                //execute breed and move
-                BreedMoveStep();
+            }
+
+            //execute breed and move
+            if (BreedMoveStep())
+            {
+                WatorSimulation.ChangeSharkPopulation(true);
             }
 
             // set step down - animal moved

@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 
+using Wator.Lib.Simulation;
 using Wator.Lib.World;
 
 namespace Wator.Lib.Animals
@@ -59,7 +60,10 @@ namespace Wator.Lib.Animals
             // increase lifetime
             this.Lifetime++;
 
-            BreedMoveStep();
+            if (BreedMoveStep())
+            {
+                WatorSimulation.ChangeFishPopulation(true);
+            }
 
             // set step down - animal moved
             this.IsMoved = true;

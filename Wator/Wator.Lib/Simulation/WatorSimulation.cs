@@ -221,7 +221,7 @@ namespace Wator.Lib.Simulation
             simulationPhases[secondPhase].WaitForEnd();
 
             // reset moved stats
-            WatorWorld.FinishSteps();
+            WatorWorld.FinishSteps(false);
         }
 
         /// <summary>
@@ -234,7 +234,10 @@ namespace Wator.Lib.Simulation
             {
                 Interlocked.Increment(ref currentFishPopluation);
             }
-            Interlocked.Decrement(ref currentFishPopluation);
+            else
+            {
+                Interlocked.Decrement(ref currentFishPopluation);
+            }
         }
 
         /// <summary>
@@ -247,7 +250,10 @@ namespace Wator.Lib.Simulation
             {
                 Interlocked.Increment(ref currentSharkPopluation);
             }
-            Interlocked.Decrement(ref currentSharkPopluation);
+            else
+            {
+                Interlocked.Decrement(ref currentSharkPopluation);
+            }
         }
 
         #region Initialize

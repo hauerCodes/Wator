@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 
 using Wator.Lib.Images;
+using Wator.Lib.Simulation;
 using Wator.Lib.World;
 
 namespace Wator.Lib.Animals
@@ -182,9 +183,10 @@ namespace Wator.Lib.Animals
         }
 
         /// <summary>
-        /// Breeds the move step.
+        /// Breed and move step.
         /// </summary>
-        protected void BreedMoveStep()
+        /// <returns>true if sibling otherwise false</returns>
+        protected bool BreedMoveStep()
         {
             bool lockTaken = false;
             var freeDirection = GetFreeRandomDirection();
@@ -208,6 +210,7 @@ namespace Wator.Lib.Animals
                     {
                         siblingField.Animal = CreateSibling(siblingField);
                     }
+                    return true;
                 }
             }
             else
@@ -244,6 +247,8 @@ namespace Wator.Lib.Animals
 
                 }
             }
+
+            return false;
         }
 
         /// <summary>
