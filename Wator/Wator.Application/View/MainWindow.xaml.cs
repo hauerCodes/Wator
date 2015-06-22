@@ -9,6 +9,10 @@ namespace Wator.Application.View
 {
     using System.Windows;
 
+    using GalaSoft.MvvmLight.CommandWpf;
+
+    using Wator.Application.ViewModel;
+
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
@@ -20,6 +24,15 @@ namespace Wator.Application.View
         public MainWindow()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnClosed(System.EventArgs e)
+        {
+            var mainViewModel = this.DataContext as MainViewModel;
+            if (mainViewModel != null)
+            {
+                mainViewModel.StopSimulation.Execute(this);
+            }
         }
     }
 }

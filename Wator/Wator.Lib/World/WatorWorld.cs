@@ -101,14 +101,14 @@ namespace Wator.Lib.World
         /// Gets the drawing elements.
         /// </summary>
         /// <returns>
-        /// The <see cref="int[,]"/>.
+        /// The <see cref="sbyte[,]"/>.
         /// </returns>
-        public int[,] GetDrawingElements()
+        public sbyte[,] GetDrawingElements()
         {
             int width = this.Settings.WorldWidth;
             int height = this.Settings.WorldHeight;
-            int[,] data = new int[height, width];
-            int col = 0;
+            sbyte[,] data = new sbyte[height, width];
+            sbyte col = 0;
 
             for (int y = 0; y < height; y++)
             {

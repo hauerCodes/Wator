@@ -22,7 +22,13 @@ namespace Wator.Lib.World
             this.FishColor = Color.YellowGreen;
             this.SharkColor = Color.DarkCyan;
             this.WaterColor = Color.Black;
+            this.ImageExtension = "bmp";
         }
+
+        /// <summary>
+        /// Gets or sets the fish breed time.
+        /// </summary>
+        public string ImageExtension { get; set; }
 
         /// <summary>
         /// Gets or sets the fish breed time.

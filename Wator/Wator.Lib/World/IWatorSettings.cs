@@ -20,6 +20,11 @@ namespace Wator.Lib.World
         int FishBreedTime { get; set; }
 
         /// <summary>
+        /// Gets or sets the fish breed time.
+        /// </summary>
+        string  ImageExtension{ get; set; }
+
+        /// <summary>
         /// Gets or sets the fish color.
         /// </summary>
         Color FishColor { get; set; }

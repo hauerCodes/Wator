@@ -38,7 +38,7 @@ namespace Wator.Lib.Images
         /// <value>
         /// The round.
         /// </value>
-        public int[,] Data { get; private set; }
+        public sbyte[,] Data { get; private set; }
 
         /// <summary>
         /// Gets or sets the file.
