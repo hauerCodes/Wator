@@ -164,7 +164,7 @@ namespace Wator.Lib.Simulation
         /// </summary>
         private void Calculate()
         {
-            for (int y = StartRow; y < EndRow; y++)
+            for (int y = StartRow; y <= EndRow; y++)
             {
                 for (int x = 0; x < worldWidth; x++)
                 {

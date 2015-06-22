@@ -433,7 +433,7 @@ namespace Wator.Application.ViewModel
                 WorldWidth = WorldWidth,
             });
 
-            this.watorSimulationObj.ImageCreator.JobFinished += ImageCreatorJobFinished;
+            this.watorSimulationObj.ImageFinished += ImageCreatorJobFinished;
             this.watorSimulationObj.StepDone += WatorSimulationObjStepDone;
             this.watorSimulationObj.StartSimulation();
         }

@@ -106,10 +106,17 @@ namespace Wator.Lib.Images
         {
             this.IsCreatorRunning = false;
 
-             // cancel simulation - threadabortexcep
-             this.creatorThread.Abort();
-             // wait for thread exit
-             this.creatorThread.Join();
+            try
+            {
+                // cancel simulation - threadabortexcep
+                this.creatorThread.Abort();
+                // wait for thread exit
+                this.creatorThread.Join();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
         /// <summary>
@@ -242,6 +249,7 @@ namespace Wator.Lib.Images
 
             //gets killed when foreground thread ends
             creatorThread.IsBackground = true;
+            creatorThread.Priority = ThreadPriority.Highest;
         }
 
         /// <summary>
