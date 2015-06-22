@@ -22,6 +22,12 @@ namespace Wator.Lib.Simulation
         private ManualResetEventSlim eventGo;
 
         /// <summary>
+        /// The event barrier
+        /// after calculation ready of threads
+        /// </summary>
+        private ManualResetEventSlim eventBarrier;
+
+        /// <summary>
         /// The event ready
         /// wait for workers to end current step
         /// </summary>
@@ -84,11 +90,8 @@ namespace Wator.Lib.Simulation
             // signal all workers to start work
             eventGo.Set();
 
-            // wait until all workers have startet work 
-            Thread.Sleep(500);
-
-            // close "gate"
-            eventGo.Reset();
+            // barrier at calculation end
+            eventBarrier.Reset();
         }
 
         /// <summary>
@@ -98,6 +101,14 @@ namespace Wator.Lib.Simulation
         {
             // wait until all workers are ready 
             eventReady.Wait();
+
+            // close "gate" for calculation start
+            eventGo.Reset();
+
+            // open barrier for run to next go
+            eventBarrier.Set();
+
+            // reset ready event
             eventReady.Reset();
         }
 
@@ -136,6 +147,7 @@ namespace Wator.Lib.Simulation
         private void InitializeConcurrencyEvents()
         {
             this.eventGo = new ManualResetEventSlim(false);
+            this.eventBarrier = new ManualResetEventSlim(false);
             this.eventReady = new CountdownEvent(phaseWorkerNumber);
         }
 
@@ -156,21 +168,23 @@ namespace Wator.Lib.Simulation
             for (int i = BlackPhase ? 0 : 1; i < this.overallWorkerNumber; i += 2)
             {
                 // last row / exception - row incl. reminder
-                if ((i * workerRowHeight) > (world.Settings.WorldHeight - workerRowHeight))
+                if (i == overallWorkerNumber - 1)
                 {
-                    this.Workers[workerCounter++] = new PhaseExecutionWorker(world,
+                    this.Workers[workerCounter++] = new PhaseExecutionWorker(world, i,
                         i * workerRowHeight,
                         this.world.Settings.WorldHeight,
                         eventGo,
+                        eventBarrier,
                         eventReady);
                 }
                 else
                 {
-                    this.Workers[workerCounter++] = new PhaseExecutionWorker(world,
+                    this.Workers[workerCounter++] = new PhaseExecutionWorker(world, i,
                         i * workerRowHeight,
                         // inclusive last row of part
                         (i * workerRowHeight) + workerRowHeight - 1,
                         eventGo,
+                        eventBarrier,
                         eventReady);
                 }
             }

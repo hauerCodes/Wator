@@ -205,7 +205,6 @@ namespace Wator.Lib.Simulation
             int secondPhase = firstPhase == 0 ? 1 : 0; // opposite
 
             // Start phases
-
             simulationPhases[firstPhase].Start();
             simulationPhases[firstPhase].WaitForEnd();
 

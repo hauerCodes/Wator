@@ -5,9 +5,11 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 using Wator.Lib.World;
 
@@ -16,7 +18,6 @@ namespace Wator.Lib.Images
     /// <summary>
     /// 
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     public class ImageCreator<T> : IDisposable where T : IDrawable
     {
         /// <summary>
@@ -55,7 +56,7 @@ namespace Wator.Lib.Images
         private string imageExtension = "bmp";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ImageCreator{T}" /> class.
+        /// Initializes a new instance of the <see cref="ImageCreator"/> class.
         /// </summary>
         /// <param name="settings">The settings.</param>
         public ImageCreator(IWatorSettings settings)
@@ -143,13 +144,18 @@ namespace Wator.Lib.Images
         private void HandleImageJob(ImageJob<T> currentJob)
         {
             //load data from stream
-            T imageData = currentJob.LoadJobData();
+            Color[,] imageData = currentJob.Data.GetDrawingElements();
 
             //generate image from data
             Bitmap image = GenerateImage(imageData);
 
-            image.Save(Path.Combine(imageSavePath,
-                    string.Format("{0}.{1}", currentJob.Round, imageExtension)), ImageFormat.Bmp);
+            //image.Save(Path.Combine(imageSavePath,
+            //        string.Format("{0}.{1}", currentJob.Round, imageExtension)), ImageFormat.MemoryBmp);
+            image.Save(@"test.bmp", ImageFormat.Bmp);
+
+            currentJob.File = image;
+            currentJob.IsFinished = true;
+            OnJobFinished(currentJob);
         }
 
         /// <summary>
@@ -157,25 +163,8 @@ namespace Wator.Lib.Images
         /// </summary>
         /// <param name="imageData">The image data.</param>
         /// <returns></returns>
-        private Bitmap GenerateImage(T imageData)
+        private Bitmap GenerateImage(Color[,] imageData)
         {
-            byte[] rgbValues = new byte[width * height * 4];
-            int counter = 0;
-            IColorProvider[,] fields = imageData.GetDrawingElements();
-
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    Color col = fields[x, y].DrawColor;
-
-                    rgbValues[counter++] = col.A;
-                    rgbValues[counter++] = col.R;
-                    rgbValues[counter++] = col.G;
-                    rgbValues[counter++] = col.B;
-                }
-            }
-
             Rectangle rect = new Rectangle(0, 0, width, height);
             Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format32bppArgb);
 
@@ -186,11 +175,31 @@ namespace Wator.Lib.Images
                 // Lock the bitmap's bits.    
                 bmpData = bitmap.LockBits(rect, ImageLockMode.ReadWrite, bitmap.PixelFormat);
 
+                //byte[] rgbValues = new byte[width * height * 3];
+
+                byte[] rgbValues = new byte[bmpData.Stride * height];
+
+                int counter = 0;
+
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        Color col = imageData[x, y];
+
+                        rgbValues[counter++] = col.B;
+                        rgbValues[counter++] = col.G;
+                        rgbValues[counter++] = col.R;
+                        rgbValues[counter++] = col.A;
+                    }
+                }
+
+
                 // Get the address of the first line.                
                 IntPtr ptr = bmpData.Scan0;
 
                 // Copy the RGB values back to the bitmap             
-                System.Runtime.InteropServices.Marshal.Copy(rgbValues, 0, ptr, rgbValues.Length);
+                Marshal.Copy(rgbValues, 0, ptr, rgbValues.Length);
             }
             finally
             {
@@ -201,7 +210,7 @@ namespace Wator.Lib.Images
                 }
             }
 
-            return bitmap;
+            return bitmap.Clone(rect, PixelFormat.Format32bppArgb);
         }
 
         /// <summary>

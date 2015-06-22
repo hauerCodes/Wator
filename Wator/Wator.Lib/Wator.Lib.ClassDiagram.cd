@@ -31,7 +31,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Wator.Lib.World.WatorSettings" Collapsed="true">
-    <Position X="7.5" Y="5.5" Width="2" />
+    <Position X="7.5" Y="5.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIACAAAwAAGAAACAAAAAAAAAAAAAIAQoAA=</HashCode>
       <FileName>World\WatorSettings.cs</FileName>
@@ -41,7 +41,7 @@
   <Class Name="Wator.Lib.World.WatorWorld">
     <Position X="4" Y="2" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAEAABAgAAQIAAAAAAAAAAAAAAgwAAAAAAgAA=</HashCode>
+      <HashCode>AAAAEAAAEAABAgAAQIAAAAAAAAQAAAAAgwAAAAAAgAA=</HashCode>
       <FileName>World\WatorWorld.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -56,23 +56,11 @@
     <Position X="0.75" Y="2" Width="2" />
     <AssociationLine Name="simulationPhases" Type="Wator.Lib.Simulation.Phase" FixedToPoint="true">
       <Path>
-        <Point X="1.188" Y="8.689" />
-        <Point X="1.188" Y="9" />
+        <Point X="1.188" Y="8.881" />
+        <Point X="1.188" Y="9.5" />
       </Path>
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-1.423" Y="0.851" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <AssociationLine Name="ImageCreator" Type="Wator.Lib.Images.ImageCreator&lt;T&gt;" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="2.125" Y="2" />
-        <Point X="2.125" Y="1.195" />
-        <Point X="14.875" Y="1.195" />
-        <Point X="14.875" Y="2.5" />
-        <Point X="15.25" Y="2.5" />
-      </Path>
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.122" Y="-0.299" />
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.685" Y="0.231" Height="0.182" Width="1.371" />
       </MemberNameLabel>
     </AssociationLine>
     <AssociationLine Name="Settings" Type="Wator.Lib.World.IWatorSettings">
@@ -86,7 +74,6 @@
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="simulationPhases" />
-      <Property Name="ImageCreator" />
       <Property Name="Settings" />
       <Property Name="WatorWorld" />
     </ShowAsAssociation>
@@ -100,7 +87,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AgAAAIACAAAAAAAgAQAAAAAAAACAAgAAIAAAAEAAAAA=</HashCode>
+      <HashCode>AgAAAIACAAAAAAAgAQAAAAAAAACgAgAAIAAAAEAAAAA=</HashCode>
       <FileName>World\WatorField.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -109,34 +96,31 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Wator.Lib.Images.ImageCreator&lt;T&gt;">
-    <Position X="15.25" Y="1.5" Width="2" />
+    <Position X="15.5" Y="1.5" Width="2" />
     <TypeIdentifier>
       <HashCode>ACAAIAAAACBAAgwEQAACAAAQJACAAgAAABAAAACAgAA=</HashCode>
       <FileName>Images\ImageCreator.cs</FileName>
     </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Field Name="jobQueue" />
-    </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Wator.Lib.Images.ImageJob&lt;T&gt;">
-    <Position X="18.5" Y="1.5" Width="2" />
+    <Position X="18.75" Y="1.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAQAAABAAAAAAEAAEAAAABAAAAgIAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAEABAABAAAAAIAAAA=</HashCode>
       <FileName>Images\ImageJob.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Wator.Lib.Simulation.PhaseExecutionWorker">
     <Position X="4" Y="9" Width="2" />
     <TypeIdentifier>
-      <HashCode>EAAAAEAQABAAAAEAEAAIDAAAAiEAAAAAAAAAAgAQAAA=</HashCode>
+      <HashCode>EAAAAEAAABIAAAEAEAAIDAAAAiEABAAEAAAAAgAQAAA=</HashCode>
       <FileName>Simulation\PhaseExecutionWorker.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Wator.Lib.Simulation.Phase">
-    <Position X="0.75" Y="9" Width="2" />
+    <Position X="0.75" Y="9.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>MAAAEAEAACAAACEAAAAAAAAAAAAAKAAAAIAgAAAAAAE=</HashCode>
+      <HashCode>MAAAEAEAACAAACEAAAAAAAAAAAAALAAAAIAgAAAAAAE=</HashCode>
       <FileName>Simulation\Phase.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -144,14 +128,14 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Wator.Lib.Simulation.SimulationState">
-    <Position X="7.5" Y="9.25" Width="2" />
+    <Position X="7.5" Y="9.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAQAAAIAABAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Simulation\SimulationState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Wator.Lib.Images.IColorProvider">
-    <Position X="7.5" Y="7.5" Width="2" />
+    <Position X="7.5" Y="7.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Images\IColorProvider.cs</FileName>
@@ -165,7 +149,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="Wator.Lib.Images.IDrawable">
-    <Position X="7.5" Y="6.25" Width="2" />
+    <Position X="7.5" Y="6.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Images\IDrawable.cs</FileName>
