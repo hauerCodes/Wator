@@ -24,6 +24,21 @@ namespace Wator.Lib.Simulation
         private Random phaseRandomizer;
 
         /// <summary>
+        /// The create world task
+        /// </summary>
+        private Task createWorldTask;
+
+        /// <summary>
+        /// The cancel token
+        /// </summary>
+        private CancellationToken cancelToken;
+
+        /// <summary>
+        /// The cancel token source
+        /// </summary>
+        private CancellationTokenSource cancelTokenSource;
+
+        /// <summary>
         /// The black/white phase as array
         /// </summary>
         private Phase[] simulationPhases;
@@ -32,6 +47,11 @@ namespace Wator.Lib.Simulation
         /// The step watch
         /// </summary>
         private Stopwatch stepWatch;
+
+        /// <summary>
+        /// The image creator
+        /// </summary>
+        private ImageCreator<WatorWorld> imageCreator;
 
         /// <summary>
         /// The current fish popluation
@@ -52,22 +72,29 @@ namespace Wator.Lib.Simulation
             // stop obj creation if settings wrong
             CheckSettings(settings);
 
-            // create wator world 
-            InitializeWatorWorld(settings);
+            InitializeSimulationThread();
 
             // save settings in this instance
             this.Settings = settings;
 
-            InitializeSimulationThread();
-
-            // initialize image creator
-            InitializeImageCreator();
-
-            // intialize concurrency of simulation (phases)
-            InitializeConcurrency();
-
             // intialize stop watches
             InitializeTimeTracking();
+
+            cancelTokenSource = new CancellationTokenSource();
+            cancelToken = cancelTokenSource.Token;
+
+            createWorldTask = Task.Factory.StartNew(() =>
+            {
+                // create wator world 
+                InitializeWatorWorld(settings);
+
+                // initialize image creator
+                InitializeImageCreator();
+
+                // intialize concurrency of simulation (phases)
+                InitializeConcurrency();
+
+            }, cancelToken);
         }
 
         #region Properties
@@ -79,14 +106,6 @@ namespace Wator.Lib.Simulation
         /// <c>true</c> if this instance is running; otherwise, <c>false</c>.
         /// </value>
         public bool IsRunning { get; private set; }
-
-        /// <summary>
-        /// Gets the image creator.
-        /// </summary>
-        /// <value>
-        /// The image creator.
-        /// </value>
-        public ImageCreator<WatorWorld> ImageCreator { get; private set; }
 
         /// <summary>
         /// Gets the is end reached.
@@ -135,6 +154,11 @@ namespace Wator.Lib.Simulation
         /// </summary>
         public event EventHandler<SimulationState> StepDone;
 
+        /// <summary>
+        /// Occurs when a image is finished.
+        /// </summary>
+        public event EventHandler<ImageJob<WatorWorld>> ImageFinished;
+
         #endregion
 
         /// <summary>
@@ -144,7 +168,6 @@ namespace Wator.Lib.Simulation
         {
             this.IsRunning = true;
 
-            this.ImageCreator.StartCreator();
             this.simulationThread.Start();
         }
 
@@ -153,9 +176,10 @@ namespace Wator.Lib.Simulation
         /// </summary>
         public void StopSimulation()
         {
+            cancelTokenSource.Cancel();
             this.IsRunning = false;
 
-            this.ImageCreator.StopCreator();
+            this.imageCreator.StopCreator();
 
             // cancel simulation - fire threadabortexcep
             this.simulationThread.Abort();
@@ -168,6 +192,22 @@ namespace Wator.Lib.Simulation
         /// </summary>
         private void RunSimulation()
         {
+            try
+            {
+                createWorldTask.Wait(cancelToken);
+            }
+            catch
+            {
+                if (cancelToken.IsCancellationRequested)
+                {
+                    return;
+                }
+            }
+
+            // start image processor
+            this.imageCreator.StartCreator();
+
+            //begin main simulation loop
             while (this.IsRunning)
             {
                 try
@@ -180,7 +220,7 @@ namespace Wator.Lib.Simulation
                     stepWatch.Stop();
 
                     // create image of step
-                    ImageCreator.AddJob(new ImageJob<WatorWorld>(this.WatorWorld, this.Round));
+                    this.imageCreator.AddJob(new ImageJob<WatorWorld>(this.WatorWorld, this.Round));
 
                     //Increase round
                     Round++;
@@ -269,7 +309,7 @@ namespace Wator.Lib.Simulation
             simulationPhases = new Phase[]
             {
                 new Phase(WatorWorld, true), // black phase
-                new Phase(WatorWorld,false) // white phase
+                new Phase(WatorWorld, false) // white phase
             };
 
             phaseRandomizer = new Random(DateTime.Now.Millisecond);
@@ -317,6 +357,7 @@ namespace Wator.Lib.Simulation
             WatorSimulation.currentFishPopluation = settings.InitialFishPopulation;
             this.IsEndReached = false;
             this.Round = 0;
+
             this.WatorWorld = new WatorWorld(settings);
         }
 
@@ -334,7 +375,8 @@ namespace Wator.Lib.Simulation
         /// </summary>
         private void InitializeImageCreator()
         {
-            this.ImageCreator = new ImageCreator<WatorWorld>(this.Settings);
+            this.imageCreator = new ImageCreator<WatorWorld>(this.Settings);
+            this.imageCreator.JobFinished += (sender, e) => OnImageFinished(e);
         }
 
         /// <summary>
@@ -382,6 +424,19 @@ namespace Wator.Lib.Simulation
         {
             var handler = this.StepDone;
 
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Called when a image is finished.
+        /// </summary>
+        /// <param name="e">The e.</param>
+        protected virtual void OnImageFinished(ImageJob<WatorWorld> e)
+        {
+            var handler = this.ImageFinished;
             if (handler != null)
             {
                 handler(this, e);

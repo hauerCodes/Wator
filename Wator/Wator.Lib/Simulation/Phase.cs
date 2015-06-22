@@ -172,7 +172,7 @@ namespace Wator.Lib.Simulation
                 {
                     this.Workers[workerCounter++] = new PhaseExecutionWorker(world, i,
                         i * workerRowHeight,
-                        this.world.Settings.WorldHeight,
+                        this.world.Settings.WorldHeight - 1,
                         eventGo,
                         eventBarrier,
                         eventReady);
