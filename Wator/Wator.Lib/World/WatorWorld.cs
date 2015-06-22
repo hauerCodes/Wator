@@ -81,11 +81,27 @@ namespace Wator.Lib.World
         /// <summary>
         /// Finishes the steps of alle animals on all fields.
         /// </summary>
-        public void FinishSteps()
+        public void FinishSteps(bool useEvent = true)
         {
-            if (this.ResetMovedStats != null)
+            if (useEvent)
             {
-                this.ResetMovedStats();
+                if (this.ResetMovedStats != null)
+                {
+                    this.ResetMovedStats();
+                }
+            }
+            else
+            {
+                int width = Settings.WorldWidth;
+                int height = Settings.WorldHeight;
+
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        Fields[y, x].FinishStep();
+                    }
+                }
             }
         }
 

@@ -201,6 +201,7 @@ namespace Wator.Lib.Simulation
             //this.workerTask = Task.Factory.StartNew(this.RunWorker, this.cancelToken);
 
             this.workerThread = new Thread(RunWorker);
+            this.workerThread.IsBackground = true;
             this.workerThread.Start();
         }
     }

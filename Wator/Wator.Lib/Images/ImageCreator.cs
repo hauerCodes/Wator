@@ -235,7 +235,6 @@ namespace Wator.Lib.Images
         /// </summary>
         private void InitializeThread()
         {
-
             this.IsCreatorRunning = false;
 
             //initialize thread

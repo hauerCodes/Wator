@@ -453,13 +453,18 @@ namespace Wator.Application.ViewModel
         /// <param name="e">The e.</param>
         private void WatorSimulationObjStepDone(object sender, SimulationState e)
         {
-            App.Current.Dispatcher.Invoke(() =>
+            try
             {
-                this.CurrentFishPopulation = e.FishPopulation;
-                this.CurrentSharkPopulation = e.SharkPopulation;
-                this.CurrentRound = e.Round;
-                this.StepTime = e.StepTime;
-            });
+                App.Current.Dispatcher.Invoke(
+                    () =>
+                    {
+                        this.CurrentFishPopulation = e.FishPopulation;
+                        this.CurrentSharkPopulation = e.SharkPopulation;
+                        this.CurrentRound = e.Round;
+                        this.StepTime = e.StepTime;
+                    });
+            }
+            catch { ;}
         }
 
         private void ExcuteStopSimulation()
