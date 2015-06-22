@@ -1,11 +1,13 @@
 ﻿using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 using GalaSoft.MvvmLight;
 
@@ -117,12 +119,12 @@ namespace Wator.Application.ViewModel
             WorldHeight = 1000;
             WorldWidth = 1000;
 
-            FishBreedTime = 2;
-            SharkBreedTime = 5;
-            FishPopulation = 10000;
-            SharkPopulation = 10000;
-            SharkStarveTime = 5;
-            PictureSaveFolder = @"C:\Temp\Wator";
+            FishBreedTime = 20;
+            SharkBreedTime = 10;
+            FishPopulation = 50000;
+            SharkPopulation = 30000;
+            SharkStarveTime = 15;
+            PictureSaveFolder = @"C:\Wator\" + DateTime.Now.ToShortDateString();
         }
 
         /// <summary>
@@ -235,7 +237,7 @@ namespace Wator.Application.ViewModel
         {
             get
             {
-                return this.CurrentSharkPopulation;
+                return this.currentSharkPopulation;
             }
             set
             {
@@ -407,6 +409,18 @@ namespace Wator.Application.ViewModel
         {
             this.isSimulationRunning = true;
 
+            try
+            {
+                if (!Directory.Exists(PictureSaveFolder))
+                {
+                    Directory.CreateDirectory(PictureSaveFolder);
+                }
+            }
+            catch
+            {
+                PictureSaveFolder = @".\";
+            }
+
             this.watorSimulationObj = new WatorSimulation(new WatorSettings()
             {
                 FishBreedTime = FishBreedTime,
@@ -419,18 +433,17 @@ namespace Wator.Application.ViewModel
                 WorldWidth = WorldWidth,
             });
 
-            this.watorSimulationObj.ImageCreator.JobFinished += ImageCreator_JobFinished;
+            this.watorSimulationObj.ImageCreator.JobFinished += ImageCreatorJobFinished;
             this.watorSimulationObj.StepDone += WatorSimulationObjStepDone;
             this.watorSimulationObj.StartSimulation();
         }
 
-        private void ImageCreator_JobFinished(object sender, Lib.Images.ImageJob<WatorWorld> e)
+        private void ImageCreatorJobFinished(object sender, Lib.Images.ImageJob<WatorWorld> e)
         {
-            //App.Current.Dispatcher.Invoke(() =>
-            //{
-            //    ImageSourceConverter c = new ImageSourceConverter();
-            //    CurrentImage = (ImageSource)c.ConvertFrom(e.File);
-            //});
+            App.Current.Dispatcher.Invoke(() =>
+                {
+                    CurrentImage = new BitmapImage(new Uri(e.File));
+                });
         }
 
         /// <summary>

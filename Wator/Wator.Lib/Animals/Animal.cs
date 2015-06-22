@@ -92,8 +92,9 @@ namespace Wator.Lib.Animals
         /// <summary>
         /// Creates the sibling depending on inherited type.
         /// </summary>
+        /// <param name="siblingField">The sibling field.</param>
         /// <returns></returns>
-        protected abstract Animal CreateSibling();
+        protected abstract Animal CreateSibling(WatorField siblingField);
 
         /// <summary>
         /// Gets a free random field around the animal.
@@ -200,12 +201,12 @@ namespace Wator.Lib.Animals
                     {
                         lock (siblingField)
                         {
-                            siblingField.Animal = CreateSibling();
+                            siblingField.Animal = CreateSibling(siblingField);
                         }
                     }
                     else
                     {
-                        siblingField.Animal = CreateSibling();
+                        siblingField.Animal = CreateSibling(siblingField);
                     }
                 }
             }

@@ -21,7 +21,7 @@ namespace Wator.Lib.Images
         /// <param name="round">The round.</param>
         public ImageJob(T data, int round)
         {
-            this.Data = data;
+            this.Data = data.GetDrawingElements();
             this.Round = round;
 
             this.Initialize();
@@ -50,9 +50,9 @@ namespace Wator.Lib.Images
         /// <value>
         /// The round.
         /// </value>
-        public T Data { get; private set; }
+        public Color[,] Data { get; private set; }
 
-        public Bitmap File { get; set; }
+        public string File { get; set; }
 
         public bool IsFinished { get; set; }
 
