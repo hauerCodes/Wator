@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
+  dslVersion="1.0.0.0"
+  Id="d1cc6769-fb84-45de-916d-caa9f0a45893"
+  name="World"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="e8b50c7e-050e-4a3b-8613-0f709b329963"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DWator.Lib.World"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="1ddb18d0-bc6f-4110-a17c-2fca4afea64a"
+        name="IWatorSettings"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="2937cb14-0ff3-46c9-8a39-f3aae0519ad1"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.World Type%3DIWatorSettings"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="80fcc051-991d-4525-a8e8-45a557621760"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1329cfa2-0095-4cc2-b091-5313f3fb0054">
+                <propertyInstance
+                  Id="a0ca881e-8b1e-4f6d-b152-14531f31951b"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="46e6eb72-4a65-4224-87a4-478b170c057d">
+                <propertyInstance
+                  Id="38b5dfc4-3a57-455f-8284-c68e1dd56a84"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7c22f72d-468a-40e7-bae6-20a7754c6104">
+                <propertyInstance
+                  Id="d1fe2183-6f59-4d10-9dfe-00c5ed609603"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2fa9da1f-6d11-4d9a-b83c-720ab176a8e7">
+                <propertyInstance
+                  Id="de2a1a67-4471-4780-85a3-d3c2bea2b978"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="c07e9768-43cc-4b71-b4ce-b49d41de67fa"
+        name="WatorField"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="a1b22669-8282-4b08-b5c2-bf2b8498d71a"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FUsers%2FChristoph%2FFH WN%2FProjekte%2FMaster%2FWator%2FWator.Lib%2Fbin%2FDebug%2FWator.Lib.dll&quot; Namespace%3DWator.Lib.World Type%3DWatorField"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="4c9d2d2b-2f12-472b-b09e-1de6aa0327be"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2015ee3d-addd-48d9-8d82-b60ebd3550b6">
+                <propertyInstance
+                  Id="adbacfd6-846d-4a9d-a66f-6185949664e6"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="81421a2f-fdfd-46a9-8094-cdd5e2dbf81c">
+                <propertyInstance
+                  Id="96929404-1e17-4e3a-8f1f-97f773de3c65"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1e6406d3-0712-4ba1-ab1d-d8d1cb31efb4">
+                <propertyInstance
+                  Id="2413b404-7cd6-4e2b-b597-dae24819731e"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0b9634de-8033-43ef-abb4-d8b3b4226935">
+                <propertyInstance
+                  Id="8aa6866b-3dbf-45bc-b1d4-73f46a96c7d3"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c9aee349-4c21-4043-b6d1-6d17433e60cd">
+                <propertyInstance
+                  Id="1ac9f2c0-3eab-4d89-b072-cba0e40a9344"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
