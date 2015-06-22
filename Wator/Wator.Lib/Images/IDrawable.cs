@@ -16,8 +16,8 @@ namespace Wator.Lib.Images
         /// The get drawing elements.
         /// </summary>
         /// <returns>
-        /// The <see cref="int[,]"/>.
+        /// The <see cref="sbyte[,]"/>.
         /// </returns>
-        int[,] GetDrawingElements();
+        sbyte[,] GetDrawingElements();
     }
 }

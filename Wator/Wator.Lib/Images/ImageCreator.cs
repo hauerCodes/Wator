@@ -38,7 +38,12 @@ namespace Wator.Lib.Images
         /// <summary>
         /// The image extension
         /// </summary>
-        private string imageExtension = "bmp";
+        private string imageExtension;
+
+        /// <summary>
+        /// The image format
+        /// </summary>
+        private ImageFormat imageFormat;
 
         /// <summary>
         /// The image save path
@@ -70,12 +75,28 @@ namespace Wator.Lib.Images
         public ImageCreator(IWatorSettings settings)
         {
             this.settings = settings;
+            this.InitializeImageFormat(settings);
+
             this.width = settings.WorldWidth;
             this.height = settings.WorldHeight;
             this.imageSavePath = settings.SaveFolder;
 
             this.InitializeObjects();
             this.InitializeThread();
+        }
+
+        private void InitializeImageFormat(IWatorSettings settings)
+        {
+            this.imageExtension = settings.ImageExtension;
+
+            if (imageExtension.ToLower().Equals("png"))
+            {
+                this.imageFormat = ImageFormat.Png;
+            }
+            else
+            {
+                this.imageFormat = ImageFormat.Bmp;
+            }
         }
 
         /// <summary>
@@ -161,7 +182,7 @@ namespace Wator.Lib.Images
         /// <returns>
         /// The <see cref="Bitmap"/>.
         /// </returns>
-        private Bitmap GenerateImage(int[,] imageData)
+        private Bitmap GenerateImage(sbyte[,] imageData)
         {
             Rectangle rect = new Rectangle(0, 0, this.width, this.height);
             Bitmap bitmap = new Bitmap(this.width, this.height, PixelFormat.Format32bppArgb);
@@ -231,7 +252,7 @@ namespace Wator.Lib.Images
         private void HandleImageJob(ImageJob<T> currentJob)
         {
             // load data from stream
-            int[,] imageData = currentJob.Data;
+            sbyte[,] imageData = currentJob.Data;
 
             try
             {
@@ -239,10 +260,10 @@ namespace Wator.Lib.Images
                 Bitmap image = this.GenerateImage(imageData);
 
                 var path = Path.Combine(
-                    this.imageSavePath, 
+                    this.imageSavePath,
                     string.Format("{0}.{1}", currentJob.Round, this.imageExtension));
 
-                image.Save(path, ImageFormat.Bmp);
+                image.Save(path, imageFormat);
 
                 currentJob.File = path;
                 currentJob.IsFinished = true;

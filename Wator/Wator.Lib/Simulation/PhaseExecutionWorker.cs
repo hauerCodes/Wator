@@ -86,12 +86,12 @@ namespace Wator.Lib.Simulation
         /// The event ready.
         /// </param>
         public PhaseExecutionWorker(
-            WatorWorld world, 
-            int workerId, 
-            int startRow, 
-            int endRow, 
-            ManualResetEventSlim eventGo, 
-            ManualResetEventSlim eventBarrier, 
+            WatorWorld world,
+            int workerId,
+            int startRow,
+            int endRow,
+            ManualResetEventSlim eventGo,
+            ManualResetEventSlim eventBarrier,
             CountdownEvent eventReady)
         {
             this.workerId = workerId;
@@ -215,9 +215,11 @@ namespace Wator.Lib.Simulation
 
             // run task from thread pool
             // this.workerTask = Task.Factory.StartNew(this.RunWorker, this.cancelToken);
-            this.workerThread = new Thread(this.RunWorker);
-            this.workerThread.IsBackground = true;
-            this.workerThread.Start();
+            //this.workerThread = new Thread(this.RunWorker);
+            //this.workerThread.IsBackground = true;
+            //this.workerThread.Start();
+
+            ThreadPool.QueueUserWorkItem((target) => RunWorker());
         }
     }
 }

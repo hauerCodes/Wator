@@ -180,25 +180,25 @@ namespace Wator.Lib.Simulation
                 if (i == this.overallWorkerNumber - 1)
                 {
                     this.Workers[workerCounter++] = new PhaseExecutionWorker(
-                        this.world, 
-                        i, 
-                        i * workerRowHeight, 
-                        this.world.Settings.WorldHeight - 1, 
-                        this.eventGo, 
-                        this.eventBarrier, 
+                        this.world,
+                        i,
+                        i * workerRowHeight,
+                        this.world.Settings.WorldHeight - 1,
+                        this.eventGo,
+                        this.eventBarrier,
                         this.eventReady);
                 }
                 else
                 {
                     this.Workers[workerCounter++] = new PhaseExecutionWorker(
-                        this.world, 
-                        i, 
-                        i * workerRowHeight, 
+                        this.world,
+                        i,
+                        i * workerRowHeight,
 
                         // inclusive last row of part
-                        (i * workerRowHeight) + workerRowHeight - 1, 
-                        this.eventGo, 
-                        this.eventBarrier, 
+                        (i * workerRowHeight) + workerRowHeight - 1,
+                        this.eventGo,
+                        this.eventBarrier,
                         this.eventReady);
                 }
             }
