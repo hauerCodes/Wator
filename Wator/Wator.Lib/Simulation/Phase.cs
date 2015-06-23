@@ -140,7 +140,7 @@ namespace Wator.Lib.Simulation
         {
             // split the world in x rows - half of it for black/white phase
             // exp. 8 logical cores x 3 => 24 workers per phase * 2 => 48 workers overall
-            this.overallWorkerNumber = (Environment.ProcessorCount * 3) * 2;
+            this.overallWorkerNumber = (Environment.ProcessorCount * world.Settings.ThreadFaktor) * 2;
 
             // odd number of workers
             if (this.overallWorkerNumber % 2 == 1)

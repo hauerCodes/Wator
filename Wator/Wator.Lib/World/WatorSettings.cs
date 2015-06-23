@@ -23,6 +23,7 @@ namespace Wator.Lib.World
             this.SharkColor = Color.DarkCyan;
             this.WaterColor = Color.Black;
             this.ImageExtension = "bmp";
+            this.ThreadFaktor = 3;
         }
 
         /// <summary>
@@ -64,6 +65,14 @@ namespace Wator.Lib.World
         /// Gets or sets the shark color.
         /// </summary>
         public Color SharkColor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the thread faktor.
+        /// </summary>
+        /// <value>
+        /// The thread faktor.
+        /// </value>
+        public int ThreadFaktor { get; set; }
 
         /// <summary>
         /// Gets or sets the shark starve time.
