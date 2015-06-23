@@ -73,5 +73,13 @@ namespace Wator.Lib.World
         /// Gets or sets the world width.
         /// </summary>
         int WorldWidth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the thread faktor.
+        /// </summary>
+        /// <value>
+        /// The thread faktor.
+        /// </value>
+        int ThreadFaktor { get; set; }
     }
 }
