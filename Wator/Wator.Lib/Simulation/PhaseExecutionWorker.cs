@@ -147,6 +147,10 @@ namespace Wator.Lib.Simulation
         {
             Debug.WriteLine("Worker {0} - Starting", this.workerId);
 
+            // ready - countdownevent (running workers--) 
+            // wait for all phase workers to end current step
+            this.eventReady.Signal();
+
             while (this.IsActive)
             {
                 Debug.WriteLine("Worker {0} - Waiting for event go", this.workerId);
