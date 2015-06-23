@@ -46,6 +46,11 @@ namespace Wator.Lib.Simulation
         private int phaseWorkerNumber;
 
         /// <summary>
+        /// The initial run
+        /// </summary>
+        private bool initialRun;
+
+        /// <summary>
         /// The world
         /// </summary>
         private WatorWorld world;
@@ -64,6 +69,7 @@ namespace Wator.Lib.Simulation
         {
             this.world = world;
             this.BlackPhase = blackPhase;
+            this.initialRun = true;
 
             // set number for phase workers
             this.InitializeWorkerNumber();
@@ -98,6 +104,13 @@ namespace Wator.Lib.Simulation
         /// </summary>
         public void Start()
         {
+            if (initialRun)
+            {
+                this.eventReady.Wait();
+                this.eventReady.Reset();
+                this.initialRun = false;
+            }
+
             // signal all workers to start work
             this.eventGo.Set();
 
