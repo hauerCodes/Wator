@@ -17,6 +17,15 @@ Wa-Tor is usually implemented as a two-dimensional grid with three colours, one 
 - If a shark moves to a square occupied by a fish, it eats the fish and earns a certain amount of energy.
 - Once a shark has survived a certain number of chronons it may reproduce in exactly the same way as the fish.
 
+## Results
+
+![Result](docs/1.bmp)
+![Result](docs/2.bmp)
+![Result](docs/3.bmp)
+![Result](docs/4.bmp)
+![Result](docs/5.bmp)
+![Result](docs/6.bmp)
+
 ## More Info
 For more info see:
 [Wikipedia - Wator](https://en.wikipedia.org/wiki/Wa-Tor)
